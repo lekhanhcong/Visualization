@@ -1,0 +1,10 @@
+{
+  "originalWidth": 1200,
+  "originalHeight": 800,
+  "aspectRatio": 1.5,
+  "legend": {
+    "position": { "x": 50, "y": 650 },
+    "width": 300,
+    "height": 120
+  }
+}

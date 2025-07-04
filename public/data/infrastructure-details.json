@@ -1,0 +1,114 @@
+{
+  "infrastructure": {
+    "datacenter": {
+      "id": "datacenter",
+      "name": "Hue Hi Tech Park 300MW AI Data Center",
+      "overview": "Trung tâm dữ liệu AI hiện đại với công suất 300MW, được thiết kế để phục vụ các ứng dụng trí tuệ nhân tạo và tính toán hiệu năng cao.",
+      "specifications": {
+        "totalCapacity": "300MW",
+        "powerSupply": "220kV/110kV dual feed",
+        "redundancy": "N+1 UPS and generator backup",
+        "coolingSystem": "Advanced liquid cooling with AI optimization",
+        "rackDensity": "Up to 50kW per rack",
+        "floorSpace": "50,000 m²",
+        "efficiency": "PUE < 1.15",
+        "certifications": ["Tier III", "ISO 27001", "SOC 2"]
+      },
+      "features": [
+        "Advanced AI workload optimization",
+        "Real-time power monitoring and control",
+        "Automated cooling management",
+        "High-density computing infrastructure",
+        "24/7 monitoring and support"
+      ],
+      "connectivity": [
+        "Direct connection to 500kV transmission grid",
+        "Redundant 220kV and 110kV power feeds",
+        "Multiple fiber optic connections to major internet exchanges"
+      ]
+    },
+    "substation-500kv": {
+      "id": "substation-500kv",
+      "name": "500/220kV Substation for 300MW Data Center",
+      "overview": "Trạm biến áp 500/220kV chuyên dụng được thiết kế để cung cấp điện ổn định và đáng tin cậy cho Data Center 300MW.",
+      "specifications": {
+        "primaryVoltage": "500kV",
+        "secondaryVoltage": "220kV",
+        "transformerCapacity": "2x600MVA",
+        "transformerType": "Oil-filled power transformer",
+        "protectionSystem": "Differential protection with backup",
+        "controlSystem": "Digital SCADA with remote monitoring",
+        "redundancy": "N+1 transformer configuration"
+      },
+      "equipment": [
+        "2x 600MVA 500/220kV power transformers",
+        "500kV GIS switchgear",
+        "220kV AIS switchgear",
+        "Protection and control systems",
+        "SCADA and communication equipment"
+      ],
+      "features": [
+        "High reliability and availability",
+        "Advanced protection systems",
+        "Remote monitoring and control",
+        "Environmental monitoring",
+        "Automatic load transfer capability"
+      ]
+    },
+    "la-son-substation": {
+      "id": "la-son-substation",
+      "name": "110kV La Son Substation",
+      "overview": "Trạm biến áp phân phối 110kV La Son với công suất 40MVA, phục vụ khu vực và cung cấp điện dự phòng cho Data Center.",
+      "specifications": {
+        "voltage": "110kV",
+        "capacity": "40MVA",
+        "transformerType": "Oil-filled distribution transformer",
+        "protectionSystem": "Overcurrent and earth fault protection",
+        "controlSystem": "Local control with remote monitoring",
+        "servicingArea": "La Son industrial zone"
+      },
+      "equipment": [
+        "40MVA 110/22kV transformer",
+        "110kV switchgear",
+        "22kV distribution panels",
+        "Protection relays",
+        "Monitoring equipment"
+      ],
+      "features": [
+        "Reliable power distribution",
+        "Local industrial support",
+        "Backup power capability",
+        "Environmental compliance",
+        "Regular maintenance schedule"
+      ]
+    },
+    "ta-trach-plant": {
+      "id": "ta-trach-plant",
+      "name": "Tả Trạch Hydro Power Plant",
+      "overview": "Nhà máy thủy điện Tả Trạch với công suất 2x10.5MW, sử dụng nguồn nước tự nhiên để sản xuất điện sạch và tái tạo.",
+      "specifications": {
+        "totalCapacity": "21MW (2x10.5MW)",
+        "turbineType": "Francis turbine",
+        "generatorVoltage": "11kV",
+        "outputVoltage": "110kV",
+        "annualGeneration": "Approximately 80 GWh",
+        "efficiency": "> 90%",
+        "waterSource": "Tả Trạch river system"
+      },
+      "equipment": [
+        "2x Francis turbines (10.5MW each)",
+        "2x Synchronous generators",
+        "11/110kV step-up transformers",
+        "110kV switchyard",
+        "Control and protection systems"
+      ],
+      "environmental": [
+        "Zero carbon emissions during operation",
+        "Fish ladder for aquatic life protection",
+        "Water flow regulation",
+        "Minimal environmental impact",
+        "Sustainable renewable energy source"
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "hotspots": [
+    {
+      "id": "datacenter",
+      "name": "HUE HI TECH PARK 300MW AI DATA CENTER",
+      "type": "datacenter",
+      "position": { "x": 650, "y": 520 },
+      "status": "planned",
+      "description": "Data center chính với công suất 300MW",
+      "details": {
+        "capacity": "300MW",
+        "technology": "AI Data Center",
+        "voltage": "220kV/110kV"
+      }
+    },
+    {
+      "id": "substation-500kv",
+      "name": "500/220KV SUBSTATION FOR 300MW DATA CENTER",
+      "type": "substation",
+      "position": { "x": 420, "y": 200 },
+      "status": "planned",
+      "description": "Trạm biến áp chính 2x600MVA",
+      "details": {
+        "capacity": "2x600MVA",
+        "voltage": "500kV/220kV",
+        "technology": "Transformer Substation"
+      }
+    },
+    {
+      "id": "la-son-substation",
+      "name": "110KV LA SON SUBSTATION",
+      "type": "substation",
+      "position": { "x": 950, "y": 130 },
+      "status": "operational",
+      "description": "Trạm biến áp La Son 40MVA",
+      "details": {
+        "capacity": "40MVA",
+        "voltage": "110kV",
+        "technology": "Distribution Substation"
+      }
+    },
+    {
+      "id": "ta-trach-plant",
+      "name": "TẢ TRẠCH HYDRO POWER PLANT",
+      "type": "powerplant",
+      "position": { "x": 120, "y": 400 },
+      "status": "operational",
+      "description": "Nhà máy thủy điện 2x10.5MW",
+      "details": {
+        "capacity": "2x10.5MW",
+        "voltage": "110kV",
+        "technology": "Hydro Power Generation"
+      }
+    }
+  ]
+}
