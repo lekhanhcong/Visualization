@@ -99,8 +99,8 @@ describe('useImageMap hook', () => {
     })
 
     expect(result.current.hotspots).toHaveLength(1)
-    expect(result.current.hotspots[0].id).toBe('datacenter')
-    expect(result.current.hotspots[0].position.x).toBe(100)
+    expect(result.current.hotspots[0]?.id).toBe('datacenter')
+    expect(result.current.hotspots[0]?.position.x).toBe(100)
     expect(result.current.imageConfig?.originalWidth).toBe(1200)
     expect(
       result.current.infrastructureDetails?.infrastructure.datacenter
@@ -329,8 +329,8 @@ describe('useImageMap hook', () => {
     const imageConfig = result.current.imageConfig!
 
     // Calculate percentage positions
-    const xPercent = (hotspot.position.x / imageConfig.originalWidth) * 100
-    const yPercent = (hotspot.position.y / imageConfig.originalHeight) * 100
+    const xPercent = hotspot ? (hotspot.position.x / imageConfig.originalWidth) * 100 : 0
+    const yPercent = hotspot ? (hotspot.position.y / imageConfig.originalHeight) * 100 : 0
 
     expect(xPercent).toBe(50) // 600/1200 * 100
     expect(yPercent).toBe(50) // 400/800 * 100

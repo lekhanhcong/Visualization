@@ -58,13 +58,12 @@ describe('TypeScript Interfaces', () => {
         position: { x: 0, y: 0 },
         metadata: {
           capacity: '300MW',
-          status: 'operational',
-          priority: 'high',
+          status: 'operational' as const,
         },
       }
 
       expect(hotspotWithoutMetadata.metadata).toEqual({})
-      expect(hotspotWithMetadata.metadata.capacity).toBe('300MW')
+      expect(hotspotWithMetadata.metadata?.capacity).toBe('300MW')
     })
   })
 
@@ -149,11 +148,11 @@ describe('TypeScript Interfaces', () => {
         },
       }
 
-      expect(validDetails.infrastructure.datacenter.id).toBe('datacenter')
+      expect(validDetails.infrastructure.datacenter?.id).toBe('datacenter')
       expect(
-        validDetails.infrastructure.datacenter.specifications.totalCapacity
+        validDetails.infrastructure.datacenter?.specifications.totalCapacity
       ).toBe('300MW')
-      expect(validDetails.infrastructure.datacenter.features).toHaveLength(2)
+      expect(validDetails.infrastructure.datacenter?.features).toHaveLength(2)
     })
 
     it('should support multiple infrastructure types', () => {
@@ -223,10 +222,10 @@ describe('TypeScript Interfaces', () => {
       }
 
       const datacenter = details.infrastructure.datacenter
-      expect(datacenter.specifications.totalCapacity).toBe('300MW')
-      expect(datacenter.specifications.certifications).toContain('Tier III')
-      expect(datacenter.features).toContain('Advanced AI workload optimization')
-      expect(datacenter.connectivity).toHaveLength(2)
+      expect(datacenter?.specifications.totalCapacity).toBe('300MW')
+      expect(datacenter?.specifications.certifications).toContain('Tier III')
+      expect(datacenter?.features).toContain('Advanced AI workload optimization')
+      expect(datacenter?.connectivity).toHaveLength(2)
     })
   })
 

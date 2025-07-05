@@ -36,6 +36,11 @@ const customJestConfig = {
     },
   },
   testTimeout: 10000,
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.test.json'
+    }
+  },
 }
 
 module.exports = createJestConfig(customJestConfig)
