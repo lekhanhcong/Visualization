@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -45,38 +46,40 @@ export default function Home() {
         <div className="h-full flex items-center justify-center bg-gray-100 p-4">
           <div className="relative w-full h-full max-w-6xl max-h-[600px]">
             {/* Power Map Image */}
-            <img 
-              src="/images/power-map.png" 
+            <Image
+              src="/images/power-map.png"
               alt="Hue Hi Tech Park Power Infrastructure Map"
-              className="w-full h-full object-contain shadow-lg rounded-lg bg-white"
+              fill
+              className="object-contain shadow-lg rounded-lg bg-white"
+              priority
             />
-            
+
             {/* Interactive Hotspots */}
             <div
               className="absolute bg-blue-500 w-4 h-4 rounded-full animate-pulse cursor-pointer hover:scale-150 transition-transform z-10"
               style={{
                 left: '60%',
                 top: '45%',
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
               }}
               title="HUE HI TECH PARK 300MW AI DATA CENTER"
             />
-            
+
             <div
               className="absolute bg-red-500 w-4 h-4 rounded-full animate-pulse cursor-pointer hover:scale-150 transition-transform z-10"
               style={{
                 left: '35%',
                 top: '20%',
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
               }}
               title="500/220KV SUBSTATION"
             />
-            
+
             {/* Status Badge */}
             <div className="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm z-10">
               ✅ Power Infrastructure Map Loaded
             </div>
-            
+
             {/* Legend */}
             <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-10">
               <h3 className="text-sm font-bold mb-2">Infrastructure Legend</h3>
@@ -108,7 +111,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between text-sm">
             <div className="text-slate-600">
-              © 2024 Hue Hi Tech Park - 300MW AI Data Center Infrastructure Visualization
+              © 2024 Hue Hi Tech Park - 300MW AI Data Center Infrastructure
+              Visualization
             </div>
             <div className="text-xs text-slate-500">v1.0.0</div>
           </div>

@@ -1,13 +1,8 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { ImageMapContainer } from '@/components/organisms/ImageMapContainer'
-// import { ThemeToggle } from '@/components/atoms/ThemeToggle'
-import { useImageMap } from '@/hooks/useImageMap'
-// import { useTheme } from '@/contexts/ThemeContext'
-// import { useUIPreferencesStore } from '@/stores/useVisualizationStore'
-import { Loader2, AlertTriangle, RefreshCw } from 'lucide-react'
+import Image from 'next/image'
+import { Loader2 } from 'lucide-react'
 import { PerformanceMonitor } from '@/components/atoms/PerformanceMonitor'
 
 interface VisualizationLayoutProps {
@@ -27,21 +22,28 @@ export function VisualizationLayout({
       type: 'datacenter' as const,
       position: { x: 350, y: 180 },
       description: 'Data center chính với công suất 300MW',
-      metadata: { capacity: '300MW', voltage: '220kV/110kV', status: 'planned' as const }
+      metadata: {
+        capacity: '300MW',
+        voltage: '220kV/110kV',
+        status: 'planned' as const,
+      },
     },
     {
-      id: 'substation-500kv', 
+      id: 'substation-500kv',
       name: '500/220KV SUBSTATION',
       type: 'substation' as const,
       position: { x: 200, y: 80 },
       description: 'Trạm biến áp chính 2x600MVA',
-      metadata: { capacity: '2x600MVA', voltage: '500kV/220kV', status: 'planned' as const }
-    }
+      metadata: {
+        capacity: '2x600MVA',
+        voltage: '500kV/220kV',
+        status: 'planned' as const,
+      },
+    },
   ]
 
   const isLoading = false
   const error = null
-  const isReady = true
 
   // Loading state
   if (isLoading) {
@@ -92,10 +94,12 @@ export function VisualizationLayout({
           <div className="h-[calc(100vh-4rem)] w-full">
             <div className="h-full flex items-center justify-center bg-gray-100 dark:bg-slate-800">
               <div className="relative w-full h-full max-w-6xl max-h-[600px]">
-                <img 
-                  src="/images/power-map.png" 
+                <Image
+                  src="/images/power-map.png"
                   alt="Hue Hi Tech Park Power Infrastructure Map"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
+                  priority
                 />
                 <div className="absolute top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded text-sm">
                   ⚠️ Data loading error - Showing static map
@@ -152,12 +156,14 @@ export function VisualizationLayout({
           <div className="h-full flex items-center justify-center bg-gray-100 dark:bg-slate-800">
             <div className="relative w-full h-full max-w-6xl max-h-[600px] p-4">
               {/* Power Map Image */}
-              <img 
-                src="/images/power-map.png" 
+              <Image
+                src="/images/power-map.png"
                 alt="Hue Hi Tech Park Power Infrastructure Map"
-                className="w-full h-full object-contain shadow-lg rounded-lg"
+                fill
+                className="object-contain shadow-lg rounded-lg"
+                priority
               />
-              
+
               {/* Interactive Hotspots */}
               {staticHotspots.map((hotspot) => (
                 <div
@@ -166,20 +172,22 @@ export function VisualizationLayout({
                   style={{
                     left: `${(hotspot.position.x / 600) * 100}%`,
                     top: `${(hotspot.position.y / 400) * 100}%`,
-                    transform: 'translate(-50%, -50%)'
+                    transform: 'translate(-50%, -50%)',
                   }}
                   title={hotspot.name}
                 />
               ))}
-              
+
               {/* Status Badge */}
               <div className="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm">
                 ✅ Power Infrastructure Map Loaded
               </div>
-              
+
               {/* Legend */}
               <div className="absolute bottom-4 left-4 bg-white dark:bg-slate-800 rounded-lg shadow-lg p-4 max-w-xs">
-                <h3 className="text-sm font-bold mb-2">Infrastructure Legend</h3>
+                <h3 className="text-sm font-bold mb-2">
+                  Infrastructure Legend
+                </h3>
                 <div className="space-y-1 text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-1 bg-red-500 rounded"></div>
@@ -234,7 +242,7 @@ export function VisualizationLayout({
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span className="text-xs text-slate-600 dark:text-slate-400">
-                  Data Loaded: {hotspots.length} points
+                  Data Loaded: {staticHotspots.length} points
                 </span>
               </div>
 

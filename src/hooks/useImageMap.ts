@@ -289,7 +289,7 @@ export function useImageMap(
   useEffect(() => {
     log('Initial data fetch')
     refetch()
-  }, [])
+  }, [log, refetch])
 
   // Computed values
   const isLoading = useMemo(
