@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hue Hi Tech Park - 300MW AI Data Center Visualization
 
 Interactive visualization website for the 300MW AI Data Center infrastructure at Hue Hi Tech Park, Vietnam.
@@ -372,3 +373,6 @@ This project is proprietary software for Hue Hi Tech Park.
 **Generated for Hue Hi Tech Park 300MW AI Data Center Visualization Project**
 
 _Last updated: 2025-01-04_
+=======
+# Power
+>>>>>>> fe8a8184d7cdcb92920add68cb3936e96242ab70
