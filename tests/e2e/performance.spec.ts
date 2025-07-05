@@ -35,7 +35,7 @@ test.describe('Performance Testing Suite', () => {
         // First Input Delay
         new PerformanceObserver((entryList) => {
           for (const entry of entryList.getEntries()) {
-            (window as any).performanceMetrics.vitals.fid = entry.processingStart - entry.startTime
+            (window as any).performanceMetrics.vitals.fid = (entry as any).processingStart - entry.startTime
           }
         }).observe({ entryTypes: ['first-input'] })
         
@@ -175,7 +175,7 @@ test.describe('Performance Testing Suite', () => {
         resources.push({
           name: request.url(),
           size: parseInt(response.headers()['content-length'] || '0'),
-          duration: response.timing().responseEnd,
+          duration: (response as any).timing()?.responseEnd || 0,
           type: response.headers()['content-type'] || 'unknown'
         })
       })

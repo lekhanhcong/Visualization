@@ -9,7 +9,7 @@ describe('TypeScript Interfaces', () => {
         type: 'datacenter',
         description: 'Test description',
         position: { x: 100, y: 200 },
-        metadata: { test: 'data' },
+        metadata: { capacity: '300MW' },
       }
 
       expect(validHotspot.id).toBe('test-hotspot')
@@ -206,7 +206,7 @@ describe('TypeScript Interfaces', () => {
               rackDensity: 'Up to 50kW per rack',
               floorSpace: '50,000 m²',
               efficiency: 'PUE < 1.15',
-              certifications: ['Tier III', 'ISO 27001', 'SOC 2'],
+              certifications: 'Tier III, ISO 27001, SOC 2',
             },
             features: [
               'Advanced AI workload optimization',

@@ -259,7 +259,7 @@ test.describe('Comprehensive User Workflows - MCP Playwright', () => {
       await expect(page.locator('main')).toBeVisible()
       
       // Check that header height is appropriate for landscape
-      const headerHeight = await page.locator('header').evaluate(el => el.offsetHeight)
+      const headerHeight = await page.locator('header').evaluate(el => (el as HTMLElement).offsetHeight)
       expect(headerHeight).toBeLessThan(100) // Should not take too much vertical space
     })
   })

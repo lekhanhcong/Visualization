@@ -63,21 +63,27 @@ describe('Component Testing - Comprehensive Suite', () => {
   describe('HotspotMarker Component', () => {
     it('should render with default props', () => {
       render(<HotspotMarker type="datacenter" />)
-      expect(screen.getByTestId('server-icon')).toBeInTheDocument()
+      const icon = screen.getByTestId('server-icon')
+      expect(icon).toBeInTheDocument()
     })
 
     it('should render different icons for different types', () => {
       const { rerender } = render(<HotspotMarker type="datacenter" />)
-      expect(screen.getByTestId('server-icon')).toBeInTheDocument()
+      const datacenterIcon = screen.getByTestId('server-icon')
+      expect(datacenterIcon).toBeInTheDocument()
 
       rerender(<HotspotMarker type="substation" />)
-      expect(screen.getByTestId('zap-icon')).toBeInTheDocument()
+      const substationIcon = screen.getByTestId('zap-icon')
+      expect(substationIcon).toBeInTheDocument()
 
       rerender(<HotspotMarker type="powerplant" />)
-      expect(screen.getByTestId('factory-icon')).toBeInTheDocument()
+      const powerplantIcon = screen.getByTestId('factory-icon')
+      expect(powerplantIcon).toBeInTheDocument()
 
-      rerender(<HotspotMarker type="unknown" as any />)
-      expect(screen.getByTestId('building2-icon')).toBeInTheDocument()
+      // Test fallback for unknown type
+      rerender(<HotspotMarker type={'unknown' as 'datacenter'} />)
+      const defaultIcon = screen.getByTestId('building2-icon')
+      expect(defaultIcon).toBeInTheDocument()
     })
 
     it('should apply correct styling based on type', () => {
