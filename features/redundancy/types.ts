@@ -68,17 +68,11 @@ export interface StatisticsConfig {
 }
 
 export interface RedundancyState {
-  isVisible: boolean
-  animationPhase:
-    | 'hidden'
-    | 'overlay'
-    | 'lines'
-    | 'substations'
-    | 'panel'
-    | 'complete'
-  selectedSubstation?: string
-  selectedLine?: string
-  error?: string
+  isActive: boolean
+  selectedSubstation: SubstationData | null
+  selectedLine: LineData | null
+  isPanelOpen: boolean
+  animationProgress: number
 }
 
 export interface SubstationData {
@@ -208,4 +202,16 @@ export interface PluginError extends Error {
   featureId?: string
   phase?: string
   recoverable?: boolean
+}
+
+export interface RedundancyOverlayConfig {
+  zIndex: number
+  position: 'absolute' | 'fixed' | 'relative'
+  enableKeyboardControls: boolean
+  enableMouseControls: boolean
+  enableTouchControls: boolean
+  autoHide: boolean
+  hideDelay: number
+  animationDuration: number
+  theme: 'default' | 'dark' | 'light'
 }

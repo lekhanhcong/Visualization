@@ -1,0 +1,317 @@
+/**
+ * RedundancyButton Component Styles
+ * CSS for the trigger button component
+ */
+
+.rdx-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.rdx-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.rdx-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rdx-button:focus {
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.rdx-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Variant styles */
+.rdx-button--primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+}
+
+.rdx-button--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3, #004085);
+}
+
+.rdx-button--secondary {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: #fff;
+}
+
+.rdx-button--secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #495057, #343a40);
+}
+
+.rdx-button--success {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: #fff;
+}
+
+.rdx-button--success:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e7e34, #155724);
+}
+
+.rdx-button--danger {
+  background: linear-gradient(135deg, #dc3545, #bd2130);
+  color: #fff;
+}
+
+.rdx-button--danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #bd2130, #a71e2a);
+}
+
+.rdx-button--warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #212529;
+}
+
+.rdx-button--warning:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e0a800, #d39e00);
+}
+
+.rdx-button--info {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: #fff;
+}
+
+.rdx-button--info:hover:not(:disabled) {
+  background: linear-gradient(135deg, #138496, #117a8b);
+}
+
+/* Size variants */
+.rdx-button--sm {
+  padding: 8px 12px;
+  font-size: 12px;
+  gap: 6px;
+}
+
+.rdx-button--sm .rdx-button__icon {
+  font-size: 14px;
+}
+
+.rdx-button--md {
+  padding: 12px 16px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.rdx-button--md .rdx-button__icon {
+  font-size: 16px;
+}
+
+.rdx-button--lg {
+  padding: 16px 24px;
+  font-size: 16px;
+  gap: 10px;
+}
+
+.rdx-button--lg .rdx-button__icon {
+  font-size: 20px;
+}
+
+/* State variants */
+.rdx-button--active {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  animation: pulse 2s infinite;
+}
+
+.rdx-button--inactive {
+  /* Default state */
+}
+
+.rdx-button--loading {
+  pointer-events: none;
+}
+
+.rdx-button--error {
+  background: linear-gradient(135deg, #dc3545, #bd2130) !important;
+}
+
+.rdx-button--error:hover:not(:disabled) {
+  background: linear-gradient(135deg, #bd2130, #a71e2a) !important;
+}
+
+/* Button elements */
+.rdx-button__spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 16px;
+}
+
+.rdx-button__icon {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.rdx-button__text {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.rdx-button__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  backdrop-filter: blur(5px);
+}
+
+.rdx-button__badge--error {
+  background: rgba(255, 255, 255, 0.9);
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.3);
+  animation: pulse-error 1.5s infinite;
+}
+
+.rdx-button__debug {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ffc107;
+  color: #212529;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 0 0 8px rgba(40, 167, 69, 0.1);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+}
+
+@keyframes pulse-error {
+  0% {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  50% {
+    background: rgba(220, 53, 69, 0.2);
+    color: #fff;
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rdx-button {
+    padding: 10px 14px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .rdx-button--sm {
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .rdx-button--lg {
+    padding: 14px 20px;
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .rdx-button__text {
+    display: none;
+  }
+
+  .rdx-button__badge {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .rdx-button {
+    border: 2px solid currentColor;
+    background: ButtonFace !important;
+    color: ButtonText !important;
+  }
+
+  .rdx-button:hover:not(:disabled) {
+    background: Highlight !important;
+    color: HighlightText !important;
+  }
+
+  .rdx-button__badge {
+    background: ButtonText !important;
+    color: ButtonFace !important;
+    border-color: currentColor !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .rdx-button {
+    transition: none;
+  }
+
+  .rdx-button:hover {
+    transform: none;
+  }
+
+  .rdx-button--active {
+    animation: none;
+  }
+
+  .rdx-button__spinner {
+    animation: none;
+  }
+
+  .rdx-button__badge--error {
+    animation: none;
+  }
+}

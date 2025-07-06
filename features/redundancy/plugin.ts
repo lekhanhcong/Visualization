@@ -1,237 +1,240 @@
 /**
- * Plugin registration for 2N+1 Redundancy Feature
+ * Plugin Registration System for 2N+1 Redundancy Feature
+ * Handles feature registration, lifecycle management, and integration
  */
 
-import type { FeatureDefinition, FeatureRegistry } from '@/types/plugin'
-import { redundancyConfig } from './config'
-import { isRedundancyEnabled } from './utils/env'
+import { FeatureRegistry, FeatureDefinition, PluginError } from './types';
 
-// Feature registration contract for redundancy feature
-export const redundancyFeatureDefinition: FeatureDefinition = {
-  id: 'redundancy-2n1',
-  name: '2N+1 Redundancy Visualization',
-  version: '1.0.0',
-  description: 'Professional investor-grade power redundancy visualization',
-  component: () => null, // Will be replaced with actual component
-  config: redundancyConfig,
-  dependencies: [], // No dependencies for this feature
-  enabled: isRedundancyEnabled(),
+// Global feature registry
+class RedundancyFeatureRegistry implements FeatureRegistry {
+  private features = new Map<string, FeatureDefinition>();
+  private initialized = false;
+
+  register(feature: FeatureDefinition): void {
+    try {
+      // Validate feature definition
+      this.validateFeature(feature);
+      
+      // Check for conflicts
+      if (this.features.has(feature.id)) {
+        throw new PluginError(`Feature ${feature.id} is already registered`);
+      }
+      
+      // Register feature
+      this.features.set(feature.id, feature);
+      
+      console.log(`[RedundancyRegistry] Registered feature: ${feature.id}`);
+    } catch (error) {
+      const pluginError = error instanceof PluginError ? error : new PluginError(
+        `Failed to register feature ${feature.id}: ${error.message}`
+      );
+      pluginError.featureId = feature.id;
+      pluginError.phase = 'registration';
+      throw pluginError;
+    }
+  }
+
+  unregister(featureId: string): void {
+    try {
+      if (!this.features.has(featureId)) {
+        throw new PluginError(`Feature ${featureId} is not registered`);
+      }
+      
+      this.features.delete(featureId);
+      console.log(`[RedundancyRegistry] Unregistered feature: ${featureId}`);
+    } catch (error) {
+      const pluginError = error instanceof PluginError ? error : new PluginError(
+        `Failed to unregister feature ${featureId}: ${error.message}`
+      );
+      pluginError.featureId = featureId;
+      pluginError.phase = 'unregistration';
+      throw pluginError;
+    }
+  }
+
+  isRegistered(featureId: string): boolean {
+    return this.features.has(featureId);
+  }
+
+  getFeature(featureId: string): FeatureDefinition | undefined {
+    return this.features.get(featureId);
+  }
+
+  getAllFeatures(): FeatureDefinition[] {
+    return Array.from(this.features.values());
+  }
+
+  private validateFeature(feature: FeatureDefinition): void {
+    if (!feature.id) {
+      throw new PluginError('Feature ID is required');
+    }
+    
+    if (!feature.name) {
+      throw new PluginError('Feature name is required');
+    }
+    
+    if (!feature.version) {
+      throw new PluginError('Feature version is required');
+    }
+    
+    if (!feature.component) {
+      throw new PluginError('Feature component is required');
+    }
+    
+    // Validate ID format
+    if (!/^[a-z0-9-]+$/.test(feature.id)) {
+      throw new PluginError('Feature ID must contain only lowercase letters, numbers, and hyphens');
+    }
+    
+    // Validate version format (semver)
+    if (!/^\d+\.\d+\.\d+$/.test(feature.version)) {
+      throw new PluginError('Feature version must follow semantic versioning (x.y.z)');
+    }
+  }
 }
 
-// Registration function
-export function registerRedundancyFeature(registry: FeatureRegistry): void {
+// Create global registry instance
+export const featureRegistry = new RedundancyFeatureRegistry();
+
+// Feature registration helper
+export function registerRedundancyFeature(): void {
+  const featureFlag = process.env.NEXT_PUBLIC_ENABLE_REDUNDANCY;
+  
+  if (featureFlag !== 'true') {
+    console.log('[RedundancyFeature] Feature disabled by flag');
+    return;
+  }
+
   try {
-    // Validate environment before registration
-    if (!isRedundancyEnabled()) {
-      console.log('[RedundancyFeature] Feature disabled by environment flag')
-      return
-    }
-
-    // Validate feature contract compliance
-    if (!validateFeatureContract(redundancyFeatureDefinition)) {
-      throw new Error('Feature contract validation failed')
-    }
-
-    // Register feature in plugin system
-    registry.register(redundancyFeatureDefinition)
-
-    console.log('[RedundancyFeature] Registered successfully')
+    // Lazy import to avoid loading when disabled
+    import('./index').then(({ redundancyFeatureDefinition }) => {
+      featureRegistry.register(redundancyFeatureDefinition);
+      console.log('[RedundancyFeature] Successfully registered');
+    }).catch((error) => {
+      console.error('[RedundancyFeature] Failed to load feature:', error);
+    });
   } catch (error) {
-    console.error('[RedundancyFeature] Registration failed:', error)
-    throw error
+    console.error('[RedundancyFeature] Registration failed:', error);
   }
 }
 
-// Contract validation function
-function validateFeatureContract(feature: FeatureDefinition): boolean {
-  // Required fields validation
-  if (!feature.id || typeof feature.id !== 'string') {
-    console.error('Feature contract: id is required and must be string')
-    return false
+// Feature unregistration helper
+export function unregisterRedundancyFeature(): void {
+  try {
+    featureRegistry.unregister('redundancy-2n1');
+    console.log('[RedundancyFeature] Successfully unregistered');
+  } catch (error) {
+    console.error('[RedundancyFeature] Unregistration failed:', error);
   }
-
-  if (!feature.name || typeof feature.name !== 'string') {
-    console.error('Feature contract: name is required and must be string')
-    return false
-  }
-
-  if (!feature.version || typeof feature.version !== 'string') {
-    console.error('Feature contract: version is required and must be string')
-    return false
-  }
-
-  if (!feature.component || typeof feature.component !== 'function') {
-    console.error(
-      'Feature contract: component is required and must be function'
-    )
-    return false
-  }
-
-  if (typeof feature.enabled !== 'boolean') {
-    console.error('Feature contract: enabled is required and must be boolean')
-    return false
-  }
-
-  // Configuration validation
-  if (!feature.config || typeof feature.config !== 'object') {
-    console.error('Feature contract: config is required and must be object')
-    return false
-  }
-
-  // Redundancy-specific validations
-  const config = feature.config
-
-  if (!config.featureFlag || typeof config.featureFlag !== 'string') {
-    console.error('Feature contract: config.featureFlag is required')
-    return false
-  }
-
-  if (!config.colors || typeof config.colors !== 'object') {
-    console.error('Feature contract: config.colors is required')
-    return false
-  }
-
-  if (!config.animations || typeof config.animations !== 'object') {
-    console.error('Feature contract: config.animations is required')
-    return false
-  }
-
-  if (!config.substations || typeof config.substations !== 'object') {
-    console.error('Feature contract: config.substations is required')
-    return false
-  }
-
-  if (!Array.isArray(config.lines)) {
-    console.error(
-      'Feature contract: config.lines is required and must be array'
-    )
-    return false
-  }
-
-  if (!config.statistics || typeof config.statistics !== 'object') {
-    console.error('Feature contract: config.statistics is required')
-    return false
-  }
-
-  if (!config.cssPrefix || typeof config.cssPrefix !== 'string') {
-    console.error('Feature contract: config.cssPrefix is required')
-    return false
-  }
-
-  return true
 }
 
-// Schema definition for feature registration
-export const redundancyFeatureSchema = {
-  type: 'object',
-  required: ['id', 'name', 'version', 'component', 'config', 'enabled'],
-  properties: {
-    id: {
-      type: 'string',
-      pattern: '^[a-z0-9-]+$',
-      description: 'Unique feature identifier',
-    },
-    name: {
-      type: 'string',
-      minLength: 1,
-      description: 'Human-readable feature name',
-    },
-    version: {
-      type: 'string',
-      pattern: '^\\d+\\.\\d+\\.\\d+$',
-      description: 'Semantic version string',
-    },
-    description: {
-      type: 'string',
-      minLength: 1,
-      description: 'Feature description',
-    },
-    component: {
-      type: 'function',
-      description: 'React component for the feature',
-    },
-    config: {
-      type: 'object',
-      required: [
-        'featureFlag',
-        'colors',
-        'animations',
-        'substations',
-        'lines',
-        'statistics',
-        'cssPrefix',
-      ],
-      properties: {
-        featureFlag: { type: 'string' },
-        colors: { type: 'object' },
-        animations: { type: 'object' },
-        substations: { type: 'object' },
-        lines: { type: 'array' },
-        statistics: { type: 'object' },
-        cssPrefix: { type: 'string' },
-      },
-      description: 'Feature configuration object',
-    },
-    dependencies: {
-      type: 'array',
-      items: { type: 'string' },
-      description: 'Array of feature IDs this feature depends on',
-    },
-    enabled: {
-      type: 'boolean',
-      description: 'Whether the feature is enabled',
-    },
-  },
+// Plugin lifecycle management
+export class RedundancyPlugin {
+  private isInitialized = false;
+  private isEnabled = false;
+
+  constructor() {
+    this.isEnabled = process.env.NEXT_PUBLIC_ENABLE_REDUNDANCY === 'true';
+  }
+
+  async initialize(): Promise<void> {
+    if (this.isInitialized) {
+      return;
+    }
+
+    if (!this.isEnabled) {
+      console.log('[RedundancyPlugin] Plugin disabled by configuration');
+      return;
+    }
+
+    try {
+      registerRedundancyFeature();
+      this.isInitialized = true;
+      console.log('[RedundancyPlugin] Plugin initialized successfully');
+    } catch (error) {
+      console.error('[RedundancyPlugin] Initialization failed:', error);
+      throw error;
+    }
+  }
+
+  async cleanup(): Promise<void> {
+    if (!this.isInitialized) {
+      return;
+    }
+
+    try {
+      unregisterRedundancyFeature();
+      this.isInitialized = false;
+      console.log('[RedundancyPlugin] Plugin cleaned up successfully');
+    } catch (error) {
+      console.error('[RedundancyPlugin] Cleanup failed:', error);
+      throw error;
+    }
+  }
+
+  isReady(): boolean {
+    return this.isInitialized && this.isEnabled;
+  }
 }
 
-// Compliance validator using schema
-export function validateContractCompliance(feature: unknown): {
-  valid: boolean
-  errors: string[]
+// Default plugin instance
+export const redundancyPlugin = new RedundancyPlugin();
+
+// Auto-registration on module load
+if (typeof window !== 'undefined') {
+  // Client-side auto-registration
+  redundancyPlugin.initialize().catch(console.error);
+}
+
+// Error boundary for plugin errors
+export class PluginErrorBoundary extends Error {
+  constructor(
+    message: string,
+    public featureId?: string,
+    public phase?: string,
+    public recoverable: boolean = true
+  ) {
+    super(message);
+    this.name = 'PluginError';
+  }
+}
+
+// Plugin health check
+export function checkPluginHealth(): {
+  isHealthy: boolean;
+  features: number;
+  errors: string[];
 } {
-  const errors: string[] = []
+  const errors: string[] = [];
+  let isHealthy = true;
 
   try {
-    if (!validateFeatureContract(feature)) {
-      errors.push('Basic contract validation failed')
+    const features = featureRegistry.getAllFeatures();
+    
+    // Check if any features failed to load
+    if (redundancyPlugin.isReady() && features.length === 0) {
+      errors.push('No features registered despite plugin being ready');
+      isHealthy = false;
+    }
+    
+    // Check feature flag consistency
+    const featureFlag = process.env.NEXT_PUBLIC_ENABLE_REDUNDANCY === 'true';
+    if (featureFlag !== redundancyPlugin.isReady()) {
+      errors.push('Feature flag and plugin state mismatch');
+      isHealthy = false;
     }
 
-    // Additional compliance checks with type checking
-    const typedFeature = feature as Record<string, unknown>
-
-    if (typedFeature.id !== 'redundancy-2n1') {
-      errors.push('Feature ID must be "redundancy-2n1"')
-    }
-
-    const config = typedFeature.config as Record<string, unknown>
-    if (
-      config &&
-      typeof config.cssPrefix === 'string' &&
-      !config.cssPrefix.startsWith('rdx-')
-    ) {
-      errors.push('CSS prefix must start with "rdx-"')
-    }
-
-    if (config && config.featureFlag !== 'NEXT_PUBLIC_ENABLE_REDUNDANCY') {
-      errors.push('Feature flag must be "NEXT_PUBLIC_ENABLE_REDUNDANCY"')
-    }
-
-    // Validate architecture compliance
-    const dependencies = typedFeature.dependencies as string[] | undefined
-    if (dependencies && dependencies.length > 0) {
-      // This feature should have zero dependencies for plugin architecture compliance
-      errors.push(
-        'Feature must have zero dependencies for plugin architecture compliance'
-      )
-    }
+    return {
+      isHealthy,
+      features: features.length,
+      errors
+    };
   } catch (error) {
-    errors.push(
-      `Validation error: ${error instanceof Error ? error.message : String(error)}`
-    )
-  }
-
-  return {
-    valid: errors.length === 0,
-    errors,
+    errors.push(`Health check failed: ${error.message}`);
+    return {
+      isHealthy: false,
+      features: 0,
+      errors
+    };
   }
 }

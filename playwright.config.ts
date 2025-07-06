@@ -1,92 +1,142 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test';
 
+/**
+ * Modern Playwright Configuration for 2N+1 Redundancy Testing
+ * Supports unit, integration, E2E, accessibility, and performance tests
+ */
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: './tests',
+  
+  /* Run tests in files in parallel */
   fullyParallel: true,
+  
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 3 : 1,
-  workers: process.env.CI ? 2 : 4,
-  timeout: 30 * 1000,
-  expect: {
-    timeout: 10 * 1000,
-  },
+  
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 1 : undefined,
+  
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', { open: 'never' }],
+    ['html', { outputFolder: 'test-results/playwright-report' }],
     ['json', { outputFile: 'test-results/results.json' }],
-    ['junit', { outputFile: 'test-results/results.xml' }],
-    ['list']
+    ['line']
   ],
+  
+  /* Shared settings for all the projects below. */
   use: {
+    /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://localhost:3000',
-    trace: 'retain-on-failure',
+    
+    /* Collect trace when retrying the failed test. */
+    trace: 'on-first-retry',
+    
+    /* Take screenshot on failure */
     screenshot: 'only-on-failure',
+    
+    /* Record video on failure */
     video: 'retain-on-failure',
-    actionTimeout: 10 * 1000,
-    navigationTimeout: 15 * 1000,
+    
+    /* Set timeout for actions */
+    actionTimeout: 10000,
+    
+    /* Set timeout for navigations */
+    navigationTimeout: 30000,
   },
+  
+  /* Global setup and teardown */
+  globalSetup: require.resolve('./tests/config/global-setup.ts'),
+  globalTeardown: require.resolve('./tests/config/global-teardown.ts'),
+  
+  /* Configure projects for major browsers */
   projects: [
-    // Desktop browsers
     {
-      name: 'chromium-desktop',
-      use: { 
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1920, height: 1080 },
-      },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: ['**/unit/**/*.test.{ts,tsx}', '**/e2e/**/*.spec.ts']
     },
+    
     {
-      name: 'firefox-desktop',
-      use: { 
-        ...devices['Desktop Firefox'],
-        viewport: { width: 1920, height: 1080 },
-      },
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+      testMatch: ['**/e2e/**/*.spec.ts']
     },
+    
     {
-      name: 'webkit-desktop',
-      use: { 
-        ...devices['Desktop Safari'],
-        viewport: { width: 1920, height: 1080 },
-      },
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+      testMatch: ['**/e2e/**/*.spec.ts']
     },
-    // Mobile devices
+    
+    /* Test against mobile viewports. */
     {
-      name: 'mobile-chrome',
+      name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
+      testMatch: ['**/responsive/**/*.spec.ts', '**/e2e/**/*.spec.ts']
     },
+    
     {
-      name: 'mobile-safari',
+      name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
+      testMatch: ['**/responsive/**/*.spec.ts']
     },
-    // Tablet devices
+    
+    /* Integration tests */
     {
-      name: 'tablet-chrome',
-      use: { ...devices['Galaxy Tab S4'] },
+      name: 'integration',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: ['**/integration/**/*.test.ts']
     },
+    
+    /* Accessibility tests */
     {
-      name: 'tablet-safari',
-      use: { ...devices['iPad Pro'] },
-    },
-    // Edge cases
-    {
-      name: 'small-screen',
-      use: {
+      name: 'accessibility',
+      use: { 
         ...devices['Desktop Chrome'],
-        viewport: { width: 375, height: 667 },
+        // Enable accessibility testing
+        contextOptions: {
+          reducedMotion: 'reduce' // Test with reduced motion
+        }
       },
+      testMatch: ['**/accessibility/**/*.spec.ts']
     },
+    
+    /* Performance tests */
     {
-      name: 'large-screen',
-      use: {
+      name: 'performance',
+      use: { 
         ...devices['Desktop Chrome'],
-        viewport: { width: 2560, height: 1440 },
+        contextOptions: {
+          // Performance testing configuration
+          serviceWorkers: 'block'
+        }
       },
-    },
+      testMatch: ['**/performance/**/*.spec.ts']
+    }
   ],
+  
+  /* Web server for tests */
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
+    timeout: 120 * 1000, // 2 minutes
+    env: {
+      NEXT_PUBLIC_ENABLE_REDUNDANCY: 'true'
+    }
   },
-  globalSetup: require.resolve('./tests/e2e/global-setup.ts'),
-  globalTeardown: require.resolve('./tests/e2e/global-teardown.ts'),
-})
+  
+  /* Test timeouts */
+  timeout: 30000,
+  expect: {
+    timeout: 10000,
+    toHaveScreenshot: { mode: 'strict' },
+    toMatchSnapshot: { threshold: 0.2 }
+  },
+  
+  /* Test output directory */
+  outputDir: 'test-results/artifacts/'
+});

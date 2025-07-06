@@ -24,6 +24,9 @@ jest.mock('framer-motion', () => ({
     button: ({ children, ...props }) => <button {...props}>{children}</button>,
     span: ({ children, ...props }) => <span {...props}>{children}</span>,
     img: ({ children, ...props }) => <img {...props}>{children}</img>,
+    path: ({ children, ...props }) => <path {...props}>{children}</path>,
+    g: ({ children, ...props }) => <g {...props}>{children}</g>,
+    text: ({ children, ...props }) => <text {...props}>{children}</text>,
   },
   AnimatePresence: ({ children }) => children,
   useAnimation: () => ({
@@ -31,6 +34,13 @@ jest.mock('framer-motion', () => ({
     stop: jest.fn(),
     set: jest.fn(),
   }),
+  useOptimistic: (initial, updater) => [initial, jest.fn()],
+}))
+
+// Mock react-dom createPortal
+jest.mock('react-dom', () => ({
+  ...jest.requireActual('react-dom'),
+  createPortal: (children) => children,
 }))
 
 // Mock IntersectionObserver

@@ -1,0 +1,44 @@
+{
+  "name": "@redundancy/visual-testing",
+  "version": "1.0.0",
+  "description": "Visual regression testing for redundancy feature",
+  "main": "visual-comparison.js",
+  "scripts": {
+    "generate-baselines": "node baseline-generator.js generate",
+    "clean-baselines": "node baseline-generator.js clean",
+    "test-visual": "node visual-comparison.js",
+    "test": "npm run test-visual",
+    "update-baselines": "UPDATE_BASELINES=true npm run generate-baselines",
+    "ci-test": "CI=true npm run test-visual",
+    "dev-server": "cd ../../../ && npm run dev",
+    "test-with-server": "concurrently \"npm run dev-server\" \"wait-on http://localhost:3000 && npm run test-visual\"",
+    "generate-with-server": "concurrently \"npm run dev-server\" \"wait-on http://localhost:3000 && npm run generate-baselines\"",
+    "full-test": "npm run generate-with-server && npm run test-with-server"
+  },
+  "dependencies": {
+    "playwright": "^1.42.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  },
+  "keywords": [
+    "visual-testing",
+    "regression-testing",
+    "playwright",
+    "screenshot-testing",
+    "redundancy"
+  ],
+  "author": "Redundancy Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "bugs": {
+    "url": "."
+  },
+  "homepage": "."
+}

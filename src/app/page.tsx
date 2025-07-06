@@ -2,9 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { RedundancyVisualization } from '../components/RedundancyVisualization'
+import { RedundancyErrorBoundary, RedundancyFallback } from '../components/ErrorBoundary'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
+  const [showRedundancy, setShowRedundancy] = useState(false)
+  
+  // Check if redundancy feature is enabled
+  const isRedundancyEnabled = process.env.NEXT_PUBLIC_ENABLE_REDUNDANCY === 'true'
 
   useEffect(() => {
     setMounted(true)
@@ -80,6 +86,23 @@ export default function Home() {
               ✅ Power Infrastructure Map Loaded
             </div>
 
+            {/* 2N+1 Redundancy Feature Button */}
+            {isRedundancyEnabled && (
+              <div className="absolute top-4 left-4 z-20">
+                <button
+                  onClick={() => setShowRedundancy(!showRedundancy)}
+                  className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
+                  aria-label={showRedundancy ? 'Close redundancy visualization' : 'Show 2N+1 redundancy visualization'}
+                  data-testid="redundancy-toggle-button"
+                >
+                  <span className="text-lg">⚡</span>
+                  <span className="font-semibold">
+                    {showRedundancy ? 'Close Redundancy View' : 'Show 2N+1 Redundancy'}
+                  </span>
+                </button>
+              </div>
+            )}
+
             {/* Legend */}
             <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-10">
               <h3 className="text-sm font-bold mb-2">Infrastructure Legend</h3>
@@ -118,6 +141,22 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* 2N+1 Redundancy Feature */}
+      {isRedundancyEnabled && (
+        <RedundancyErrorBoundary 
+          fallback={<RedundancyFallback />}
+          onError={(error, errorInfo) => {
+            console.error('Redundancy visualization error:', error, errorInfo)
+            // Could integrate with error reporting service here
+          }}
+        >
+          <RedundancyVisualization 
+            isVisible={showRedundancy}
+            onClose={() => setShowRedundancy(false)}
+          />
+        </RedundancyErrorBoundary>
+      )}
     </div>
   )
 }

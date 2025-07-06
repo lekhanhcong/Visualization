@@ -1,0 +1,35 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "wait": 2000,
+    "chromeLaunchConfig": {
+      "headless": true,
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
+    "standard": "WCAG2AA",
+    "includeNotices": false,
+    "includeWarnings": true,
+    "ignore": [
+      "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2",
+      "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent"
+    ]
+  },
+  "urls": [
+    {
+      "url": "http://localhost:3001",
+      "screenCapture": "screenshots/homepage.png",
+      "actions": [
+        "wait for element button[data-testid='redundancy-toggle-button'] to be visible"
+      ]
+    },
+    {
+      "url": "http://localhost:3001",
+      "screenCapture": "screenshots/redundancy-modal.png", 
+      "actions": [
+        "wait for element button[data-testid='redundancy-toggle-button'] to be visible",
+        "click element button[data-testid='redundancy-toggle-button']",
+        "wait for element [role='dialog'][aria-modal='true'] to be visible"
+      ]
+    }
+  ]
+}

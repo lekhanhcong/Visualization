@@ -1,0 +1,351 @@
+/**
+ * PowerFlowAnimation Component Styles
+ * CSS for power flow visualization and particle effects
+ */
+
+.rdx-power-flow-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.rdx-power-flow-animation--gpu {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.rdx-power-flow-animation--high {
+  /* High performance mode - full effects */
+}
+
+.rdx-power-flow-animation--medium {
+  /* Medium performance mode - reduced effects */
+}
+
+.rdx-power-flow-animation--low {
+  /* Low performance mode - minimal effects */
+  animation-duration: 2s !important;
+}
+
+.rdx-power-flow-animation--error {
+  filter: contrast(0.7) brightness(0.8);
+}
+
+/* SVG Container */
+.rdx-power-flow-animation__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Capacity Indicators */
+.rdx-power-flow-animation__capacity {
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.rdx-power-flow-animation__capacity rect {
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3));
+}
+
+.rdx-power-flow-animation__capacity text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+}
+
+/* Debug Overlay */
+.rdx-power-flow-animation__debug {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.rdx-power-flow-animation__debug div {
+  margin-bottom: 2px;
+}
+
+.rdx-power-flow-animation__debug div:last-child {
+  margin-bottom: 0;
+}
+
+/* Particle Animations */
+@keyframes particle-flow {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes flow-pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes capacity-pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Flow Direction Indicators */
+.rdx-power-flow-animation polygon {
+  transition: all 0.3s ease;
+}
+
+/* Performance Mode Optimizations */
+.rdx-power-flow-animation--high circle {
+  filter: url(#particle-glow);
+  animation: particle-flow 3s ease-in-out infinite;
+}
+
+.rdx-power-flow-animation--medium circle {
+  filter: drop-shadow(0 0 3px currentColor);
+  animation: particle-flow 2s ease-in-out infinite;
+}
+
+.rdx-power-flow-animation--low circle {
+  filter: none;
+  animation: particle-flow 1.5s linear infinite;
+}
+
+/* GPU Acceleration */
+.rdx-power-flow-animation--gpu circle {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.rdx-power-flow-animation--gpu polygon {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Capacity Flow Colors */
+.rdx-power-flow-animation__capacity rect[stroke="#28a745"] {
+  /* Normal capacity */
+  animation: capacity-pulse 3s ease-in-out infinite;
+}
+
+.rdx-power-flow-animation__capacity rect[stroke="#fd7e14"] {
+  /* Medium capacity */
+  animation: capacity-pulse 2s ease-in-out infinite;
+}
+
+.rdx-power-flow-animation__capacity rect[stroke="#dc3545"] {
+  /* High capacity / overload */
+  animation: capacity-pulse 1s ease-in-out infinite;
+}
+
+/* Particle Types */
+.rdx-power-flow-animation circle[fill="#28a745"] {
+  /* Active line particles */
+  filter: drop-shadow(0 0 4px #28a745);
+}
+
+.rdx-power-flow-animation circle[fill="#ffc107"] {
+  /* Standby line particles */
+  filter: drop-shadow(0 0 3px #ffc107);
+}
+
+.rdx-power-flow-animation circle[fill="#dc3545"] {
+  /* Overload particles */
+  filter: drop-shadow(0 0 5px #dc3545);
+  animation: error-particle 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes error-particle {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rdx-power-flow-animation__capacity rect {
+    width: 40px;
+    height: 12px;
+  }
+  
+  .rdx-power-flow-animation__capacity text {
+    font-size: 7px;
+  }
+  
+  .rdx-power-flow-animation__debug {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+  
+  /* Reduce particles on mobile */
+  .rdx-power-flow-animation--high {
+    animation-duration: 2s !important;
+  }
+  
+  .rdx-power-flow-animation--medium {
+    animation-duration: 1.5s !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .rdx-power-flow-animation circle {
+    stroke: Canvas;
+    stroke-width: 1;
+  }
+  
+  .rdx-power-flow-animation circle[fill="#28a745"] {
+    fill: HighlightText;
+    filter: none;
+  }
+  
+  .rdx-power-flow-animation circle[fill="#ffc107"] {
+    fill: ButtonText;
+    filter: none;
+  }
+  
+  .rdx-power-flow-animation circle[fill="#dc3545"] {
+    fill: red;
+    filter: none;
+  }
+  
+  .rdx-power-flow-animation__capacity rect {
+    fill: ButtonFace;
+    stroke: ButtonText;
+    stroke-width: 2;
+  }
+  
+  .rdx-power-flow-animation__capacity text {
+    fill: ButtonText;
+  }
+  
+  .rdx-power-flow-animation polygon {
+    fill: ButtonText;
+  }
+  
+  .rdx-power-flow-animation__debug {
+    background: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .rdx-power-flow-animation circle {
+    animation: none;
+  }
+  
+  .rdx-power-flow-animation polygon {
+    animation: none;
+  }
+  
+  .rdx-power-flow-animation__capacity rect {
+    animation: none;
+  }
+  
+  .rdx-power-flow-animation__capacity {
+    transition: none;
+  }
+  
+  @keyframes particle-flow,
+  @keyframes flow-pulse,
+  @keyframes capacity-pulse,
+  @keyframes error-particle {
+    0%, 100% {
+      opacity: 0.7;
+      transform: none;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .rdx-power-flow-animation {
+    display: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .rdx-power-flow-animation__capacity rect[fill="rgba(0,0,0,0.8)"] {
+    fill: rgba(255,255,255,0.9);
+  }
+  
+  .rdx-power-flow-animation__capacity text {
+    fill: black;
+  }
+  
+  .rdx-power-flow-animation__debug {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+  }
+}
+
+/* Animation play state controls */
+.rdx-power-flow-animation[data-active="false"] circle {
+  animation-play-state: paused;
+}
+
+.rdx-power-flow-animation[data-active="false"] polygon {
+  animation-play-state: paused;
+}
+
+.rdx-power-flow-animation[data-active="false"] .rdx-power-flow-animation__capacity rect {
+  animation-play-state: paused;
+}
+
+/* Performance monitoring */
+.rdx-power-flow-animation[data-performance="low"] * {
+  will-change: auto;
+  transform: none !important;
+}
+
+.rdx-power-flow-animation[data-performance="medium"] * {
+  will-change: transform;
+}
+
+.rdx-power-flow-animation[data-performance="high"] * {
+  will-change: transform, opacity, filter;
+}

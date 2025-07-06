@@ -1,0 +1,52 @@
+{
+  "name": "redundancy-e2e-tests",
+  "version": "1.0.0",
+  "description": "E2E tests for redundancy feature using Playwright",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:core": "playwright test tests/redundancy-core",
+    "test:integration": "playwright test tests/redundancy-integration",
+    "test:performance": "playwright test tests/redundancy-performance",
+    "test:framework": "playwright test tests/framework-validation",
+    "test:browser:chrome": "playwright test --project=chromium",
+    "test:browser:firefox": "playwright test --project=firefox",
+    "test:browser:safari": "playwright test --project=webkit",
+    "test:mobile": "playwright test tests/mobile",
+    "test:smoke": "playwright test --grep \"@smoke\"",
+    "test:regression": "playwright test --grep \"@regression\"",
+    "test:critical": "playwright test --grep \"@critical\"",
+    "install": "playwright install",
+    "install:deps": "playwright install-deps",
+    "report": "playwright show-report",
+    "trace": "playwright show-trace",
+    "codegen": "playwright codegen localhost:3000",
+    "setup": "node setup/global-setup.js",
+    "cleanup": "node setup/global-teardown.js",
+    "validate": "npm run test:framework && npm run test:core",
+    "ci": "npm run test -- --reporter=github",
+    "local": "npm run test:headed -- --project=chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "lodash": "^4.17.21"
+  },
+  "keywords": [
+    "e2e",
+    "playwright",
+    "testing",
+    "redundancy",
+    "datacenter",
+    "visualization"
+  ],
+  "author": "Redundancy Feature Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,676 @@
+/**
+ * 2N+1 Redundancy Feature Styles
+ * Professional-grade styling with rdx- prefix for isolation
+ */
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+.rdx-overlay {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.rdx-overlay *,
+.rdx-overlay *::before,
+.rdx-overlay *::after {
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   Button Component
+   ========================================================================== */
+
+.rdx-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rdx-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.rdx-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.rdx-button:focus {
+  outline: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(239, 68, 68, 0.3);
+}
+
+.rdx-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.rdx-button--secondary {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+}
+
+.rdx-button--secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+}
+
+.rdx-button--sm {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.rdx-button--lg {
+  padding: 16px 32px;
+  font-size: 18px;
+}
+
+/* ==========================================================================
+   Overlay Component
+   ========================================================================== */
+
+.rdx-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+}
+
+.rdx-svg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.rdx-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 1004;
+}
+
+.rdx-close-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.rdx-keyboard-help {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+  z-index: 1004;
+}
+
+/* ==========================================================================
+   Info Panel Component
+   ========================================================================== */
+
+.rdx-info-panel {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1003;
+  animation: rdx-slideInFromRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rdx-info-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+}
+
+.rdx-info-panel__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rdx-info-panel__icon {
+  font-size: 20px;
+}
+
+.rdx-info-panel__close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.rdx-info-panel__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.rdx-info-panel__section {
+  margin-bottom: 16px;
+}
+
+.rdx-info-panel__section:last-child {
+  margin-bottom: 0;
+}
+
+.rdx-info-panel__section-title {
+  font-weight: 600;
+  color: #fbbf24;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.rdx-info-panel__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ef4444;
+  margin-bottom: 8px;
+}
+
+.rdx-info-panel__sources {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rdx-info-panel__source {
+  margin-left: 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.rdx-info-panel__source::before {
+  content: "•";
+  margin-right: 6px;
+  color: #10b981;
+}
+
+.rdx-info-panel__source--standby::before {
+  color: #fbbf24;
+}
+
+.rdx-info-panel__total {
+  font-weight: 600;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.rdx-info-panel__capacity {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ef4444;
+  text-align: center;
+}
+
+.rdx-info-panel__subtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Line Highlight Component
+   ========================================================================== */
+
+.rdx-line-highlights {
+  pointer-events: none;
+}
+
+.rdx-line-group {
+  animation: rdx-lineAppear 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rdx-line-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.rdx-line-path--active {
+  stroke: #ef4444;
+  animation: rdx-pulse 2s ease-in-out infinite alternate;
+}
+
+.rdx-line-path--standby {
+  stroke: #fbbf24;
+  animation: rdx-pulse 3s ease-in-out infinite alternate;
+}
+
+.rdx-line-label {
+  font-size: 12px;
+  font-weight: 600;
+  fill: white;
+  text-anchor: middle;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   Substation Marker Component
+   ========================================================================== */
+
+.rdx-substation-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1002;
+}
+
+.rdx-substation-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  animation: rdx-markerAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rdx-marker-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.rdx-marker-circle--active {
+  background: #ef4444;
+  animation: rdx-pulse 2s ease-in-out infinite;
+}
+
+.rdx-marker-circle--standby {
+  background: #fbbf24;
+}
+
+.rdx-marker-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.rdx-marker-label {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-width: 120px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.rdx-status-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.rdx-status-indicator--active {
+  background: #10b981;
+}
+
+.rdx-status-indicator--standby {
+  background: #fbbf24;
+}
+
+/* ==========================================================================
+   Power Flow Animation Component
+   ========================================================================== */
+
+.rdx-power-flow {
+  pointer-events: none;
+}
+
+.rdx-flow-particle {
+  animation: rdx-flowMove 3s linear infinite;
+}
+
+.rdx-flow-line {
+  stroke-dasharray: 10 5;
+  animation: rdx-flowDash 2s linear infinite;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes rdx-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rdx-slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rdx-scaleIn {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rdx-markerAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(180deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-10deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rdx-lineAppear {
+  from {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rdx-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rdx-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px currentColor);
+  }
+}
+
+@keyframes rdx-flowMove {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes rdx-flowDash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 15;
+  }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .rdx-info-panel {
+    min-width: 280px;
+    max-width: calc(100vw - 40px);
+    margin: 20px;
+  }
+  
+  .rdx-close-button {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+  
+  .rdx-keyboard-help {
+    display: none;
+  }
+  
+  .rdx-marker-label {
+    font-size: 11px;
+    min-width: 100px;
+    padding: 3px 6px;
+  }
+  
+  .rdx-button {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rdx-info-panel {
+    min-width: 260px;
+    padding: 16px;
+  }
+  
+  .rdx-info-panel__title {
+    font-size: 16px;
+  }
+  
+  .rdx-info-panel__value {
+    font-size: 20px;
+  }
+  
+  .rdx-marker-circle {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .rdx-status-indicator {
+    width: 14px;
+    height: 14px;
+    top: -6px;
+    right: -6px;
+  }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rdx-overlay *,
+  .rdx-overlay *::before,
+  .rdx-overlay *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .rdx-info-panel {
+    border: 2px solid white;
+    background: black;
+  }
+  
+  .rdx-marker-circle {
+    border-width: 4px;
+  }
+  
+  .rdx-line-path {
+    stroke-width: 6px;
+  }
+}
+
+.rdx-overlay:focus {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.rdx-button:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .rdx-overlay {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .rdx-info-panel {
+    background: rgba(17, 24, 39, 0.95);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+  }
+  
+  .rdx-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .rdx-close-button {
+    background: rgba(17, 24, 39, 0.8);
+  }
+  
+  .rdx-keyboard-help {
+    background: rgba(17, 24, 39, 0.8);
+  }
+}
+
+/* ==========================================================================
+   High Performance Mode
+   ========================================================================== */
+
+.rdx-overlay--performance .rdx-line-path,
+.rdx-overlay--performance .rdx-marker-circle,
+.rdx-overlay--performance .rdx-flow-particle {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* ==========================================================================
+   Debug Mode
+   ========================================================================== */
+
+.rdx-overlay--debug {
+  outline: 2px dashed #3b82f6;
+}
+
+.rdx-overlay--debug::before {
+  content: "DEBUG MODE";
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 9999;
+}
