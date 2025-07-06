@@ -16,7 +16,14 @@
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:all": "npm run test && npm run test:e2e"
+    "test:all": "npm run test && npm run test:e2e",
+    "dev:redundancy": "NEXT_PUBLIC_ENABLE_REDUNDANCY=true npm run dev",
+    "test:redundancy": "jest --testPathPatterns=redundancy",
+    "test:redundancy:watch": "jest --testPathPatterns=redundancy --watch",
+    "test:redundancy:coverage": "jest --testPathPatterns=redundancy --coverage",
+    "type-check:redundancy": "cd features/redundancy && tsc --noEmit",
+    "lint:redundancy": "eslint features/redundancy --ext .ts,.tsx",
+    "build:redundancy": "cd features/redundancy && npm run build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

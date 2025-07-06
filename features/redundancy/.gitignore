@@ -1,0 +1,36 @@
+# Feature-specific ignores for 2N+1 Redundancy
+
+# Build artifacts
+*.tsbuildinfo
+.tsbuildinfo
+dist/
+build/
+
+# Development files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+.tmp/
+temp/
+
+# Node modules (if any feature-specific)
+node_modules/
+
+# Environment files (feature-specific)
+.env.feature
+
+# Debugging
+*.cpuprofile
+*.heapsnapshot

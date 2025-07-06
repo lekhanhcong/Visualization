@@ -1,0 +1,99 @@
+{
+  "name": "@hue-datacenter/redundancy-feature",
+  "version": "1.0.0",
+  "description": "2N+1 Redundancy visualization feature for Hue Hi Tech Park Data Center",
+  "main": "index.ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "jest --testPathPattern=redundancy",
+    "test:watch": "jest --testPathPattern=redundancy --watch",
+    "test:coverage": "jest --testPathPattern=redundancy --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "dev": "echo 'Feature development mode - use main app dev server'"
+  },
+  "keywords": [
+    "redundancy",
+    "power",
+    "visualization",
+    "2n+1",
+    "data-center",
+    "plugin",
+    "feature"
+  ],
+  "author": "Hue Hi Tech Park Development Team",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "next": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "components/",
+    "styles/",
+    "utils/",
+    "types.ts",
+    "config.ts",
+    "plugin.ts",
+    "index.ts",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "default": "./index.ts"
+    },
+    "./components/*": {
+      "types": "./components/*.tsx",
+      "default": "./components/*.tsx"
+    },
+    "./styles/*": {
+      "types": "./styles/*.css",
+      "default": "./styles/*.css"
+    },
+    "./utils/*": {
+      "types": "./utils/*.ts",
+      "default": "./utils/*.ts"
+    },
+    "./types": {
+      "types": "./types.ts",
+      "default": "./types.ts"
+    },
+    "./config": {
+      "types": "./config.ts",
+      "default": "./config.ts"
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hue-hitech-park/datacenter-visualization.git",
+    "directory": "features/redundancy"
+  },
+  "bugs": {
+    "url": "https://github.com/hue-hitech-park/datacenter-visualization/issues"
+  },
+  "homepage": "https://github.com/hue-hitech-park/datacenter-visualization/tree/main/features/redundancy#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "funding": {
+    "type": "corporate",
+    "url": "https://huehitech.com"
+  }
+}

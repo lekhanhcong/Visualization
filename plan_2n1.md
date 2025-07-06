@@ -1,0 +1,1345 @@
+# PLAN: ADD 2N+1 REDUNDANCY FEATURE TO VERSION 02
+
+## Overview
+- **Total tasks**: 300
+- **Estimated time**: 14-18 days
+- **Using Plugin Architecture** from guideline_add_features.md
+- **Feature spec** from 2n_1_feature.md
+- **Target**: Professional investor-grade visualization
+- **Architecture**: Zero-modification plugin system
+
+## Phase 1: Setup & Foundation (Tasks 1-50)
+
+### 1.1 Project Setup (Tasks 1-10)
+- [x] Task 1: Create feature branch `feature/2n1-redundancy`
+  - [x] Sub-task 1.1: Checkout from main branch
+  - [x] Sub-task 1.2: Create new branch with naming convention
+  - [x] Sub-task 1.3: Verify branch isolation
+- [x] Task 2: Setup folder structure `/features/redundancy/`
+  - [x] Sub-task 2.1: Create root features directory
+  - [x] Sub-task 2.2: Create redundancy subdirectory
+  - [x] Sub-task 2.3: Verify folder permissions
+- [x] Task 3: Create initial file structure
+  - [x] Sub-task 3.1: Create index.ts entry point
+  - [x] Sub-task 3.2: Create config.ts configuration
+  - [x] Sub-task 3.3: Create README.md documentation
+  - [x] Sub-task 3.4: Create types.ts interfaces
+- [x] Task 4: Add feature flag to .env.local
+  - [x] Sub-task 4.1: Add NEXT_PUBLIC_ENABLE_REDUNDANCY=false
+  - [x] Sub-task 4.2: Document flag in .env.example
+  - [x] Sub-task 4.3: Test environment variable loading
+- [x] Task 5: Test feature flag functionality
+  - [x] Sub-task 5.1: Flag ON test scenario
+  - [x] Sub-task 5.2: Flag OFF test scenario
+  - [x] Sub-task 5.3: Verify no core app modification
+- [x] Task 6: Setup CSS framework with rdx- prefix
+  - [x] Sub-task 6.1: Create styles directory structure
+  - [x] Sub-task 6.2: Define CSS naming conventions
+  - [x] Sub-task 6.3: Create base CSS file with prefixes
+- [x] Task 7: Create feature package.json structure
+  - [x] Sub-task 7.1: Define feature metadata
+  - [x] Sub-task 7.2: Set dependencies scope
+  - [x] Sub-task 7.3: Configure build scripts
+- [x] Task 8: Setup TypeScript configuration for feature
+  - [x] Sub-task 8.1: Create feature-specific tsconfig
+  - [x] Sub-task 8.2: Define type paths
+  - [x] Sub-task 8.3: Test compilation isolation
+- [x] Task 9: Initialize version control for feature
+  - [x] Sub-task 9.1: Create .gitkeep files
+  - [x] Sub-task 9.2: Setup ignore patterns
+  - [x] Sub-task 9.3: Document folder structure
+- [x] Task 10: Create feature development environment
+  - [x] Sub-task 10.1: Setup hot reload configuration
+  - [x] Sub-task 10.2: Create development scripts
+  - [x] Sub-task 10.3: Test development workflow
+
+### 1.2 Plugin Registration System (Tasks 11-20)
+- [x] Task 11: Create plugin registry infrastructure
+  - [x] Sub-task 11.1: Design registry interface
+  - [x] Sub-task 11.2: Implement registration mechanism
+  - [x] Sub-task 11.3: Test registry functionality
+- [x] Task 12: Design feature registration contract
+  - [x] Sub-task 12.1: Define feature interface
+  - [x] Sub-task 12.2: Create registration schema
+  - [x] Sub-task 12.3: Validate contract compliance
+- [ ] Task 13: Implement feature lifecycle management
+  - [ ] Sub-task 13.1: Create initialization hooks
+  - [ ] Sub-task 13.2: Implement cleanup mechanisms
+  - [ ] Sub-task 13.3: Test lifecycle transitions
+- [ ] Task 14: Setup event bus communication system
+  - [ ] Sub-task 14.1: Create event emitter
+  - [ ] Sub-task 14.2: Define event naming conventions
+  - [ ] Sub-task 14.3: Test event isolation
+- [ ] Task 15: Register redundancy feature in plugin system
+  - [ ] Sub-task 15.1: Create redundancy config object
+  - [ ] Sub-task 15.2: Import featureRegistry
+  - [ ] Sub-task 15.3: Call featureRegistry.register()
+  - [ ] Sub-task 15.4: Test registration successful
+  - [ ] Sub-task 15.5: Verify feature appears in registry list
+- [ ] Task 16: Create feature provider component
+  - [ ] Sub-task 16.1: Design provider interface
+  - [ ] Sub-task 16.2: Implement context management
+  - [ ] Sub-task 16.3: Test provider isolation
+- [ ] Task 17: Setup feature mounting points
+  - [ ] Sub-task 17.1: Define overlay mounting strategy
+  - [ ] Sub-task 17.2: Create mounting infrastructure
+  - [ ] Sub-task 17.3: Test mounting point availability
+- [ ] Task 18: Implement feature flag integration
+  - [ ] Sub-task 18.1: Connect registry to environment flags
+  - [ ] Sub-task 18.2: Create flag validation logic
+  - [ ] Sub-task 18.3: Test flag-based loading
+- [ ] Task 19: Create feature dependency management
+  - [ ] Sub-task 19.1: Define dependency interface
+  - [ ] Sub-task 19.2: Implement dependency resolution
+  - [ ] Sub-task 19.3: Test dependency handling
+- [ ] Task 20: Setup plugin error boundaries
+  - [ ] Sub-task 20.1: Create feature-specific error boundary
+  - [ ] Sub-task 20.2: Implement error isolation
+  - [ ] Sub-task 20.3: Test error containment
+
+### 1.3 Base Component Structure (Tasks 21-30)
+- [ ] Task 21: Create RedundancyProvider context
+  - [ ] Sub-task 21.1: Design context interface
+  - [ ] Sub-task 21.2: Implement state management
+  - [ ] Sub-task 21.3: Test context isolation
+- [ ] Task 22: Design RedundancyOverlay main component
+  - [ ] Sub-task 22.1: Create component structure
+  - [ ] Sub-task 22.2: Define props interface
+  - [ ] Sub-task 22.3: Test component mounting
+- [ ] Task 23: Create RedundancyButton trigger component
+  - [ ] Sub-task 23.1: Design button interface
+  - [ ] Sub-task 23.2: Implement click handlers
+  - [ ] Sub-task 23.3: Test button functionality
+- [ ] Task 24: Design InfoPanel statistics component
+  - [ ] Sub-task 24.1: Create panel structure
+  - [ ] Sub-task 24.2: Define data interface
+  - [ ] Sub-task 24.3: Test panel rendering
+- [ ] Task 25: Create LineHighlight overlay components
+  - [ ] Sub-task 25.1: Design highlight interface
+  - [ ] Sub-task 25.2: Implement SVG overlay system
+  - [ ] Sub-task 25.3: Test line highlighting
+- [ ] Task 26: Design SubstationMarker components
+  - [ ] Sub-task 26.1: Create marker interface
+  - [ ] Sub-task 26.2: Implement positioning system
+  - [ ] Sub-task 26.3: Test marker placement
+- [ ] Task 27: Create PowerFlowAnimation component
+  - [ ] Sub-task 27.1: Design animation interface
+  - [ ] Sub-task 27.2: Implement flow visualization
+  - [ ] Sub-task 27.3: Test animation performance
+- [ ] Task 28: Setup component composition strategy
+  - [ ] Sub-task 28.1: Define composition rules
+  - [ ] Sub-task 28.2: Create component hierarchy
+  - [ ] Sub-task 28.3: Test component interactions
+- [ ] Task 29: Create shared component utilities
+  - [ ] Sub-task 29.1: Design utility functions
+  - [ ] Sub-task 29.2: Implement common helpers
+  - [ ] Sub-task 29.3: Test utility isolation
+- [ ] Task 30: Setup component testing framework
+  - [ ] Sub-task 30.1: Configure Jest for components
+  - [ ] Sub-task 30.2: Create testing utilities
+  - [ ] Sub-task 30.3: Test framework functionality
+
+### 1.4 Initial Tests Setup (Tasks 31-40)
+- [ ] Task 31: Create test directory structure
+  - [ ] Sub-task 31.1: Setup __tests__ folder
+  - [ ] Sub-task 31.2: Create test categories
+  - [ ] Sub-task 31.3: Configure test paths
+- [ ] Task 32: Setup Jest configuration for feature
+  - [ ] Sub-task 32.1: Create feature-specific Jest config
+  - [ ] Sub-task 32.2: Configure test environment
+  - [ ] Sub-task 32.3: Test configuration validity
+- [ ] Task 33: Create testing utilities and mocks
+  - [ ] Sub-task 33.1: Create component test utils
+  - [ ] Sub-task 33.2: Setup mock implementations
+  - [ ] Sub-task 33.3: Test utility functions
+- [ ] Task 34: Setup Playwright test infrastructure
+  - [ ] Sub-task 34.1: Create E2E test structure
+  - [ ] Sub-task 34.2: Configure Playwright for feature
+  - [ ] Sub-task 34.3: Test E2E framework setup
+- [ ] Task 35: Create test data fixtures
+  - [ ] Sub-task 35.1: Design test data schema
+  - [ ] Sub-task 35.2: Create mock data sets
+  - [ ] Sub-task 35.3: Test data validity
+- [ ] Task 36: Setup visual regression testing
+  - [ ] Sub-task 36.1: Configure screenshot testing
+  - [ ] Sub-task 36.2: Create baseline images
+  - [ ] Sub-task 36.3: Test visual comparison
+- [ ] Task 37: Create performance testing setup
+  - [ ] Sub-task 37.1: Setup performance benchmarks
+  - [ ] Sub-task 37.2: Create performance tests
+  - [ ] Sub-task 37.3: Test performance monitoring
+- [ ] Task 38: Setup accessibility testing framework
+  - [ ] Sub-task 38.1: Configure axe-core testing
+  - [ ] Sub-task 38.2: Create accessibility tests
+  - [ ] Sub-task 38.3: Test accessibility compliance
+- [ ] Task 39: Create test coverage configuration
+  - [ ] Sub-task 39.1: Setup coverage thresholds
+  - [ ] Sub-task 39.2: Configure coverage reporting
+  - [ ] Sub-task 39.3: Test coverage accuracy
+- [ ] Task 40: Setup continuous testing pipeline
+  - [ ] Sub-task 40.1: Create test automation scripts
+  - [ ] Sub-task 40.2: Configure CI/CD integration
+  - [ ] Sub-task 40.3: Test pipeline functionality
+
+### 1.5 Documentation Setup (Tasks 41-50)
+- [ ] Task 41: Create comprehensive README.md
+  - [ ] Sub-task 41.1: Document feature overview
+  - [ ] Sub-task 41.2: Add installation instructions
+  - [ ] Sub-task 41.3: Include usage examples
+- [ ] Task 42: Document Plugin Architecture implementation
+  - [ ] Sub-task 42.1: Explain architecture decisions
+  - [ ] Sub-task 42.2: Document integration points
+  - [ ] Sub-task 42.3: Create architecture diagrams
+- [ ] Task 43: Create API documentation
+  - [ ] Sub-task 43.1: Document component interfaces
+  - [ ] Sub-task 43.2: Create API reference
+  - [ ] Sub-task 43.3: Add code examples
+- [ ] Task 44: Document configuration options
+  - [ ] Sub-task 44.1: List all configuration flags
+  - [ ] Sub-task 44.2: Explain configuration effects
+  - [ ] Sub-task 44.3: Provide configuration examples
+- [ ] Task 45: Create troubleshooting guide
+  - [ ] Sub-task 45.1: Document common issues
+  - [ ] Sub-task 45.2: Provide solution steps
+  - [ ] Sub-task 45.3: Add debugging tips
+- [ ] Task 46: Document testing procedures
+  - [ ] Sub-task 46.1: Explain test structure
+  - [ ] Sub-task 46.2: Document test commands
+  - [ ] Sub-task 46.3: Add testing best practices
+- [ ] Task 47: Create deployment documentation
+  - [ ] Sub-task 47.1: Document deployment process
+  - [ ] Sub-task 47.2: Explain environment setup
+  - [ ] Sub-task 47.3: Add deployment checklist
+- [ ] Task 48: Document feature flag usage
+  - [ ] Sub-task 48.1: Explain flag implementation
+  - [ ] Sub-task 48.2: Document flag values
+  - [ ] Sub-task 48.3: Add flag best practices
+- [ ] Task 49: Create contributor guidelines
+  - [ ] Sub-task 49.1: Document contribution process
+  - [ ] Sub-task 49.2: Explain coding standards
+  - [ ] Sub-task 49.3: Add review procedures
+- [ ] Task 50: Setup documentation maintenance
+  - [ ] Sub-task 50.1: Create documentation templates
+  - [ ] Sub-task 50.2: Setup documentation CI
+  - [ ] Sub-task 50.3: Test documentation accuracy
+
+## Phase 2: Core Implementation (Tasks 51-150)
+
+### 2.1 Map Overlay System (Tasks 51-70)
+- [ ] Task 51: Query MCP Context7 for modern overlay patterns
+  - [ ] Sub-task 51.1: Research React overlay best practices
+  - [ ] Sub-task 51.2: Query performance optimization techniques
+  - [ ] Sub-task 51.3: Apply latest React patterns to implementation
+- [ ] Task 52: Analyze existing map structure for overlay points
+  - [ ] Sub-task 52.1: Identify SVG structure of existing map
+  - [ ] Sub-task 52.2: Map coordinate system for overlay alignment
+  - [ ] Sub-task 52.3: Test overlay positioning accuracy
+- [ ] Task 53: Create RedundancyOverlay container component
+  - [ ] Sub-task 53.1: Implement overlay mounting logic
+  - [ ] Sub-task 53.2: Create z-index management system
+  - [ ] Sub-task 53.3: Test overlay isolation from core app
+- [ ] Task 54: Implement overlay backdrop system
+  - [ ] Sub-task 54.1: Create semi-transparent backdrop
+  - [ ] Sub-task 54.2: Implement click-outside-to-close
+  - [ ] Sub-task 54.3: Test backdrop interaction behavior
+- [ ] Task 55: Design coordinate transformation system
+  - [ ] Sub-task 55.1: Create map-to-screen coordinate converter
+  - [ ] Sub-task 55.2: Implement responsive coordinate scaling
+  - [ ] Sub-task 55.3: Test coordinate accuracy across viewports
+- [ ] Task 56: Create SVG overlay layer system
+  - [ ] Sub-task 56.1: Implement SVG container structure
+  - [ ] Sub-task 56.2: Create layer management system
+  - [ ] Sub-task 56.3: Test SVG rendering performance
+- [ ] Task 57: Implement overlay state management
+  - [ ] Sub-task 57.1: Create overlay visibility state
+  - [ ] Sub-task 57.2: Implement animation state transitions
+  - [ ] Sub-task 57.3: Test state synchronization
+- [ ] Task 58: Create overlay positioning system
+  - [ ] Sub-task 58.1: Implement absolute positioning logic
+  - [ ] Sub-task 58.2: Create responsive positioning
+  - [ ] Sub-task 58.3: Test positioning accuracy
+- [ ] Task 59: Design overlay resize handling
+  - [ ] Sub-task 59.1: Implement resize event listeners
+  - [ ] Sub-task 59.2: Create responsive recalculation
+  - [ ] Sub-task 59.3: Test resize behavior
+- [ ] Task 60: Create overlay cleanup system
+  - [ ] Sub-task 60.1: Implement memory cleanup on unmount
+  - [ ] Sub-task 60.2: Create event listener cleanup
+  - [ ] Sub-task 60.3: Test memory leak prevention
+- [ ] Task 61: Implement overlay accessibility features
+  - [ ] Sub-task 61.1: Add ARIA labels and roles
+  - [ ] Sub-task 61.2: Implement keyboard navigation
+  - [ ] Sub-task 61.3: Test screen reader compatibility
+- [ ] Task 62: Create overlay performance optimization
+  - [ ] Sub-task 62.1: Implement virtualization for complex overlays
+  - [ ] Sub-task 62.2: Create render optimization
+  - [ ] Sub-task 62.3: Test 60fps performance maintenance
+- [ ] Task 63: Design overlay error handling
+  - [ ] Sub-task 63.1: Create error boundary for overlay
+  - [ ] Sub-task 63.2: Implement graceful degradation
+  - [ ] Sub-task 63.3: Test error recovery
+- [ ] Task 64: Create overlay testing framework
+  - [ ] Sub-task 64.1: Write unit tests for overlay components
+  - [ ] Sub-task 64.2: Create integration tests
+  - [ ] Sub-task 64.3: Achieve 80%+ test coverage
+- [ ] Task 65: Implement overlay animation system
+  - [ ] Sub-task 65.1: Create fade-in/fade-out transitions
+  - [ ] Sub-task 65.2: Implement smooth overlay appearance
+  - [ ] Sub-task 65.3: Test animation performance
+- [ ] Task 66: Create overlay debugging tools
+  - [ ] Sub-task 66.1: Add development-only debug overlays
+  - [ ] Sub-task 66.2: Create positioning debug helpers
+  - [ ] Sub-task 66.3: Test debugging utility functionality
+- [ ] Task 67: Implement overlay mobile optimization
+  - [ ] Sub-task 67.1: Create touch-friendly overlay interactions
+  - [ ] Sub-task 67.2: Optimize for mobile viewports
+  - [ ] Sub-task 67.3: Test mobile overlay behavior
+- [ ] Task 68: Create overlay theme integration
+  - [ ] Sub-task 68.1: Implement CSS custom properties
+  - [ ] Sub-task 68.2: Create theme-aware styling
+  - [ ] Sub-task 68.3: Test theme consistency
+- [ ] Task 69: Setup overlay monitoring
+  - [ ] Sub-task 69.1: Add performance monitoring
+  - [ ] Sub-task 69.2: Create usage analytics
+  - [ ] Sub-task 69.3: Test monitoring accuracy
+- [ ] Task 70: Create overlay documentation
+  - [ ] Sub-task 70.1: Document overlay API
+  - [ ] Sub-task 70.2: Create usage examples
+  - [ ] Sub-task 70.3: Add troubleshooting guide
+
+### 2.2 Line Highlighting System (Tasks 71-90)
+- [ ] Task 71: Identify existing 500kV line segments in map
+  - [ ] Sub-task 71.1: Map all red line paths in existing image
+  - [ ] Sub-task 71.2: Create segment identification system
+  - [ ] Sub-task 71.3: Test segment detection accuracy
+  - [ ] **CRITICAL NOTE**: Quan trọng để highlight đúng lines - Cần careful mapping của existing infrastructure
+- [ ] Task 72: Highlight Quảng Trạch to Substation 01 line
+  - [ ] Sub-task 72.1: Identify exact line segment in existing map
+  - [ ] Sub-task 72.2: Create SVG path overlay matching line
+  - [ ] Sub-task 72.3: Apply red glow effect (color: #ef4444)
+  - [ ] Sub-task 72.4: Test glow visible on all screen sizes
+  - [ ] Sub-task 72.5: Verify alignment with base map line
+  - [ ] **CRITICAL NOTE**: Critical để overlay khớp với map gốc - Test trên nhiều screen sizes
+  - [ ] Sub-task 72.6: Performance test (60fps maintained)
+- [ ] Task 73: Highlight Thanh Mỹ to Substation 01 line
+  - [ ] Sub-task 73.1: Trace second western line segment
+  - [ ] Sub-task 73.2: Create matching SVG overlay
+  - [ ] Sub-task 73.3: Apply red glow effect
+  - [ ] Sub-task 73.4: Test alignment and visibility
+  - [ ] Sub-task 73.5: Verify no overlap conflicts
+- [ ] Task 74: Highlight Quảng Trị to Substation 02 line
+  - [ ] Sub-task 74.1: Identify northern line segment
+  - [ ] Sub-task 74.2: Create SVG path for standby line
+  - [ ] Sub-task 74.3: Apply yellow glow effect (color: #fbbf24)
+  - [ ] Sub-task 74.4: Test standby line visibility
+  - [ ] Sub-task 74.5: Verify standby vs active distinction
+- [ ] Task 75: Highlight Đà Nẵng to Substation 02 line
+  - [ ] Sub-task 75.1: Identify southeastern line segment
+  - [ ] Sub-task 75.2: Create final standby line overlay
+  - [ ] Sub-task 75.3: Apply yellow glow effect
+  - [ ] Sub-task 75.4: Test complete 4-line visualization
+  - [ ] Sub-task 75.5: Verify all lines highlighted correctly
+- [ ] Task 76: Create line glow effect system
+  - [ ] Sub-task 76.1: Design CSS glow properties
+  - [ ] Sub-task 76.2: Implement SVG filter effects
+  - [ ] Sub-task 76.3: Test glow performance impact
+- [ ] Task 77: Implement line dimming for non-highlighted segments
+  - [ ] Sub-task 77.1: Reduce opacity of other lines to 30%
+  - [ ] Sub-task 77.2: Create smooth transition effects
+  - [ ] Sub-task 77.3: Test visual contrast effectiveness
+- [ ] Task 78: Create line animation effects
+  - [ ] Sub-task 78.1: Implement pulse animation for active lines
+  - [ ] Sub-task 78.2: Create different animation for standby lines
+  - [ ] Sub-task 78.3: Test animation smoothness
+- [ ] Task 79: Design line labeling system
+  - [ ] Sub-task 79.1: Create labels for each highlighted line
+  - [ ] Sub-task 79.2: Position labels optimally
+  - [ ] Sub-task 79.3: Test label readability
+- [ ] Task 80: Implement responsive line highlighting
+  - [ ] Sub-task 80.1: Scale glow effects for different viewports
+  - [ ] Sub-task 80.2: Adjust line thickness for mobile
+  - [ ] Sub-task 80.3: Test mobile line visibility
+- [ ] Task 81: Create line highlight state management
+  - [ ] Sub-task 81.1: Implement highlight toggle functionality
+  - [ ] Sub-task 81.2: Create line state persistence
+  - [ ] Sub-task 81.3: Test state transitions
+- [ ] Task 82: Setup line highlight testing
+  - [ ] Sub-task 82.1: Write unit tests for line components
+  - [ ] Sub-task 82.2: Create visual regression tests
+  - [ ] Sub-task 82.3: Test highlight accuracy
+- [ ] Task 83: Optimize line rendering performance
+  - [ ] Sub-task 83.1: Implement efficient SVG rendering
+  - [ ] Sub-task 83.2: Create render optimization strategies
+  - [ ] Sub-task 83.3: Test performance under load
+- [ ] Task 84: Create line highlight accessibility
+  - [ ] Sub-task 84.1: Add ARIA descriptions for highlighted lines
+  - [ ] Sub-task 84.2: Implement keyboard navigation
+  - [ ] Sub-task 84.3: Test screen reader compatibility
+- [ ] Task 85: Implement line highlight error handling
+  - [ ] Sub-task 85.1: Handle missing line data gracefully
+  - [ ] Sub-task 85.2: Create fallback rendering
+  - [ ] Sub-task 85.3: Test error scenarios
+- [ ] Task 86: Create line highlight debugging tools
+  - [ ] Sub-task 86.1: Add development debug overlays
+  - [ ] Sub-task 86.2: Create line detection helpers
+  - [ ] Sub-task 86.3: Test debugging functionality
+- [ ] Task 87: Design line highlight configuration
+  - [ ] Sub-task 87.1: Create configurable line colors
+  - [ ] Sub-task 87.2: Implement glow intensity settings
+  - [ ] Sub-task 87.3: Test configuration flexibility
+- [ ] Task 88: Create line highlight documentation
+  - [ ] Sub-task 88.1: Document line identification process
+  - [ ] Sub-task 88.2: Explain highlight implementation
+  - [ ] Sub-task 88.3: Add troubleshooting guide
+- [ ] Task 89: Implement line highlight monitoring
+  - [ ] Sub-task 89.1: Add rendering performance metrics
+  - [ ] Sub-task 89.2: Monitor highlight accuracy
+  - [ ] Sub-task 89.3: Test monitoring data collection
+- [ ] Task 90: Test complete line highlighting system
+  - [ ] Sub-task 90.1: End-to-end testing of all 4 lines
+  - [ ] Sub-task 90.2: Cross-browser compatibility testing
+  - [ ] Sub-task 90.3: Performance testing under various conditions
+
+### 2.3 Substation Markers System (Tasks 91-110)
+- [ ] Task 91: Query MCP Context7 for marker component patterns
+  - [ ] Sub-task 91.1: Research modern React marker implementations
+  - [ ] Sub-task 91.2: Query positioning best practices
+  - [ ] Sub-task 91.3: Apply latest marker patterns
+- [ ] Task 92: Create SubstationMarker base component
+  - [ ] Sub-task 92.1: Design marker interface and props
+  - [ ] Sub-task 92.2: Implement basic marker structure
+  - [ ] Sub-task 92.3: Test marker rendering
+- [ ] Task 93: Implement Substation 01 marker (existing location)
+  - [ ] Sub-task 93.1: Position marker at existing "500/220KV SUBSTATION" location
+  - [ ] Sub-task 93.2: Create red marker with glow effect
+  - [ ] Sub-task 93.3: Add "ACTIVE" status indicator
+  - [ ] Sub-task 93.4: Test marker positioning accuracy
+  - [ ] Sub-task 93.5: Verify marker doesn't obscure existing label
+- [ ] Task 94: Calculate Substation 02 positioning
+  - [ ] Sub-task 94.1: Determine coordinates ~800m SE of Sub 01
+  - [ ] Sub-task 94.2: Ensure position within green boundary
+  - [ ] Sub-task 94.3: Test position on different screen sizes
+  - [ ] **CRITICAL NOTE**: Cần xác định chính xác vị trí ~800m SE của Sub 01 - Ensure nằm trong green boundary
+- [ ] Task 95: Add Substation 02 marker
+  - [ ] Sub-task 95.1: Calculate position (~800m SE of Sub 01)
+  - [ ] Sub-task 95.2: Create marker component with yellow color
+  - [ ] Sub-task 95.3: Add label "SUBSTATION 02 - 600MW STANDBY"
+  - [ ] Sub-task 95.4: Test marker responsive positioning
+  - [ ] Sub-task 95.5: Verify click/hover interactions work
+  - [ ] Sub-task 95.6: Check z-index above map but below info
+- [ ] Task 96: Create marker styling system
+  - [ ] Sub-task 96.1: Design marker visual hierarchy
+  - [ ] Sub-task 96.2: Implement color-coded status system
+  - [ ] Sub-task 96.3: Test visual distinction between markers
+- [ ] Task 97: Implement marker interaction system
+  - [ ] Sub-task 97.1: Add click handlers for marker details
+  - [ ] Sub-task 97.2: Create hover effects and tooltips
+  - [ ] Sub-task 97.3: Test interaction responsiveness
+- [ ] Task 98: Create marker labeling system
+  - [ ] Sub-task 98.1: Design label positioning algorithm
+  - [ ] Sub-task 98.2: Implement responsive label sizing
+  - [ ] Sub-task 98.3: Test label readability
+- [ ] Task 99: Add marker animation effects
+  - [ ] Sub-task 99.1: Implement subtle pulse animation
+  - [ ] Sub-task 99.2: Create marker appearance transitions
+  - [ ] Sub-task 99.3: Test animation performance
+- [ ] Task 100: Create interconnection line between substations
+  - [ ] Sub-task 100.1: Draw purple line connecting Sub 01 and Sub 02
+  - [ ] Sub-task 100.2: Add "220kV Backup Connection" label
+  - [ ] Sub-task 100.3: Test connection line visibility
+- [ ] Task 101: Implement marker responsive design
+  - [ ] Sub-task 101.1: Scale markers for different viewports
+  - [ ] Sub-task 101.2: Adjust label sizes for mobile
+  - [ ] Sub-task 101.3: Test mobile marker usability
+- [ ] Task 102: Create marker accessibility features
+  - [ ] Sub-task 102.1: Add ARIA labels and descriptions
+  - [ ] Sub-task 102.2: Implement keyboard navigation
+  - [ ] Sub-task 102.3: Test screen reader support
+- [ ] Task 103: Setup marker state management
+  - [ ] Sub-task 103.1: Create marker visibility states
+  - [ ] Sub-task 103.2: Implement marker data management
+  - [ ] Sub-task 103.3: Test state persistence
+- [ ] Task 104: Create marker testing framework
+  - [ ] Sub-task 104.1: Write unit tests for marker components
+  - [ ] Sub-task 104.2: Create positioning accuracy tests
+  - [ ] Sub-task 104.3: Test marker interactions
+- [ ] Task 105: Optimize marker performance
+  - [ ] Sub-task 105.1: Implement efficient marker rendering
+  - [ ] Sub-task 105.2: Create marker virtualization if needed
+  - [ ] Sub-task 105.3: Test performance impact
+- [ ] Task 106: Create marker error handling
+  - [ ] Sub-task 106.1: Handle positioning errors gracefully
+  - [ ] Sub-task 106.2: Implement fallback rendering
+  - [ ] Sub-task 106.3: Test error scenarios
+- [ ] Task 107: Design marker configuration system
+  - [ ] Sub-task 107.1: Create configurable marker properties
+  - [ ] Sub-task 107.2: Implement theme integration
+  - [ ] Sub-task 107.3: Test configuration flexibility
+- [ ] Task 108: Create marker debugging tools
+  - [ ] Sub-task 108.1: Add development debug overlays
+  - [ ] Sub-task 108.2: Create positioning debug helpers
+  - [ ] Sub-task 108.3: Test debugging functionality
+- [ ] Task 109: Document marker implementation
+  - [ ] Sub-task 109.1: Document marker API and configuration
+  - [ ] Sub-task 109.2: Create positioning guides
+  - [ ] Sub-task 109.3: Add troubleshooting documentation
+- [ ] Task 110: Test complete substation system
+  - [ ] Sub-task 110.1: End-to-end testing of both substations
+  - [ ] Sub-task 110.2: Test interconnection visualization
+  - [ ] Sub-task 110.3: Verify complete substation functionality
+
+### 2.4 Information Panel System (Tasks 111-130)
+- [ ] Task 111: Query MCP Context7 for modern panel component patterns
+  - [ ] Sub-task 111.1: Research React info panel best practices
+  - [ ] Sub-task 111.2: Query accessibility requirements for panels
+  - [ ] Sub-task 111.3: Apply modern panel design patterns
+- [ ] Task 112: Design InfoPanel component structure
+  - [ ] Sub-task 112.1: Create panel layout and hierarchy
+  - [ ] Sub-task 112.2: Design responsive panel behavior
+  - [ ] Sub-task 112.3: Test panel structure flexibility
+- [ ] Task 113: Create panel data interface
+  - [ ] Sub-task 113.1: Define statistics data structure
+  - [ ] Sub-task 113.2: Create data calculation functions
+  - [ ] Sub-task 113.3: Test data accuracy and consistency
+- [ ] Task 114: Implement statistics display section
+  - [ ] Sub-task 114.1: Create "Data Center Needs: 300MW" display
+  - [ ] Sub-task 114.2: Show "Active Now" section with sources
+  - [ ] Sub-task 114.3: Display "Standby Ready" section
+  - [ ] Sub-task 114.4: Show "400% TOTAL CAPACITY" status
+  - [ ] Sub-task 114.5: Test all statistics display correctly
+- [ ] Task 115: Create panel positioning system
+  - [ ] Sub-task 115.1: Position panel in top-right corner
+  - [ ] Sub-task 115.2: Implement responsive positioning
+  - [ ] Sub-task 115.3: Test panel positioning on all devices
+- [ ] Task 116: Design panel animation system
+  - [ ] Sub-task 116.1: Create slide-in animation from right
+  - [ ] Sub-task 116.2: Implement smooth transition effects
+  - [ ] Sub-task 116.3: Test animation performance
+- [ ] Task 117: Implement panel close functionality
+  - [ ] Sub-task 117.1: Add close button to panel
+  - [ ] Sub-task 117.2: Implement click-outside-to-close
+  - [ ] Sub-task 117.3: Test close interactions
+- [ ] Task 118: Create panel styling system
+  - [ ] Sub-task 118.1: Apply rdx- prefixed CSS classes
+  - [ ] Sub-task 118.2: Create professional visual design
+  - [ ] Sub-task 118.3: Test styling consistency
+- [ ] Task 119: Add panel accessibility features
+  - [ ] Sub-task 119.1: Implement ARIA labels and roles
+  - [ ] Sub-task 119.2: Add keyboard navigation support
+  - [ ] Sub-task 119.3: Test screen reader compatibility
+- [ ] Task 120: Create panel responsive design
+  - [ ] Sub-task 120.1: Adapt panel for mobile viewports
+  - [ ] Sub-task 120.2: Create tablet-optimized layout
+  - [ ] Sub-task 120.3: Test panel usability across devices
+- [ ] Task 121: Implement panel data updates
+  - [ ] Sub-task 121.1: Create dynamic data refresh system
+  - [ ] Sub-task 121.2: Implement real-time updates if needed
+  - [ ] Sub-task 121.3: Test data synchronization
+- [ ] Task 122: Create panel error handling
+  - [ ] Sub-task 122.1: Handle missing data gracefully
+  - [ ] Sub-task 122.2: Implement error state display
+  - [ ] Sub-task 122.3: Test error scenarios
+- [ ] Task 123: Setup panel testing framework
+  - [ ] Sub-task 123.1: Write unit tests for panel components
+  - [ ] Sub-task 123.2: Create integration tests
+  - [ ] Sub-task 123.3: Test panel data accuracy
+- [ ] Task 124: Optimize panel performance
+  - [ ] Sub-task 124.1: Implement efficient re-rendering
+  - [ ] Sub-task 124.2: Create performance optimizations
+  - [ ] Sub-task 124.3: Test panel performance impact
+- [ ] Task 125: Create panel configuration system
+  - [ ] Sub-task 125.1: Make panel content configurable
+  - [ ] Sub-task 125.2: Create theme integration
+  - [ ] Sub-task 125.3: Test configuration flexibility
+- [ ] Task 126: Design panel interaction tracking
+  - [ ] Sub-task 126.1: Add analytics for panel usage
+  - [ ] Sub-task 126.2: Track user interactions
+  - [ ] Sub-task 126.3: Test tracking functionality
+- [ ] Task 127: Create panel debugging tools
+  - [ ] Sub-task 127.1: Add development debug information
+  - [ ] Sub-task 127.2: Create data validation helpers
+  - [ ] Sub-task 127.3: Test debugging functionality
+- [ ] Task 128: Implement panel internationalization
+  - [ ] Sub-task 128.1: Prepare panel for multiple languages
+  - [ ] Sub-task 128.2: Create translation-ready content
+  - [ ] Sub-task 128.3: Test internationalization support
+- [ ] Task 129: Document panel implementation
+  - [ ] Sub-task 129.1: Document panel API and configuration
+  - [ ] Sub-task 129.2: Create usage examples
+  - [ ] Sub-task 129.3: Add troubleshooting guide
+- [ ] Task 130: Test complete info panel system
+  - [ ] Sub-task 130.1: End-to-end testing of panel functionality
+  - [ ] Sub-task 130.2: Test panel integration with overlay
+  - [ ] Sub-task 130.3: Verify panel meets requirements
+
+### 2.5 Animation System (Tasks 131-150)
+- [ ] Task 131: Query MCP Context7 for modern animation patterns
+  - [ ] Sub-task 131.1: Research React animation libraries
+  - [ ] Sub-task 131.2: Query performance-optimized animation techniques
+  - [ ] Sub-task 131.3: Apply latest animation best practices
+- [ ] Task 132: Create animation configuration system
+  - [ ] Sub-task 132.1: Define animation timing constants
+  - [ ] Sub-task 132.2: Create animation easing functions
+  - [ ] Sub-task 132.3: Test animation configuration
+- [ ] Task 133: Implement sequential reveal animation
+  - [ ] Sub-task 133.1: Create 0-1s background dim and overlay fade-in
+  - [ ] Sub-task 133.2: Implement 1-2s four lines highlight with labels
+  - [ ] Sub-task 133.3: Add 2-3s substations appear with connection
+  - [ ] Sub-task 133.4: Create 3-4s info panel slide-in
+  - [ ] Sub-task 133.5: Test complete sequence timing
+- [ ] Task 134: Create power flow animation system
+  - [ ] Sub-task 134.1: Design dashed line movement effect
+  - [ ] Sub-task 134.2: Implement flow direction indicators
+  - [ ] Sub-task 134.3: Test flow animation smoothness
+- [ ] Task 135: Implement substation pulse effects
+  - [ ] Sub-task 135.1: Create subtle pulse animation for active substation
+  - [ ] Sub-task 135.2: Add different pulse for standby substation
+  - [ ] Sub-task 135.3: Test pulse visibility and performance
+- [ ] Task 136: Create line glow animation
+  - [ ] Sub-task 136.1: Implement breathing glow effect for active lines
+  - [ ] Sub-task 136.2: Create different glow pattern for standby lines
+  - [ ] Sub-task 136.3: Test glow animation performance
+- [ ] Task 137: Design overlay entrance animations
+  - [ ] Sub-task 137.1: Create smooth fade-in transition
+  - [ ] Sub-task 137.2: Implement scale-up effect
+  - [ ] Sub-task 137.3: Test entrance animation quality
+- [ ] Task 138: Implement overlay exit animations
+  - [ ] Sub-task 138.1: Create fade-out transition
+  - [ ] Sub-task 138.2: Add smooth cleanup animations
+  - [ ] Sub-task 138.3: Test exit animation smoothness
+- [ ] Task 139: Create animation performance optimization
+  - [ ] Sub-task 139.1: Use CSS transforms for hardware acceleration
+  - [ ] Sub-task 139.2: Implement will-change optimizations
+  - [ ] Sub-task 139.3: Test 60fps animation performance
+- [ ] Task 140: Add animation accessibility controls
+  - [ ] Sub-task 140.1: Respect prefers-reduced-motion settings
+  - [ ] Sub-task 140.2: Create reduced animation alternatives
+  - [ ] Sub-task 140.3: Test accessibility compliance
+- [ ] Task 141: Create animation state management
+  - [ ] Sub-task 141.1: Implement animation play/pause controls
+  - [ ] Sub-task 141.2: Create animation timeline management
+  - [ ] Sub-task 141.3: Test animation state consistency
+- [ ] Task 142: Setup animation testing framework
+  - [ ] Sub-task 142.1: Create animation test utilities
+  - [ ] Sub-task 142.2: Test animation timing accuracy
+  - [ ] Sub-task 142.3: Verify animation completion
+- [ ] Task 143: Implement animation error handling
+  - [ ] Sub-task 143.1: Handle animation failures gracefully
+  - [ ] Sub-task 143.2: Create fallback static states
+  - [ ] Sub-task 143.3: Test error scenarios
+- [ ] Task 144: Create animation debugging tools
+  - [ ] Sub-task 144.1: Add animation timeline visualization
+  - [ ] Sub-task 144.2: Create performance monitoring
+  - [ ] Sub-task 144.3: Test debugging functionality
+- [ ] Task 145: Design animation configuration options
+  - [ ] Sub-task 145.1: Make animation speeds configurable
+  - [ ] Sub-task 145.2: Create animation toggle options
+  - [ ] Sub-task 145.3: Test configuration flexibility
+- [ ] Task 146: Optimize animation memory usage
+  - [ ] Sub-task 146.1: Implement animation cleanup
+  - [ ] Sub-task 146.2: Prevent animation memory leaks
+  - [ ] Sub-task 146.3: Test memory efficiency
+- [ ] Task 147: Create animation documentation
+  - [ ] Sub-task 147.1: Document animation API
+  - [ ] Sub-task 147.2: Create animation timing guides
+  - [ ] Sub-task 147.3: Add performance best practices
+- [ ] Task 148: Test cross-browser animation compatibility
+  - [ ] Sub-task 148.1: Test animations in Chrome, Firefox, Safari, Edge
+  - [ ] Sub-task 148.2: Verify mobile browser compatibility
+  - [ ] Sub-task 148.3: Fix browser-specific issues
+- [ ] Task 149: Implement animation monitoring
+  - [ ] Sub-task 149.1: Add FPS monitoring during animations
+  - [ ] Sub-task 149.2: Track animation performance metrics
+  - [ ] Sub-task 149.3: Test monitoring accuracy
+- [ ] Task 150: Test complete animation system
+  - [ ] Sub-task 150.1: End-to-end animation sequence testing
+  - [ ] Sub-task 150.2: Performance testing under load
+  - [ ] Sub-task 150.3: Verify professional animation quality
+
+## Phase 3: Testing & Quality (Tasks 151-200)
+
+### 3.1 Unit Tests (Tasks 151-170)
+- [ ] Task 151: Create RedundancyProvider component tests
+  - [ ] Sub-task 151.1: Test context creation and state management
+  - [ ] Sub-task 151.2: Test provider prop handling
+  - [ ] Sub-task 151.3: Achieve 90%+ coverage for provider
+- [ ] Task 152: Write RedundancyOverlay component tests
+  - [ ] Sub-task 152.1: Test overlay mounting and unmounting
+  - [ ] Sub-task 152.2: Test overlay positioning logic
+  - [ ] Sub-task 152.3: Verify overlay isolation from core app
+- [ ] Task 153: Test RedundancyButton component
+  - [ ] Sub-task 153.1: Test button click handlers
+  - [ ] Sub-task 153.2: Test button state management
+  - [ ] Sub-task 153.3: Verify button accessibility
+- [ ] Task 154: Create InfoPanel component tests
+  - [ ] Sub-task 154.1: Test panel data display accuracy
+  - [ ] Sub-task 154.2: Test panel positioning and animations
+  - [ ] Sub-task 154.3: Test panel interaction handlers
+- [ ] Task 155: Write LineHighlight component tests
+  - [ ] Sub-task 155.1: Test line path generation
+  - [ ] Sub-task 155.2: Test glow effect application
+  - [ ] Sub-task 155.3: Verify line positioning accuracy
+- [ ] Task 156: Test SubstationMarker component
+  - [ ] Sub-task 156.1: Test marker positioning calculations
+  - [ ] Sub-task 156.2: Test marker styling and interactions
+  - [ ] Sub-task 156.3: Verify marker accessibility features
+- [ ] Task 157: Create PowerFlowAnimation tests
+  - [ ] Sub-task 157.1: Test animation timing and sequencing
+  - [ ] Sub-task 157.2: Test animation performance impact
+  - [ ] Sub-task 157.3: Verify animation accessibility compliance
+- [ ] Task 158: Write utility function tests
+  - [ ] Sub-task 158.1: Test coordinate transformation functions
+  - [ ] Sub-task 158.2: Test animation helper functions
+  - [ ] Sub-task 158.3: Test configuration utilities
+- [ ] Task 159: Create state management tests
+  - [ ] Sub-task 159.1: Test feature state transitions
+  - [ ] Sub-task 159.2: Test state persistence mechanisms
+  - [ ] Sub-task 159.3: Verify state isolation
+- [ ] Task 160: Test error handling systems
+  - [ ] Sub-task 160.1: Test component error boundaries
+  - [ ] Sub-task 160.2: Test graceful degradation
+  - [ ] Sub-task 160.3: Verify error recovery mechanisms
+- [ ] Task 161: Create mock data and utilities
+  - [ ] Sub-task 161.1: Create comprehensive test fixtures
+  - [ ] Sub-task 161.2: Setup testing utilities
+  - [ ] Sub-task 161.3: Test mock data validity
+- [ ] Task 162: Test feature flag integration
+  - [ ] Sub-task 162.1: Test feature enable/disable functionality
+  - [ ] Sub-task 162.2: Test flag validation logic
+  - [ ] Sub-task 162.3: Verify flag-based conditional rendering
+- [ ] Task 163: Create performance unit tests
+  - [ ] Sub-task 163.1: Test component render performance
+  - [ ] Sub-task 163.2: Test memory usage patterns
+  - [ ] Sub-task 163.3: Verify performance benchmarks
+- [ ] Task 164: Test accessibility compliance
+  - [ ] Sub-task 164.1: Test ARIA label implementations
+  - [ ] Sub-task 164.2: Test keyboard navigation
+  - [ ] Sub-task 164.3: Verify screen reader compatibility
+- [ ] Task 165: Create snapshot tests
+  - [ ] Sub-task 165.1: Generate component snapshots
+  - [ ] Sub-task 165.2: Test visual regression prevention
+  - [ ] Sub-task 165.3: Maintain snapshot accuracy
+- [ ] Task 166: Test responsive behavior
+  - [ ] Sub-task 166.1: Test component behavior at different viewport sizes
+  - [ ] Sub-task 166.2: Test mobile-specific functionality
+  - [ ] Sub-task 166.3: Verify responsive design implementations
+- [ ] Task 167: Create integration unit tests
+  - [ ] Sub-task 167.1: Test component interactions
+  - [ ] Sub-task 167.2: Test data flow between components
+  - [ ] Sub-task 167.3: Verify component composition
+- [ ] Task 168: Test configuration systems
+  - [ ] Sub-task 168.1: Test configuration validation
+  - [ ] Sub-task 168.2: Test configuration application
+  - [ ] Sub-task 168.3: Verify configuration flexibility
+- [ ] Task 169: Create test coverage reporting
+  - [ ] Sub-task 169.1: Setup coverage thresholds (80%+ minimum)
+  - [ ] Sub-task 169.2: Generate coverage reports
+  - [ ] Sub-task 169.3: Maintain coverage quality
+- [ ] Task 170: Optimize test performance
+  - [ ] Sub-task 170.1: Optimize test execution speed
+  - [ ] Sub-task 170.2: Implement parallel test execution
+  - [ ] Sub-task 170.3: Test suite performance monitoring
+
+### 3.2 Integration Tests (Tasks 171-185)
+- [ ] Task 171: Create feature registration integration tests
+  - [ ] Sub-task 171.1: Test complete plugin registration flow
+  - [ ] Sub-task 171.2: Test feature lifecycle management
+  - [ ] Sub-task 171.3: Verify plugin isolation
+- [ ] Task 172: Test overlay integration with core app
+  - [ ] Sub-task 172.1: Test overlay mounting in core application
+  - [ ] Sub-task 172.2: Test overlay interaction with existing elements
+  - [ ] Sub-task 172.3: Verify no core app modifications
+- [ ] Task 173: Create component interaction tests
+  - [ ] Sub-task 173.1: Test button-to-overlay communication
+  - [ ] Sub-task 173.2: Test overlay-to-panel data flow
+  - [ ] Sub-task 173.3: Verify complete component integration
+- [ ] Task 174: Test animation sequence integration
+  - [ ] Sub-task 174.1: Test complete animation timeline
+  - [ ] Sub-task 174.2: Test animation coordination between components
+  - [ ] Sub-task 174.3: Verify smooth animation transitions
+- [ ] Task 175: Create data flow integration tests
+  - [ ] Sub-task 175.1: Test data propagation through component tree
+  - [ ] Sub-task 175.2: Test state synchronization
+  - [ ] Sub-task 175.3: Verify data consistency
+- [ ] Task 176: Test error handling integration
+  - [ ] Sub-task 176.1: Test error propagation and containment
+  - [ ] Sub-task 176.2: Test recovery mechanisms
+  - [ ] Sub-task 176.3: Verify error boundary effectiveness
+- [ ] Task 177: Create performance integration tests
+  - [ ] Sub-task 177.1: Test feature performance impact on core app
+  - [ ] Sub-task 177.2: Test memory usage under load
+  - [ ] Sub-task 177.3: Verify 60fps performance maintenance
+- [ ] Task 178: Test responsive integration
+  - [ ] Sub-task 178.1: Test feature behavior across all viewport sizes
+  - [ ] Sub-task 178.2: Test orientation change handling
+  - [ ] Sub-task 178.3: Verify mobile integration quality
+- [ ] Task 179: Create accessibility integration tests
+  - [ ] Sub-task 179.1: Test complete accessibility workflow
+  - [ ] Sub-task 179.2: Test keyboard navigation integration
+  - [ ] Sub-task 179.3: Verify screen reader integration
+- [ ] Task 180: Test theme integration
+  - [ ] Sub-task 180.1: Test feature integration with app themes
+  - [ ] Sub-task 180.2: Test theme switching behavior
+  - [ ] Sub-task 180.3: Verify visual consistency
+- [ ] Task 181: Create browser integration tests
+  - [ ] Sub-task 181.1: Test feature in Chrome, Firefox, Safari, Edge
+  - [ ] Sub-task 181.2: Test mobile browser integration
+  - [ ] Sub-task 181.3: Verify cross-browser compatibility
+- [ ] Task 182: Test event system integration
+  - [ ] Sub-task 182.1: Test event communication between components
+  - [ ] Sub-task 182.2: Test event cleanup and memory management
+  - [ ] Sub-task 182.3: Verify event system isolation
+- [ ] Task 183: Create load testing integration
+  - [ ] Sub-task 183.1: Test feature under high load conditions
+  - [ ] Sub-task 183.2: Test concurrent user scenarios
+  - [ ] Sub-task 183.3: Verify stability under stress
+- [ ] Task 184: Test configuration integration
+  - [ ] Sub-task 184.1: Test feature flag integration
+  - [ ] Sub-task 184.2: Test configuration changes
+  - [ ] Sub-task 184.3: Verify configuration persistence
+- [ ] Task 185: Create deployment integration tests
+  - [ ] Sub-task 185.1: Test feature in staging environment
+  - [ ] Sub-task 185.2: Test production build integration
+  - [ ] Sub-task 185.3: Verify deployment readiness
+
+### 3.3 E2E Playwright Tests (Tasks 186-200)
+- [ ] Task 186: Setup Playwright test environment for feature
+  - [ ] Sub-task 186.1: Configure Playwright for redundancy feature
+  - [ ] Sub-task 186.2: Create feature-specific test utilities
+  - [ ] Sub-task 186.3: Test Playwright setup functionality
+- [ ] Task 187: Playwright E2E test for complete user flow
+  - [ ] Sub-task 187.1: Setup Playwright test file
+  - [ ] Sub-task 187.2: Test navigate to page
+  - [ ] Sub-task 187.3: Test click "Show 2N+1 Redundancy" button
+  - [ ] Sub-task 187.4: Verify overlay appears
+  - [ ] Sub-task 187.5: Check 4 lines highlighted correctly
+  - [ ] Sub-task 187.6: Verify 2 substations visible
+  - [ ] Sub-task 187.7: Test info panel displays correct data
+  - [ ] Sub-task 187.8: Test close functionality
+  - [ ] Sub-task 187.9: Verify return to normal state
+  - [ ] Sub-task 187.10: Check no memory leaks
+- [ ] Task 188: Create feature toggle E2E tests
+  - [ ] Sub-task 188.1: Test feature flag ON scenario
+  - [ ] Sub-task 188.2: Test feature flag OFF scenario
+  - [ ] Sub-task 188.3: Test dynamic flag switching
+  - [ ] Sub-task 188.4: Verify no console errors
+- [ ] Task 189: Test responsive design E2E
+  - [ ] Sub-task 189.1: Test feature on mobile viewports
+  - [ ] Sub-task 189.2: Test feature on tablet viewports
+  - [ ] Sub-task 189.3: Test feature on desktop viewports
+  - [ ] Sub-task 189.4: Test orientation changes
+- [ ] Task 190: Create accessibility E2E tests
+  - [ ] Sub-task 190.1: Test keyboard navigation workflow
+  - [ ] Sub-task 190.2: Test screen reader announcements
+  - [ ] Sub-task 190.3: Test focus management
+  - [ ] Sub-task 190.4: Verify WCAG compliance
+- [ ] Task 191: Test animation sequences E2E
+  - [ ] Sub-task 191.1: Test complete animation timeline
+  - [ ] Sub-task 191.2: Test animation performance
+  - [ ] Sub-task 191.3: Test reduced motion preferences
+  - [ ] Sub-task 191.4: Verify smooth transitions
+- [ ] Task 192: Create error scenario E2E tests
+  - [ ] Sub-task 192.1: Test network failure scenarios
+  - [ ] Sub-task 192.2: Test partial data loading
+  - [ ] Sub-task 192.3: Test error recovery
+  - [ ] Sub-task 192.4: Verify graceful degradation
+- [ ] Task 193: Test performance E2E scenarios
+  - [ ] Sub-task 193.1: Test feature load time impact
+  - [ ] Sub-task 193.2: Test memory usage monitoring
+  - [ ] Sub-task 193.3: Test FPS during animations
+  - [ ] Sub-task 193.4: Verify performance benchmarks
+- [ ] Task 194: Create cross-browser E2E tests
+  - [ ] Sub-task 194.1: Test complete flow in Chrome
+  - [ ] Sub-task 194.2: Test complete flow in Firefox
+  - [ ] Sub-task 194.3: Test complete flow in Safari
+  - [ ] Sub-task 194.4: Test complete flow in Edge
+- [ ] Task 195: Test interaction sequences E2E
+  - [ ] Sub-task 195.1: Test multiple open/close cycles
+  - [ ] Sub-task 195.2: Test rapid interaction scenarios
+  - [ ] Sub-task 195.3: Test concurrent user actions
+  - [ ] Sub-task 195.4: Verify interaction stability
+- [ ] Task 196: Create visual regression E2E tests
+  - [ ] Sub-task 196.1: Capture baseline screenshots
+  - [ ] Sub-task 196.2: Test visual consistency
+  - [ ] Sub-task 196.3: Detect visual regressions
+  - [ ] Sub-task 196.4: Maintain visual quality
+- [ ] Task 197: Test data accuracy E2E
+  - [ ] Sub-task 197.1: Verify all statistics display correctly
+  - [ ] Sub-task 197.2: Test data calculation accuracy
+  - [ ] Sub-task 197.3: Test data synchronization
+  - [ ] Sub-task 197.4: Verify data consistency
+- [ ] Task 198: Create load testing E2E scenarios
+  - [ ] Sub-task 198.1: Test feature under simulated load
+  - [ ] Sub-task 198.2: Test concurrent user scenarios
+  - [ ] Sub-task 198.3: Test stress conditions
+  - [ ] Sub-task 198.4: Verify stability under load
+- [ ] Task 199: Test deployment scenarios E2E
+  - [ ] Sub-task 199.1: Test feature in staging environment
+  - [ ] Sub-task 199.2: Test production build behavior
+  - [ ] Sub-task 199.3: Test CDN integration
+  - [ ] Sub-task 199.4: Verify deployment readiness
+- [ ] Task 200: Create comprehensive E2E test suite
+  - [ ] Sub-task 200.1: Combine all E2E tests into suite
+  - [ ] Sub-task 200.2: Optimize test execution time
+  - [ ] Sub-task 200.3: Create test reporting
+  - [ ] Sub-task 200.4: Verify complete test coverage
+
+## Phase 4: Polish & Optimization (Tasks 201-250)
+
+### 4.1 Performance Optimization (Tasks 201-220)
+- [ ] Task 201: Query MCP Context7 for performance optimization techniques
+  - [ ] Sub-task 201.1: Research React performance best practices
+  - [ ] Sub-task 201.2: Query animation optimization strategies
+  - [ ] Sub-task 201.3: Apply latest performance patterns
+- [ ] Task 202: Optimize component rendering performance
+  - [ ] Sub-task 202.1: Implement React.memo for pure components
+  - [ ] Sub-task 202.2: Optimize re-render cycles
+  - [ ] Sub-task 202.3: Test rendering performance improvements
+- [ ] Task 203: Optimize animation performance
+  - [ ] Sub-task 203.1: Use CSS transforms for hardware acceleration
+  - [ ] Sub-task 203.2: Implement will-change optimizations
+  - [ ] Sub-task 203.3: Test 60fps animation maintenance
+- [ ] Task 204: Implement lazy loading strategies
+  - [ ] Sub-task 204.1: Lazy load feature components
+  - [ ] Sub-task 204.2: Implement code splitting
+  - [ ] Sub-task 204.3: Test loading performance
+- [ ] Task 205: Optimize memory usage
+  - [ ] Sub-task 205.1: Implement proper cleanup mechanisms
+  - [ ] Sub-task 205.2: Prevent memory leaks
+  - [ ] Sub-task 205.3: Test memory efficiency
+- [ ] Task 206: Create bundle size optimization
+  - [ ] Sub-task 206.1: Analyze bundle size impact
+  - [ ] Sub-task 206.2: Implement tree shaking
+  - [ ] Sub-task 206.3: Test bundle optimization
+- [ ] Task 207: Optimize SVG rendering performance
+  - [ ] Sub-task 207.1: Implement efficient SVG strategies
+  - [ ] Sub-task 207.2: Optimize complex path rendering
+  - [ ] Sub-task 207.3: Test SVG performance impact
+- [ ] Task 208: Implement caching strategies
+  - [ ] Sub-task 208.1: Cache expensive calculations
+  - [ ] Sub-task 208.2: Implement memoization
+  - [ ] Sub-task 208.3: Test caching effectiveness
+- [ ] Task 209: Optimize event handling performance
+  - [ ] Sub-task 209.1: Implement efficient event listeners
+  - [ ] Sub-task 209.2: Optimize event cleanup
+  - [ ] Sub-task 209.3: Test event performance
+- [ ] Task 210: Create performance monitoring
+  - [ ] Sub-task 210.1: Implement performance metrics collection
+  - [ ] Sub-task 210.2: Create performance dashboards
+  - [ ] Sub-task 210.3: Test monitoring accuracy
+- [ ] Task 211: Optimize CSS performance
+  - [ ] Sub-task 211.1: Minimize CSS bundle size
+  - [ ] Sub-task 211.2: Optimize CSS delivery
+  - [ ] Sub-task 211.3: Test CSS performance impact
+- [ ] Task 212: Implement image optimization
+  - [ ] Sub-task 212.1: Optimize asset loading
+  - [ ] Sub-task 212.2: Implement responsive images
+  - [ ] Sub-task 212.3: Test image performance
+- [ ] Task 213: Create performance testing framework
+  - [ ] Sub-task 213.1: Setup performance benchmarks
+  - [ ] Sub-task 213.2: Create automated performance tests
+  - [ ] Sub-task 213.3: Test performance regression detection
+- [ ] Task 214: Optimize JavaScript execution
+  - [ ] Sub-task 214.1: Minimize JavaScript bundle
+  - [ ] Sub-task 214.2: Optimize execution paths
+  - [ ] Sub-task 214.3: Test JavaScript performance
+- [ ] Task 215: Implement network optimization
+  - [ ] Sub-task 215.1: Optimize API calls
+  - [ ] Sub-task 215.2: Implement request caching
+  - [ ] Sub-task 215.3: Test network performance
+- [ ] Task 216: Create performance documentation
+  - [ ] Sub-task 216.1: Document performance optimizations
+  - [ ] Sub-task 216.2: Create performance guidelines
+  - [ ] Sub-task 216.3: Add performance troubleshooting
+- [ ] Task 217: Optimize mobile performance
+  - [ ] Sub-task 217.1: Implement mobile-specific optimizations
+  - [ ] Sub-task 217.2: Optimize touch interactions
+  - [ ] Sub-task 217.3: Test mobile performance
+- [ ] Task 218: Create performance CI integration
+  - [ ] Sub-task 218.1: Integrate performance tests in CI
+  - [ ] Sub-task 218.2: Setup performance budgets
+  - [ ] Sub-task 218.3: Test CI performance monitoring
+- [ ] Task 219: Optimize initial load performance
+  - [ ] Sub-task 219.1: Minimize initial bundle size
+  - [ ] Sub-task 219.2: Optimize critical rendering path
+  - [ ] Sub-task 219.3: Test initial load improvements
+- [ ] Task 220: Create performance optimization checklist
+  - [ ] Sub-task 220.1: Document all optimization techniques
+  - [ ] Sub-task 220.2: Create optimization verification process
+  - [ ] Sub-task 220.3: Test optimization completeness
+
+### 4.2 Responsive Design (Tasks 221-235)
+- [ ] Task 221: Query MCP Context7 for responsive design patterns
+  - [ ] Sub-task 221.1: Research modern responsive techniques
+  - [ ] Sub-task 221.2: Query mobile-first design strategies
+  - [ ] Sub-task 221.3: Apply responsive best practices
+- [ ] Task 222: Create comprehensive responsive breakpoints
+  - [ ] Sub-task 222.1: Define mobile breakpoints (320px-768px)
+  - [ ] Sub-task 222.2: Define tablet breakpoints (768px-1024px)
+  - [ ] Sub-task 222.3: Define desktop breakpoints (1024px+)
+- [ ] Task 223: Optimize overlay responsive behavior
+  - [ ] Sub-task 223.1: Adapt overlay for mobile viewports
+  - [ ] Sub-task 223.2: Optimize overlay positioning
+  - [ ] Sub-task 223.3: Test overlay responsive quality
+- [ ] Task 224: Create responsive line highlighting
+  - [ ] Sub-task 224.1: Scale line thickness for different viewports
+  - [ ] Sub-task 224.2: Adjust glow effects for mobile
+  - [ ] Sub-task 224.3: Test line visibility on all devices
+- [ ] Task 225: Implement responsive substation markers
+  - [ ] Sub-task 225.1: Scale markers for different screen sizes
+  - [ ] Sub-task 225.2: Adapt marker interactions for touch
+  - [ ] Sub-task 225.3: Test marker usability on mobile
+- [ ] Task 226: Create responsive info panel
+  - [ ] Sub-task 226.1: Adapt panel layout for mobile
+  - [ ] Sub-task 226.2: Optimize panel positioning
+  - [ ] Sub-task 226.3: Test panel readability on small screens
+- [ ] Task 227: Optimize responsive animations
+  - [ ] Sub-task 227.1: Adapt animations for mobile performance
+  - [ ] Sub-task 227.2: Scale animation effects appropriately
+  - [ ] Sub-task 227.3: Test animation quality on all devices
+- [ ] Task 228: Create responsive typography
+  - [ ] Sub-task 228.1: Implement scalable font sizes
+  - [ ] Sub-task 228.2: Optimize text readability
+  - [ ] Sub-task 228.3: Test typography on all viewports
+- [ ] Task 229: Implement responsive interactions
+  - [ ] Sub-task 229.1: Optimize touch interactions
+  - [ ] Sub-task 229.2: Adapt hover effects for mobile
+  - [ ] Sub-task 229.3: Test interaction quality
+- [ ] Task 230: Create responsive layout testing
+  - [ ] Sub-task 230.1: Test layouts on actual devices
+  - [ ] Sub-task 230.2: Test orientation changes
+  - [ ] Sub-task 230.3: Verify layout stability
+- [ ] Task 231: Optimize responsive performance
+  - [ ] Sub-task 231.1: Ensure smooth performance on mobile
+  - [ ] Sub-task 231.2: Optimize resource usage
+  - [ ] Sub-task 231.3: Test mobile performance metrics
+- [ ] Task 232: Create responsive accessibility
+  - [ ] Sub-task 232.1: Ensure accessibility on all devices
+  - [ ] Sub-task 232.2: Optimize touch accessibility
+  - [ ] Sub-task 232.3: Test accessibility compliance
+- [ ] Task 233: Implement responsive error handling
+  - [ ] Sub-task 233.1: Handle viewport-specific errors
+  - [ ] Sub-task 233.2: Create responsive error messages
+  - [ ] Sub-task 233.3: Test error handling on all devices
+- [ ] Task 234: Create responsive documentation
+  - [ ] Sub-task 234.1: Document responsive implementation
+  - [ ] Sub-task 234.2: Create responsive testing guide
+  - [ ] Sub-task 234.3: Add responsive troubleshooting
+- [ ] Task 235: Test comprehensive responsive behavior
+  - [ ] Sub-task 235.1: Test complete feature on all viewport sizes
+  - [ ] Sub-task 235.2: Test device-specific behaviors
+  - [ ] Sub-task 235.3: Verify responsive design quality
+
+### 4.3 Cross-browser Testing (Tasks 236-250)
+- [ ] Task 236: Setup cross-browser testing infrastructure
+  - [ ] Sub-task 236.1: Configure testing for Chrome, Firefox, Safari, Edge
+  - [ ] Sub-task 236.2: Setup mobile browser testing
+  - [ ] Sub-task 236.3: Test infrastructure functionality
+- [ ] Task 237: Test feature in Google Chrome
+  - [ ] Sub-task 237.1: Test complete feature functionality
+  - [ ] Sub-task 237.2: Test Chrome-specific behaviors
+  - [ ] Sub-task 237.3: Verify Chrome compatibility
+- [ ] Task 238: Test feature in Mozilla Firefox
+  - [ ] Sub-task 238.1: Test complete feature functionality
+  - [ ] Sub-task 238.2: Test Firefox-specific behaviors
+  - [ ] Sub-task 238.3: Fix Firefox compatibility issues
+- [ ] Task 239: Test feature in Safari
+  - [ ] Sub-task 239.1: Test complete feature functionality
+  - [ ] Sub-task 239.2: Test Safari-specific behaviors
+  - [ ] Sub-task 239.3: Fix Safari compatibility issues
+- [ ] Task 240: Test feature in Microsoft Edge
+  - [ ] Sub-task 240.1: Test complete feature functionality
+  - [ ] Sub-task 240.2: Test Edge-specific behaviors
+  - [ ] Sub-task 240.3: Fix Edge compatibility issues
+- [ ] Task 241: Test mobile browser compatibility
+  - [ ] Sub-task 241.1: Test iOS Safari functionality
+  - [ ] Sub-task 241.2: Test Android Chrome functionality
+  - [ ] Sub-task 241.3: Fix mobile browser issues
+- [ ] Task 242: Create browser polyfills
+  - [ ] Sub-task 242.1: Implement necessary polyfills
+  - [ ] Sub-task 242.2: Test polyfill effectiveness
+  - [ ] Sub-task 242.3: Optimize polyfill loading
+- [ ] Task 243: Test CSS compatibility
+  - [ ] Sub-task 243.1: Test CSS properties across browsers
+  - [ ] Sub-task 243.2: Fix CSS compatibility issues
+  - [ ] Sub-task 243.3: Test visual consistency
+- [ ] Task 244: Test JavaScript compatibility
+  - [ ] Sub-task 244.1: Test JavaScript features across browsers
+  - [ ] Sub-task 244.2: Fix JavaScript compatibility issues
+  - [ ] Sub-task 244.3: Test functionality consistency
+- [ ] Task 245: Create automated cross-browser testing
+  - [ ] Sub-task 245.1: Setup automated browser testing
+  - [ ] Sub-task 245.2: Create cross-browser test suite
+  - [ ] Sub-task 245.3: Test automation effectiveness
+- [ ] Task 246: Optimize for older browser support
+  - [ ] Sub-task 246.1: Test in older browser versions
+  - [ ] Sub-task 246.2: Implement graceful degradation
+  - [ ] Sub-task 246.3: Test backward compatibility
+- [ ] Task 247: Document browser compatibility
+  - [ ] Sub-task 247.1: Document supported browsers
+  - [ ] Sub-task 247.2: Create compatibility matrix
+  - [ ] Sub-task 247.3: Add troubleshooting guide
+- [ ] Task 248: Test performance across browsers
+  - [ ] Sub-task 248.1: Measure performance in each browser
+  - [ ] Sub-task 248.2: Optimize for browser-specific performance
+  - [ ] Sub-task 248.3: Test performance consistency
+- [ ] Task 249: Create browser testing CI integration
+  - [ ] Sub-task 249.1: Integrate browser testing in CI
+  - [ ] Sub-task 249.2: Setup automated browser checks
+  - [ ] Sub-task 249.3: Test CI browser integration
+- [ ] Task 250: Verify complete cross-browser functionality
+  - [ ] Sub-task 250.1: Final testing in all target browsers
+  - [ ] Sub-task 250.2: Verify feature quality consistency
+  - [ ] Sub-task 250.3: Document browser compatibility status
+
+## Phase 5: Final Integration & Deployment (Tasks 251-300)
+
+### 5.1 Integration with Main App (Tasks 251-270)
+- [ ] Task 251: Query MCP Context7 for integration best practices
+  - [ ] Sub-task 251.1: Research plugin integration patterns
+  - [ ] Sub-task 251.2: Query deployment strategies
+  - [ ] Sub-task 251.3: Apply integration best practices
+- [ ] Task 252: Create feature registration in main app
+  - [ ] Sub-task 252.1: Register feature in plugin system
+  - [ ] Sub-task 252.2: Configure feature loading
+  - [ ] Sub-task 252.3: Test registration success
+- [ ] Task 253: Integrate feature flag management
+  - [ ] Sub-task 253.1: Add feature flag to environment configuration
+  - [ ] Sub-task 253.2: Test flag-based feature loading
+  - [ ] Sub-task 253.3: Verify flag integration
+- [ ] Task 254: Test feature isolation in main app
+  - [ ] Sub-task 254.1: Verify no core app modifications
+  - [ ] Sub-task 254.2: Test feature disable functionality
+  - [ ] Sub-task 254.3: Confirm complete isolation
+- [ ] Task 255: Validate plugin architecture compliance
+  - [ ] Sub-task 255.1: Verify architectural rules compliance
+  - [ ] Sub-task 255.2: Test plugin removability
+  - [ ] Sub-task 255.3: Confirm architecture adherence
+- [ ] Task 256: Create deployment configuration
+  - [ ] Sub-task 256.1: Configure build system integration
+  - [ ] Sub-task 256.2: Setup deployment scripts
+  - [ ] Sub-task 256.3: Test deployment configuration
+- [ ] Task 257: Test main app performance impact
+  - [ ] Sub-task 257.1: Measure performance impact on core app
+  - [ ] Sub-task 257.2: Verify acceptable performance levels
+  - [ ] Sub-task 257.3: Optimize integration performance
+- [ ] Task 258: Verify main app functionality preservation
+  - [ ] Sub-task 258.1: Test all existing app functionality
+  - [ ] Sub-task 258.2: Verify no feature conflicts
+  - [ ] Sub-task 258.3: Confirm app stability
+- [ ] Task 259: Create integration testing suite
+  - [ ] Sub-task 259.1: Test feature within main app context
+  - [ ] Sub-task 259.2: Test integration edge cases
+  - [ ] Sub-task 259.3: Verify integration robustness
+- [ ] Task 260: Setup monitoring for integrated feature
+  - [ ] Sub-task 260.1: Create feature usage monitoring
+  - [ ] Sub-task 260.2: Setup error tracking
+  - [ ] Sub-task 260.3: Test monitoring effectiveness
+- [ ] Task 261: Create rollback procedures
+  - [ ] Sub-task 261.1: Document feature removal process
+  - [ ] Sub-task 261.2: Create automated rollback scripts
+  - [ ] Sub-task 261.3: Test rollback procedures
+- [ ] Task 262: Validate security implications
+  - [ ] Sub-task 262.1: Review security impact of integration
+  - [ ] Sub-task 262.2: Test security boundaries
+  - [ ] Sub-task 262.3: Confirm security compliance
+- [ ] Task 263: Create integration documentation
+  - [ ] Sub-task 263.1: Document integration process
+  - [ ] Sub-task 263.2: Create maintenance guidelines
+  - [ ] Sub-task 263.3: Add troubleshooting information
+- [ ] Task 264: Test production environment integration
+  - [ ] Sub-task 264.1: Test feature in staging environment
+  - [ ] Sub-task 264.2: Validate production readiness
+  - [ ] Sub-task 264.3: Confirm deployment viability
+- [ ] Task 265: Create feature analytics integration
+  - [ ] Sub-task 265.1: Integrate feature usage analytics
+  - [ ] Sub-task 265.2: Setup user interaction tracking
+  - [ ] Sub-task 265.3: Test analytics functionality
+- [ ] Task 266: Validate accessibility in integrated context
+  - [ ] Sub-task 266.1: Test accessibility within main app
+  - [ ] Sub-task 266.2: Verify accessibility compliance
+  - [ ] Sub-task 266.3: Fix accessibility issues
+- [ ] Task 267: Create integration performance benchmarks
+  - [ ] Sub-task 267.1: Establish performance baselines
+  - [ ] Sub-task 267.2: Create performance monitoring
+  - [ ] Sub-task 267.3: Test benchmark accuracy
+- [ ] Task 268: Test user experience in integrated app
+  - [ ] Sub-task 268.1: Conduct user testing sessions
+  - [ ] Sub-task 268.2: Gather user feedback
+  - [ ] Sub-task 268.3: Address user experience issues
+- [ ] Task 269: Create integration maintenance procedures
+  - [ ] Sub-task 269.1: Document maintenance processes
+  - [ ] Sub-task 269.2: Create update procedures
+  - [ ] Sub-task 269.3: Test maintenance workflows
+- [ ] Task 270: Finalize integration verification
+  - [ ] Sub-task 270.1: Complete final integration testing
+  - [ ] Sub-task 270.2: Verify all integration requirements
+  - [ ] Sub-task 270.3: Confirm integration success
+
+### 5.2 Documentation & Examples (Tasks 271-285)
+- [ ] Task 271: Create comprehensive user documentation
+  - [ ] Sub-task 271.1: Write user guide for 2N+1 feature
+  - [ ] Sub-task 271.2: Create step-by-step usage instructions
+  - [ ] Sub-task 271.3: Add screenshots and examples
+- [ ] Task 272: Document technical architecture
+  - [ ] Sub-task 272.1: Document plugin architecture implementation
+  - [ ] Sub-task 272.2: Explain component relationships
+  - [ ] Sub-task 272.3: Create architecture diagrams
+- [ ] Task 273: Create API documentation
+  - [ ] Sub-task 273.1: Document all component APIs
+  - [ ] Sub-task 273.2: Create API reference guide
+  - [ ] Sub-task 273.3: Add code examples
+- [ ] Task 274: Write configuration documentation
+  - [ ] Sub-task 274.1: Document all configuration options
+  - [ ] Sub-task 274.2: Explain feature flag usage
+  - [ ] Sub-task 274.3: Provide configuration examples
+- [ ] Task 275: Create troubleshooting guide
+  - [ ] Sub-task 275.1: Document common issues and solutions
+  - [ ] Sub-task 275.2: Create debugging procedures
+  - [ ] Sub-task 275.3: Add FAQ section
+- [ ] Task 276: Document performance considerations
+  - [ ] Sub-task 276.1: Document performance optimizations
+  - [ ] Sub-task 276.2: Create performance guidelines
+  - [ ] Sub-task 276.3: Add monitoring recommendations
+- [ ] Task 277: Create deployment documentation
+  - [ ] Sub-task 277.1: Document deployment procedures
+  - [ ] Sub-task 277.2: Create deployment checklist
+  - [ ] Sub-task 277.3: Add environment setup guide
+- [ ] Task 278: Write maintenance documentation
+  - [ ] Sub-task 278.1: Document maintenance procedures
+  - [ ] Sub-task 278.2: Create update guidelines
+  - [ ] Sub-task 278.3: Add backup and recovery procedures
+- [ ] Task 279: Create developer documentation
+  - [ ] Sub-task 279.1: Write developer getting started guide
+  - [ ] Sub-task 279.2: Document development workflows
+  - [ ] Sub-task 279.3: Add contribution guidelines
+- [ ] Task 280: Document testing procedures
+  - [ ] Sub-task 280.1: Document testing strategies
+  - [ ] Sub-task 280.2: Create testing checklists
+  - [ ] Sub-task 280.3: Add automated testing guide
+- [ ] Task 281: Create accessibility documentation
+  - [ ] Sub-task 281.1: Document accessibility features
+  - [ ] Sub-task 281.2: Create accessibility testing guide
+  - [ ] Sub-task 281.3: Add compliance verification procedures
+- [ ] Task 282: Write security documentation
+  - [ ] Sub-task 282.1: Document security considerations
+  - [ ] Sub-task 282.2: Create security best practices
+  - [ ] Sub-task 282.3: Add security testing procedures
+- [ ] Task 283: Create examples and demos
+  - [ ] Sub-task 283.1: Create interactive demo
+  - [ ] Sub-task 283.2: Build example implementations
+  - [ ] Sub-task 283.3: Add code sandbox examples
+- [ ] Task 284: Document version control and releases
+  - [ ] Sub-task 284.1: Document versioning strategy
+  - [ ] Sub-task 284.2: Create release procedures
+  - [ ] Sub-task 284.3: Add changelog maintenance guide
+- [ ] Task 285: Finalize documentation quality
+  - [ ] Sub-task 285.1: Review all documentation for accuracy
+  - [ ] Sub-task 285.2: Test documentation completeness
+  - [ ] Sub-task 285.3: Ensure documentation consistency
+
+### 5.3 Final Testing & Sign-off (Tasks 286-300)
+- [ ] Task 286: Create comprehensive final test suite
+  - [ ] Sub-task 286.1: Combine all test types into comprehensive suite
+  - [ ] Sub-task 286.2: Run complete test battery
+  - [ ] Sub-task 286.3: Verify 100% test pass rate
+- [ ] Task 287: Conduct final user acceptance testing
+  - [ ] Sub-task 287.1: Setup user testing scenarios
+  - [ ] Sub-task 287.2: Conduct testing with target users
+  - [ ] Sub-task 287.3: Address all user feedback
+- [ ] Task 288: Perform final performance validation
+  - [ ] Sub-task 288.1: Run comprehensive performance tests
+  - [ ] Sub-task 288.2: Verify all performance benchmarks met
+  - [ ] Sub-task 288.3: Confirm production performance readiness
+- [ ] Task 289: Execute final security review
+  - [ ] Sub-task 289.1: Conduct security audit
+  - [ ] Sub-task 289.2: Test security boundaries
+  - [ ] Sub-task 289.3: Address all security concerns
+- [ ] Task 290: Validate final accessibility compliance
+  - [ ] Sub-task 290.1: Run complete accessibility audit
+  - [ ] Sub-task 290.2: Test with assistive technologies
+  - [ ] Sub-task 290.3: Confirm WCAG compliance
+- [ ] Task 291: Conduct final cross-browser verification
+  - [ ] Sub-task 291.1: Test in all target browsers
+  - [ ] Sub-task 291.2: Verify consistent functionality
+  - [ ] Sub-task 291.3: Confirm browser compatibility
+- [ ] Task 292: Perform final integration testing
+  - [ ] Sub-task 292.1: Test complete feature integration
+  - [ ] Sub-task 292.2: Verify no core app impact
+  - [ ] Sub-task 292.3: Confirm integration stability
+- [ ] Task 293: Execute final deployment testing
+  - [ ] Sub-task 293.1: Test deployment in staging environment
+  - [ ] Sub-task 293.2: Verify production deployment readiness
+  - [ ] Sub-task 293.3: Confirm deployment procedures
+- [ ] Task 294: Create final quality assurance report
+  - [ ] Sub-task 294.1: Document all testing results
+  - [ ] Sub-task 294.2: Create quality metrics summary
+  - [ ] Sub-task 294.3: Provide sign-off recommendations
+- [ ] Task 295: Prepare production release package
+  - [ ] Sub-task 295.1: Create production build
+  - [ ] Sub-task 295.2: Package all deployment assets
+  - [ ] Sub-task 295.3: Verify package completeness
+- [ ] Task 296: Create release notes and changelog
+  - [ ] Sub-task 296.1: Document all feature changes
+  - [ ] Sub-task 296.2: Create version 2.0 release notes
+  - [ ] Sub-task 296.3: Update version documentation
+- [ ] Task 297: Conduct final stakeholder review
+  - [ ] Sub-task 297.1: Present feature to stakeholders
+  - [ ] Sub-task 297.2: Address stakeholder feedback
+  - [ ] Sub-task 297.3: Obtain stakeholder approval
+- [ ] Task 298: Prepare production deployment plan
+  - [ ] Sub-task 298.1: Create detailed deployment schedule
+  - [ ] Sub-task 298.2: Prepare rollback procedures
+  - [ ] Sub-task 298.3: Brief deployment team
+- [ ] Task 299: Create post-deployment monitoring plan
+  - [ ] Sub-task 299.1: Setup production monitoring
+  - [ ] Sub-task 299.2: Create alerting procedures
+  - [ ] Sub-task 299.3: Prepare support documentation
+- [ ] Task 300: Execute final sign-off and delivery
+  - [ ] Sub-task 300.1: Complete final code review
+  - [ ] Sub-task 300.2: Obtain technical sign-off
+  - [ ] Sub-task 300.3: Deliver Version 2.0 with 2N+1 Redundancy feature
+
+## ĐIỂM CẦN LƯU Ý - CRITICAL NOTES
+
+### 1. Coordinate Accuracy
+**Task 94**: "Calculate Substation 02 positioning"
+- Cần xác định chính xác vị trí ~800m SE của Sub 01
+- Ensure nằm trong green boundary
+
+### 2. Line Identification  
+**Task 71**: "Identify existing 500kV line segments"
+- Quan trọng để highlight đúng lines
+- Cần careful mapping của existing infrastructure
+
+### 3. Visual Alignment
+**Task 72.5**: "Verify alignment with base map line"
+- Critical để overlay khớp với map gốc
+- Test trên nhiều screen sizes
+
+## Final Verification Checklist
+- [ ] All 300 tasks completed successfully
+- [ ] All tests passing (Unit, Integration, E2E)
+- [ ] Feature flag NEXT_PUBLIC_ENABLE_REDUNDANCY working correctly
+- [ ] No console errors in any browser
+- [ ] Performance metrics met (60fps animations, <1s load time)
+- [ ] Documentation complete and accurate
+- [ ] Code review passed
+- [ ] Security review completed
+- [ ] Accessibility compliance verified
+- [ ] Cross-browser compatibility confirmed
+- [ ] Plugin architecture compliance validated
+- [ ] Zero core application modifications
+- [ ] Feature completely removable without impact
+- [ ] Production deployment ready
+- [ ] Stakeholder approval obtained
+- [ ] Ready for Version 2.0 release
+- [ ] **CRITICAL CHECKS**: Coordinate accuracy verified, Line identification completed, Visual alignment confirmed
+
+---
+
+**Total Tasks**: 300  
+**Architecture**: Plugin-based, zero core modification  
+**Target**: Professional investor-grade 2N+1 redundancy visualization  
+**Quality Standard**: Production-ready with comprehensive testing  
+**Deployment**: Staged rollout with monitoring and rollback capability
