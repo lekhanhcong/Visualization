@@ -64,11 +64,11 @@ export const modelFactory = {
   /**
    * Create a new substation model with default values
    */
-  createSubstation: (overrides: Partial<SubstationModel> = {}): Partial<SubstationModel> => ({
+  createSubstation: (overrides: Partial<import('./interfaces').SubstationModel> = {}): Partial<import('./interfaces').SubstationModel> => ({
     id: '',
     name: '',
     type: 'PRIMARY',
-    status: EntityStatus.ACTIVE,
+    status: 'ACTIVE' as import('./interfaces').EntityStatus,
     zone: '',
     position: { x: 0, y: 0 },
     powerRating: 0,
@@ -92,10 +92,10 @@ export const modelFactory = {
   /**
    * Create a new line model with default values
    */
-  createLine: (overrides: Partial<LineModel> = {}): Partial<LineModel> => ({
+  createLine: (overrides: Partial<import('./interfaces').LineModel> = {}): Partial<import('./interfaces').LineModel> => ({
     id: '',
     name: '',
-    status: EntityStatus.ACTIVE,
+    status: 'ACTIVE' as import('./interfaces').EntityStatus,
     type: 'TRANSMISSION',
     path: [],
     length: 0,
@@ -117,7 +117,7 @@ export const modelFactory = {
   /**
    * Create a new redundancy pair model with default values
    */
-  createRedundancyPair: (overrides: Partial<RedundancyPairModel> = {}): Partial<RedundancyPairModel> => ({
+  createRedundancyPair: (overrides: Partial<import('./interfaces').RedundancyPairModel> = {}): Partial<import('./interfaces').RedundancyPairModel> => ({
     id: '',
     name: '',
     primarySubstation: '',
@@ -141,7 +141,7 @@ export const modelFactory = {
   /**
    * Create a new system health model with default values
    */
-  createSystemHealth: (overrides: Partial<SystemHealthModel> = {}): Partial<SystemHealthModel> => ({
+  createSystemHealth: (overrides: Partial<import('./interfaces').SystemHealthModel> = {}): Partial<import('./interfaces').SystemHealthModel> => ({
     overall: 'HEALTHY',
     timestamp: new Date().toISOString(),
     redundancyLevel: 1.0,
@@ -171,11 +171,11 @@ export const modelFactory = {
   /**
    * Create a new alert model with default values
    */
-  createAlert: (overrides: Partial<AlertModel> = {}): Partial<AlertModel> => ({
+  createAlert: (overrides: Partial<import('./interfaces').AlertModel> = {}): Partial<import('./interfaces').AlertModel> => ({
     id: '',
     name: '',
     type: 'INFO',
-    severity: Priority.LOW,
+    severity: 'LOW' as import('./interfaces').Priority,
     status: 'ACTIVE',
     title: '',
     message: '',
@@ -192,7 +192,7 @@ export const modelFactory = {
   /**
    * Create a new power flow animation model with default values
    */
-  createPowerFlowAnimation: (overrides: Partial<PowerFlowAnimationModel> = {}): Partial<PowerFlowAnimationModel> => ({
+  createPowerFlowAnimation: (overrides: Partial<import('./interfaces').PowerFlowAnimationModel> = {}): Partial<import('./interfaces').PowerFlowAnimationModel> => ({
     id: '',
     lineId: '',
     direction: 'FORWARD',
@@ -211,7 +211,7 @@ export const modelFactory = {
   /**
    * Create a new redundancy config model with default values
    */
-  createRedundancyConfig: (overrides: Partial<RedundancyConfigModel> = {}): Partial<RedundancyConfigModel> => ({
+  createRedundancyConfig: (overrides: Partial<import('./interfaces').RedundancyConfigModel> = {}): Partial<import('./interfaces').RedundancyConfigModel> => ({
     id: '',
     name: 'Default Configuration',
     redundancyStrategy: 'N+1',
@@ -262,8 +262,8 @@ export const modelUtils = {
   /**
    * Check if a substation is in a fault state
    */
-  isSubstationFaulted: (substation: SubstationModel): boolean => {
-    return substation.status === EntityStatus.FAULT || substation.status === EntityStatus.OFFLINE
+  isSubstationFaulted: (substation: import('./interfaces').SubstationModel): boolean => {
+    return substation.status === 'FAULT' || substation.status === 'OFFLINE'
   },
 
   /**

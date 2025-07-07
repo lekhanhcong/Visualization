@@ -287,6 +287,7 @@ export class RedundancyFlagIntegration {
             selectedSubstation: null,
             selectedLine: null,
             isPanelOpen: false,
+            animationPhase: 'starting',
             animationProgress: 0
           }
         })
@@ -300,6 +301,7 @@ export class RedundancyFlagIntegration {
             selectedSubstation: null,
             selectedLine: null,
             isPanelOpen: false,
+            animationPhase: 'idle',
             animationProgress: 0
           }
         })

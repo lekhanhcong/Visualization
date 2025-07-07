@@ -29,6 +29,9 @@ export type {
 
 export { redundancyConfig } from './config'
 
+// Import for feature definition
+import { RedundancyFeature } from './RedundancyFeature'
+
 // Feature definition for plugin registration
 export const redundancyFeatureDefinition = {
   id: 'redundancy-2n1',

@@ -16,7 +16,7 @@ import { RedundancyFeature } from './RedundancyFeature'
 // Complete feature definition with lifecycle
 const completeFeatureDefinition: FeatureDefinition = {
   ...redundancyFeatureDefinition,
-  component: RedundancyComponent,
+  component: RedundancyFeature,
   // Add lifecycle hooks to the definition
   lifecycle: redundancyLifecycle,
 }

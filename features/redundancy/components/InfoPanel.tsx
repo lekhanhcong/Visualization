@@ -3,11 +3,12 @@
  * Displays 2N+1 redundancy statistics and system information
  */
 
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useRedundancy } from '../providers/RedundancyProvider'
 import { redundancyEventBus } from '../events'
 import { RedundancyErrorBoundary } from '../errors/ErrorBoundary'
 import type { RedundancyStats, SubstationData, LineData } from '../types'
+import { validateData, redundancyStatsSchema, sanitizeUserInput, ValidationError } from '../validation/schemas'
 
 // Component props interface
 export interface InfoPanelProps {
@@ -43,6 +44,112 @@ export interface InfoPanelProps {
   debug?: boolean
 }
 
+/**
+ * Validate InfoPanel props for security
+ */
+function validateInfoPanelProps(props: InfoPanelProps): InfoPanelProps {
+  const {
+    position = 'top-right',
+    className = '',
+    isVisible = true,
+    showCloseButton = true,
+    showMinimizeButton = true,
+    draggable = false,
+    resizable = false,
+    updateInterval = 5000,
+    compact = false,
+    debug = false,
+    stats,
+    onClose,
+    onMinimize,
+    onExpand,
+    style
+  } = props;
+
+  // Validate position
+  const validPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+  if (!validPositions.includes(position)) {
+    throw new ValidationError('position', 'Invalid position value');
+  }
+
+  // Validate className for XSS
+  if (className && typeof className !== 'string') {
+    throw new ValidationError('className', 'Must be a string');
+  }
+  const sanitizedClassName = className ? sanitizeUserInput(className) : '';
+
+  // Validate booleans
+  if (typeof isVisible !== 'boolean') {
+    throw new ValidationError('isVisible', 'Must be a boolean');
+  }
+  if (typeof showCloseButton !== 'boolean') {
+    throw new ValidationError('showCloseButton', 'Must be a boolean');
+  }
+  if (typeof showMinimizeButton !== 'boolean') {
+    throw new ValidationError('showMinimizeButton', 'Must be a boolean');
+  }
+  if (typeof draggable !== 'boolean') {
+    throw new ValidationError('draggable', 'Must be a boolean');
+  }
+  if (typeof resizable !== 'boolean') {
+    throw new ValidationError('resizable', 'Must be a boolean');
+  }
+  if (typeof compact !== 'boolean') {
+    throw new ValidationError('compact', 'Must be a boolean');
+  }
+  if (typeof debug !== 'boolean') {
+    throw new ValidationError('debug', 'Must be a boolean');
+  }
+
+  // Validate updateInterval
+  if (typeof updateInterval !== 'number') {
+    throw new ValidationError('updateInterval', 'Must be a number');
+  }
+  if (updateInterval < 1000 || updateInterval > 60000) {
+    throw new ValidationError('updateInterval', 'Must be between 1000ms and 60000ms');
+  }
+
+  // Validate functions
+  if (onClose && typeof onClose !== 'function') {
+    throw new ValidationError('onClose', 'Must be a function');
+  }
+  if (onMinimize && typeof onMinimize !== 'function') {
+    throw new ValidationError('onMinimize', 'Must be a function');
+  }
+  if (onExpand && typeof onExpand !== 'function') {
+    throw new ValidationError('onExpand', 'Must be a function');
+  }
+
+  // Validate stats if provided
+  let validatedStats = stats;
+  if (stats) {
+    try {
+      validatedStats = validateData(stats, redundancyStatsSchema);
+    } catch (error) {
+      console.error('[InfoPanel] Invalid stats:', error);
+      validatedStats = undefined; // Remove invalid stats
+    }
+  }
+
+  return {
+    position: position as NonNullable<InfoPanelProps['position']>,
+    className: sanitizedClassName,
+    style,
+    isVisible,
+    onClose,
+    onMinimize,
+    onExpand,
+    stats: validatedStats,
+    showCloseButton,
+    showMinimizeButton,
+    draggable,
+    resizable,
+    updateInterval,
+    compact,
+    debug
+  };
+}
+
 // Default position styles
 const positionStyles: Record<NonNullable<InfoPanelProps['position']>, React.CSSProperties> = {
   'top-left': { top: 20, left: 20 },
@@ -70,23 +177,51 @@ const defaultStats: RedundancyStats = {
  * InfoPanel Component
  * Displays system statistics and status information
  */
-export function InfoPanel({
-  position = 'top-right',
-  className = '',
-  style,
-  isVisible = true,
-  onClose,
-  onMinimize,
-  onExpand,
-  stats: customStats,
-  showCloseButton = true,
-  showMinimizeButton = true,
-  draggable = false,
-  resizable = false,
-  updateInterval = 5000,
-  compact = false,
-  debug = false
-}: InfoPanelProps) {
+export function InfoPanel(props: InfoPanelProps) {
+  // Validate props for security
+  const validatedProps = useMemo(() => {
+    try {
+      return validateInfoPanelProps(props);
+    } catch (error) {
+      console.error('[InfoPanel] Invalid props:', error);
+      // Return safe defaults
+      return {
+        position: 'top-right' as const,
+        className: '',
+        style: undefined,
+        isVisible: false,
+        onClose: undefined,
+        onMinimize: undefined,
+        onExpand: undefined,
+        stats: undefined,
+        showCloseButton: true,
+        showMinimizeButton: true,
+        draggable: false,
+        resizable: false,
+        updateInterval: 5000,
+        compact: false,
+        debug: false
+      };
+    }
+  }, [props]);
+
+  const {
+    position,
+    className,
+    style,
+    isVisible,
+    onClose,
+    onMinimize,
+    onExpand,
+    stats: customStats,
+    showCloseButton,
+    showMinimizeButton,
+    draggable,
+    resizable,
+    updateInterval,
+    compact,
+    debug
+  } = validatedProps;
   const {
     state,
     actions,
@@ -108,7 +243,19 @@ export function InfoPanel({
   // Calculate live stats based on current state
   const calculateLiveStats = useCallback((): RedundancyStats => {
     // This would integrate with actual substation data in a real implementation
-    const baseStats = customStats ? { ...defaultStats, ...customStats } : defaultStats
+    let baseStats = defaultStats;
+    
+    // Safely merge custom stats with validation
+    if (customStats) {
+      try {
+        const validatedCustomStats = validateData(customStats, redundancyStatsSchema);
+        baseStats = { ...defaultStats, ...validatedCustomStats };
+      } catch (error) {
+        console.error('[InfoPanel] Invalid custom stats:', error);
+        // Use default stats if validation fails
+        baseStats = defaultStats;
+      }
+    }
 
     // Add dynamic calculations based on selected elements
     if (state?.selectedSubstation || state?.selectedLine) {

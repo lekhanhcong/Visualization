@@ -99,7 +99,7 @@ export default function Home() {
                 <button
                   onClick={() => setShowRedundancy(!showRedundancy)}
                   className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
-                  aria-label={showRedundancy ? 'Close redundancy visualization' : 'Show 2N+1 redundancy visualization'}
+                  aria-label={showRedundancy ? 'Hide redundancy visualization' : 'Show 2N+1 redundancy visualization'}
                   data-testid="redundancy-toggle-button"
                 >
                   <span className="text-lg">⚡</span>

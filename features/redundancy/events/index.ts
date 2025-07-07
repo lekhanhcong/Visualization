@@ -76,8 +76,8 @@ export interface EventSystemConfig {
  * Main event system orchestrator
  */
 export class RedundancyEventSystem {
-  private eventBus: RedundancyEventBus
-  private triggerManager: TriggerManager
+  private eventBus: import('./event-bus').RedundancyEventBus
+  private triggerManager: import('./event-triggers').TriggerManager
   private config: Required<EventSystemConfig>
   private isInitialized = false
 
@@ -105,6 +105,8 @@ export class RedundancyEventSystem {
       }
     }
 
+    const { getEventBus } = require('./event-bus')
+    const { defaultTriggerManager } = require('./event-triggers')
     this.eventBus = getEventBus()
     this.triggerManager = defaultTriggerManager
   }
@@ -117,6 +119,7 @@ export class RedundancyEventSystem {
 
     // Setup default handlers if enabled
     if (this.config.handlers.setupDefaults) {
+      const { setupDefaultHandlers } = require('./event-handlers')
       setupDefaultHandlers()
     }
 
@@ -163,14 +166,14 @@ export class RedundancyEventSystem {
   /**
    * Get event bus instance
    */
-  getEventBus(): RedundancyEventBus {
+  getEventBus(): import('./event-bus').RedundancyEventBus {
     return this.eventBus
   }
 
   /**
    * Get trigger manager instance
    */
-  getTriggerManager(): TriggerManager {
+  getTriggerManager(): import('./event-triggers').TriggerManager {
     return this.triggerManager
   }
 
@@ -188,7 +191,7 @@ export class RedundancyEventSystem {
    * Get system statistics
    */
   getStats(): {
-    eventBus: EventBusStats
+    eventBus: import('./event-bus').EventBusStats
     triggers: Record<string, any>
     config: Required<EventSystemConfig>
   } {

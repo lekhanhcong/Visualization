@@ -42,14 +42,9 @@ export function LazyRedundancyFeature({
   onClose, 
   animationDuration = 4000 
 }: LazyRedundancyFeatureProps) {
-  // Don't render anything if not visible to avoid unnecessary loading
-  if (!isVisible) {
-    return null
-  }
-
   return (
     <RedundancyErrorBoundary fallback={<RedundancyFallback />}>
-      <Suspense fallback={<RedundancyLoadingFallback />}>
+      <Suspense fallback={isVisible ? <RedundancyLoadingFallback /> : null}>
         <RedundancyFeature
           isVisible={isVisible}
           onClose={onClose}

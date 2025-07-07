@@ -16,8 +16,22 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
   isVisible,
   onClose
 }) => {
+  console.log('[RedundancyOverlay] Rendering with isVisible:', isVisible);
+  
   const { state, config, stats, substations, lines, actions } = useRedundancy();
   const animationDuration = config?.animations?.pulse?.duration || 4000;
+  
+  // Debug logging for stats object
+  console.log('[RedundancyOverlay] Stats object:', stats);
+  
+  // Fallback stats if undefined
+  const safeStats = stats || {
+    dataCenterNeeds: '300MW',
+    activeNow: { sources: [], capacity: '0MW' },
+    standbyReady: { sources: [], capacity: '0MW' },
+    totalCapacity: '0MW',
+    redundancyRatio: '0%'
+  };
   const overlayRef = useRef<HTMLDivElement>(null);
   const [animationStep, setAnimationStep] = useState(0);
   const [showInfoPanel, setShowInfoPanel] = useState(false);
@@ -26,7 +40,12 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
 
   useEffect(() => {
     setMounted(true);
+    console.log('[RedundancyOverlay] Component mounted');
   }, []);
+
+  useEffect(() => {
+    console.log('[RedundancyOverlay] isVisible changed to:', isVisible);
+  }, [isVisible]);
 
   // Handle keyboard and accessibility
   useEffect(() => {
@@ -109,7 +128,14 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
     return () => timeouts.forEach(clearTimeout);
   }, [isVisible, animationDuration]);
 
-  if (!mounted || !isVisible) return null;
+  console.log('[RedundancyOverlay] Render check - mounted:', mounted, 'isVisible:', isVisible);
+  
+  if (!mounted || !isVisible) {
+    console.log('[RedundancyOverlay] Not rendering - returning null');
+    return null;
+  }
+  
+  console.log('[RedundancyOverlay] Rendering overlay content');
 
   const overlayContent = (
     <div
@@ -450,13 +476,13 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
             {/* Data Center Needs */}
             <div>
               <div className="text-yellow-400 font-semibold mb-1">Data Center Needs</div>
-              <div className="text-2xl font-bold text-red-400">{stats.dataCenterNeeds}</div>
+              <div className="text-2xl font-bold text-red-400">{safeStats.dataCenterNeeds}</div>
             </div>
 
             {/* Active Now */}
             <div>
               <div className="text-green-400 font-semibold mb-2">Active Now</div>
-              {stats.activeNow.sources.map((source, index) => (
+              {safeStats.activeNow.sources.map((source, index) => (
                 <div 
                   key={index} 
                   className="ml-2 mb-1"
@@ -469,13 +495,13 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
                   • {source}
                 </div>
               ))}
-              <div className="font-semibold mt-1">Total: {stats.activeNow.capacity}</div>
+              <div className="font-semibold mt-1">Total: {safeStats.activeNow.capacity}</div>
             </div>
 
             {/* Standby Ready */}
             <div>
               <div className="text-yellow-400 font-semibold mb-2">Standby Ready</div>
-              {stats.standbyReady.sources.map((source, index) => (
+              {safeStats.standbyReady.sources.map((source, index) => (
                 <div 
                   key={index} 
                   className="ml-2 mb-1"
@@ -488,7 +514,7 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
                   • {source}
                 </div>
               ))}
-              <div className="font-semibold mt-1">Total: {stats.standbyReady.capacity}</div>
+              <div className="font-semibold mt-1">Total: {safeStats.standbyReady.capacity}</div>
             </div>
 
             {/* Total Capacity */}
@@ -500,10 +526,10 @@ export const RedundancyOverlay: React.FC<RedundancyOverlayProps> = ({
                   transition: 'scale 0.5s ease 0.5s'
                 }}
               >
-                {stats.redundancyRatio} TOTAL CAPACITY
+                {safeStats.redundancyRatio} TOTAL CAPACITY
               </div>
               <div className="text-xs text-gray-400 mt-1">
-                Total Available: {stats.totalCapacity}
+                Total Available: {safeStats.totalCapacity}
               </div>
             </div>
           </div>

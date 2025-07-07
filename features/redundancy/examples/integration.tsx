@@ -9,9 +9,7 @@ import {
   RedundancyProvider,
   RedundancyButton,
   RedundancyOverlay,
-  useRedundancy,
-  redundancyPlugin,
-  featureRegistry
+  useRedundancy
 } from '../index';
 
 // Example 1: Basic Integration
@@ -78,7 +76,6 @@ export function CustomConfigurationExample() {
         <RedundancyOverlay 
           isVisible={true}
           onClose={() => console.log('Closed')}
-          animationPhase="visible"
         />
       </div>
     </RedundancyProvider>
@@ -119,7 +116,6 @@ export function ControlledStateExample() {
         <RedundancyOverlay
           isVisible={isVisible}
           onClose={handleClose}
-          animationPhase={animationPhase}
         />
         
         {/* Status indicator */}
@@ -133,61 +129,12 @@ export function ControlledStateExample() {
 
 // Example 4: Plugin-based Integration
 export function PluginIntegrationExample() {
-  const [pluginStatus, setPluginStatus] = useState('initializing');
-  const [features, setFeatures] = useState([]);
-
-  useEffect(() => {
-    async function initializePlugin() {
-      try {
-        await redundancyPlugin.initialize();
-        
-        if (redundancyPlugin.isReady()) {
-          setPluginStatus('ready');
-          setFeatures(featureRegistry.getAllFeatures());
-        } else {
-          setPluginStatus('disabled');
-        }
-      } catch (error) {
-        console.error('Plugin initialization failed:', error);
-        setPluginStatus('error');
-      }
-    }
-
-    initializePlugin();
-
-    return () => {
-      redundancyPlugin.cleanup();
-    };
-  }, []);
-
-  if (pluginStatus === 'initializing') {
-    return <div>Loading features...</div>;
-  }
-
-  if (pluginStatus === 'disabled') {
-    return (
-      <div>
-        <p>Redundancy feature is disabled.</p>
-        <p>Set NEXT_PUBLIC_ENABLE_REDUNDANCY=true to enable.</p>
-      </div>
-    );
-  }
-
-  if (pluginStatus === 'error') {
-    return <div>Failed to load redundancy feature.</div>;
-  }
-
+  const [pluginStatus, setPluginStatus] = useState('ready'); // Simplified for now
+  
   return (
     <div className="plugin-app">
-      <h2>Available Features</h2>
-      <ul>
-        {features.map(feature => (
-          <li key={feature.id}>
-            {feature.name} v{feature.version}
-            {feature.enabled && <span> (Active)</span>}
-          </li>
-        ))}
-      </ul>
+      <h2>Redundancy Feature</h2>
+      <p>Status: {pluginStatus}</p>
       
       <RedundancyFeature />
     </div>
@@ -245,7 +192,6 @@ function CustomOverlayWithExtras() {
       <RedundancyOverlay
         isVisible={state.isActive}
         onClose={actions.toggleVisibility}
-        animationPhase={state.animationPhase}
       />
       
       {/* Additional custom content */}
@@ -320,7 +266,6 @@ function MobileLayout() {
       <RedundancyOverlay
         isVisible={false}
         onClose={() => {}}
-        animationPhase="idle"
       />
     </div>
   );
@@ -343,7 +288,6 @@ function DesktopLayout() {
       <RedundancyOverlay
         isVisible={false}
         onClose={() => {}}
-        animationPhase="idle"
       />
     </div>
   );
@@ -456,11 +400,6 @@ export function MultiLanguageExample() {
     }
   };
 
-  const config = {
-    translations: translations[language],
-    language
-  };
-
   return (
     <div className="multi-language-app">
       <div className="language-selector">
@@ -470,7 +409,7 @@ export function MultiLanguageExample() {
         </select>
       </div>
       
-      <RedundancyProvider config={config}>
+      <RedundancyProvider>
         <RedundancyFeature />
       </RedundancyProvider>
     </div>
@@ -511,7 +450,7 @@ export function PerformanceMonitoringExample() {
           <ul>
             {Object.entries(performanceMetrics).map(([metric, value]) => (
               <li key={metric}>
-                {metric}: {value.toFixed(2)}ms
+                {metric}: {typeof value === 'number' ? value.toFixed(2) : String(value)}ms
               </li>
             ))}
           </ul>
@@ -521,8 +460,8 @@ export function PerformanceMonitoringExample() {
   );
 }
 
-// Export all examples
-export {
+// Export all examples as default to avoid redeclaration
+export default {
   BasicIntegrationExample,
   CustomConfigurationExample,
   ControlledStateExample,
