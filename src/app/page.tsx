@@ -67,26 +67,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Interactive Hotspots - Only show on default view */}
-            <div
-              className="absolute bg-blue-500 w-4 h-4 rounded-full animate-pulse cursor-pointer hover:scale-150 transition-transform z-10"
-              style={{
-                left: '60%',
-                top: '45%',
-                transform: 'translate(-50%, -50%)',
-              }}
-              title="HUE HI TECH PARK 300MW AI DATA CENTER"
-            />
-
-            <div
-              className="absolute bg-red-500 w-4 h-4 rounded-full animate-pulse cursor-pointer hover:scale-150 transition-transform z-10"
-              style={{
-                left: '35%',
-                top: '20%',
-                transform: 'translate(-50%, -50%)',
-              }}
-              title="500/220KV SUBSTATION"
-            />
 
             {/* Status Badge */}
             <div className="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm z-10">
