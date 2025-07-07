@@ -40,7 +40,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="text-xs text-slate-500">v2.04.0</div>
+            <div className="text-xs text-slate-500">v2.05.0</div>
           </div>
         </div>
       </header>
@@ -68,29 +68,6 @@ export default function Home() {
             )}
 
 
-            {/* Status Badge */}
-            <div className="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm z-10">
-              ✅ Simple 2N+1 Feature Active
-            </div>
-
-            {/* Legend */}
-            <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-10">
-              <h3 className="text-sm font-bold mb-2">Simple 2N+1 Feature</h3>
-              <div className="space-y-1 text-xs">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-gray-500 rounded"></div>
-                  <span>Default View</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded"></div>
-                  <span>2N+1 View with Text</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">⚡</span>
-                  <span>Click button to toggle</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </main>

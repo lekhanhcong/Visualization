@@ -1,60 +1,60 @@
 # 2N+1 Redundancy Feature - Comprehensive Test Report
 
 ## Test Execution Summary
-- **Date**: 2025-07-07T17:54:31.067Z
-- **Environment**: http://localhost:3000
+- **Date**: 2025-07-07T19:27:55.765Z
+- **Environment**: http://localhost:3001
 - **Total Errors**: 0
-- **Test Duration**: 41849ms
+- **Test Duration**: 30152ms
 
 ## Test Results by Flow
 
 ### Flow 1: Initial Page Load
-- **Duration**: 18089ms
-- **Screenshot**: flow1-initial-load_2025-07-07T17-54-48-555Z.png
+- **Duration**: 5341ms
+- **Screenshot**: flow1-initial-load_2025-07-07T19-28-00-265Z.png
 - **Toggle Button Found**: ✅ Yes
-- **Button Text**: "⚡Show 2N+1 Redundancy"
+- **Button Text**: "Show 2N+1 Redundancy"
 - **Background Images**: 1 images detected
 - **Performance**:
-  - DOM Content Loaded: 0.09999999403953552ms
+  - DOM Content Loaded: 0.20000000298023224ms
   - Load Complete: 0ms
-  - First Paint: 13232ms
-  - First Contentful Paint: 13232ms
+  - First Paint: 552ms
+  - First Contentful Paint: 552ms
 
 ### Flow 2: Toggle to 2N+1 View
-- **Duration**: 3088ms
-- **Screenshot**: flow2-2n1-view_2025-07-07T17-54-51-793Z.png
-- **Button Text After Toggle**: "⚡Back to Main"
+- **Duration**: 3252ms
+- **Screenshot**: flow2-2n1-view_2025-07-07T19-28-03-717Z.png
+- **Button Text After Toggle**: "Main"
 - **Text Overlay Visible**: ✅ Yes
 - **Background Images**: 1 images detected
 
 ### Flow 3: Return to Default View
-- **Duration**: 2915ms
-- **Screenshot**: flow3-return-view_2025-07-07T17-54-54-830Z.png
-- **Button Text After Return**: "⚡Show 2N+1 Redundancy"
+- **Duration**: 3143ms
+- **Screenshot**: flow3-return-view_2025-07-07T19-28-07-019Z.png
+- **Button Text After Return**: "Show 2N+1 Redundancy"
 - **Text Overlay Hidden**: ✅ Yes
 
 ### Flow 4: Multiple Toggle Cycles
-- **Duration**: 9160ms
-- **Screenshot**: flow4-rapid-cycles_2025-07-07T17-55-03-977Z.png
+- **Duration**: 9359ms
+- **Screenshot**: flow4-rapid-cycles_2025-07-07T19-28-16-420Z.png
 - **Cycles Completed**: 5
-- **Average Cycle Time**: 1762.20ms
+- **Average Cycle Time**: 1782.80ms
 
 ### Flow 5: Responsive Testing
-- **Duration**: 8597ms
+- **Duration**: 9057ms
 - **Viewports Tested**: 3
 
 
 #### desktop (1920x1080)
-- **Screenshot**: flow5-desktop_2025-07-07T17-55-06-902Z.png
+- **Screenshot**: flow5-desktop_2025-07-07T19-28-19-463Z.png
 - **Layout Info**: {
   "button": {
     "x": 400,
     "y": 289,
-    "width": 155.2109375,
-    "height": 44,
+    "width": 68.5,
+    "height": 40,
     "top": 289,
-    "right": 555.2109375,
-    "bottom": 333,
+    "right": 468.5,
+    "bottom": 329,
     "left": 400
   },
   "textOverlay": {
@@ -75,16 +75,16 @@
 
 
 #### tablet (768x1024)
-- **Screenshot**: flow5-tablet_2025-07-07T17-55-09-901Z.png
+- **Screenshot**: flow5-tablet_2025-07-07T19-28-22-746Z.png
 - **Layout Info**: {
   "button": {
     "x": 32,
     "y": 261,
-    "width": 241.703125,
-    "height": 44,
+    "width": 215.703125,
+    "height": 40,
     "top": 261,
-    "right": 273.703125,
-    "bottom": 305,
+    "right": 247.703125,
+    "bottom": 301,
     "left": 32
   },
   "textOverlay": null,
@@ -96,16 +96,16 @@
 
 
 #### mobile (375x667)
-- **Screenshot**: flow5-mobile_2025-07-07T17-55-12-777Z.png
+- **Screenshot**: flow5-mobile_2025-07-07T19-28-25-751Z.png
 - **Layout Info**: {
   "button": {
     "x": 32,
     "y": 97,
-    "width": 155.2109375,
-    "height": 44,
+    "width": 68.5,
+    "height": 40,
     "top": 97,
-    "right": 187.2109375,
-    "bottom": 141,
+    "right": 100.5,
+    "bottom": 137,
     "left": 32
   },
   "textOverlay": {
@@ -126,7 +126,7 @@
 
 
 ### Flow 6: Performance & Accessibility
-- **Screenshot**: flow6-accessibility_2025-07-07T17-55-14-026Z.png
+- **Screenshot**: flow6-accessibility_2025-07-07T19-28-27-031Z.png
 - **Keyboard Navigation**: ✅ Working
 - **Accessibility**:
   - Has ARIA Label: ✅ Yes
@@ -145,4 +145,4 @@ No errors detected during testing.
 All screenshots have been saved to: /Users/lekhanhcong/05_AI_Code/01_Web_Demo_Tool/hue-datacenter-visualization/test-results/comprehensive-2n1
 
 ---
-*Comprehensive test report generated at: 2025-07-07T17:55:15.428Z*
+*Comprehensive test report generated at: 2025-07-07T19:28:31.997Z*

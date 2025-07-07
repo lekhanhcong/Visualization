@@ -119,14 +119,15 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
             }}
           >
             <div
-              className="px-3 py-1 rounded-lg bg-black bg-opacity-70 backdrop-blur-sm border border-cyan-400"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-white via-blue-50 to-cyan-50 backdrop-blur-lg border-2 border-cyan-300 shadow-2xl"
               style={{
-                fontSize: 'clamp(14px, 1.8vw, 20px)', // Smaller responsive font size
+                fontSize: 'clamp(16px, 2.2vw, 24px)', // Slightly larger for better visibility
                 fontWeight: 'bold',
-                color: '#00BFFF', // Cyan/ocean blue color
+                color: '#0066CC', // Deep ocean blue for contrast
                 textAlign: 'center',
-                textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,191,255,0.5)',
-                animation: 'oceanGlow 2s ease-in-out infinite alternate'
+                textShadow: '1px 1px 3px rgba(0,0,0,0.3)',
+                animation: 'fadeInGlow 1.5s ease-out forwards, pulseGlow 3s ease-in-out infinite 1.5s',
+                boxShadow: '0 8px 32px rgba(0, 102, 204, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
               }}
             >
               {textOverlay.text}

@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:3001';
 const SCREENSHOT_DIR = path.join(__dirname, 'test-results', 'comprehensive-2n1');
 
 // Ensure screenshot directory exists
