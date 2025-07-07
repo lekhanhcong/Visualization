@@ -50,7 +50,7 @@ export class RedundancyErrorBoundary extends Component<ErrorBoundaryProps, Error
     }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     this.errorCount++
     
     // Store error info in state
@@ -254,13 +254,13 @@ export class RedundancyErrorBoundary extends Component<ErrorBoundaryProps, Error
     )
   }
 
-  componentWillUnmount(): void {
+  override componentWillUnmount(): void {
     if (this.resetTimeoutId) {
       clearTimeout(this.resetTimeoutId)
     }
   }
 
-  render(): ReactNode {
+  override render(): ReactNode {
     if (this.state.hasError) {
       return this.renderErrorFallback()
     }
@@ -302,7 +302,10 @@ export function useRedundancyErrorHandler() {
         message: error.message,
         stack: error.stack
       },
-      context,
+      errorInfo: { componentStack: 'manual error' },
+      errorId: `redundancy-manual-error-${Date.now()}`,
+      featureId: 'manual-handler',
+      context: context ? JSON.stringify(context) : '{}',
       timestamp: Date.now()
     })
   }, [])

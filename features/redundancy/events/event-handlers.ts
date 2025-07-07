@@ -548,7 +548,7 @@ export class LoggingHandler {
    * Format log message
    */
   private formatLogMessage(event: RedundancyEvent): string {
-    const parts = [event.type]
+    const parts: string[] = [event.type]
     
     if (event.entityId) {
       parts.push(`[${event.entityType}:${event.entityId}]`)

@@ -298,9 +298,8 @@ export class RedundancyErrorIsolation {
     // Emit isolation event
     redundancyEventBus.emit('redundancy:error:isolated', {
       contextKey,
-      context,
-      timestamp: Date.now(),
-      cooldownPeriod: this.config.cooldownPeriod
+      context: JSON.stringify(context),
+      timestamp: Date.now()
     })
   }
 

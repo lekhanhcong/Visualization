@@ -9,8 +9,8 @@ import { RedundancyErrorBoundary, withErrorBoundary, RedundancyFallback } from '
 // Mock Framer Motion
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
+    div: ({ children, ...props }: React.ComponentProps<'div'>) => <div {...props}>{children}</div>,
+    button: ({ children, ...props }: React.ComponentProps<'button'>) => <button {...props}>{children}</button>,
   },
 }))
 
@@ -22,20 +22,6 @@ const ThrowError = ({ shouldThrow = true }: { shouldThrow?: boolean }) => {
   return <div>No error</div>
 }
 
-// Component that throws error after interaction
-const ConditionalError = ({ throwOnClick = false }: { throwOnClick?: boolean }) => {
-  const [shouldThrow, setShouldThrow] = React.useState(false)
-  
-  if (shouldThrow && throwOnClick) {
-    throw new Error('Click error')
-  }
-  
-  return (
-    <button onClick={() => setShouldThrow(true)}>
-      Click to error
-    </button>
-  )
-}
 
 describe('RedundancyErrorBoundary', () => {
   let originalConsoleError: typeof console.error
@@ -153,7 +139,7 @@ describe('RedundancyErrorBoundary', () => {
 
     test('disables retry button after max retries', async () => {
       const TestComponent = () => {
-        const [errorCount, setErrorCount] = React.useState(0)
+        const [errorCount] = React.useState(0)
         
         return (
           <RedundancyErrorBoundary key={errorCount}>
@@ -170,8 +156,11 @@ describe('RedundancyErrorBoundary', () => {
 
     test('shows reload button that can be clicked', async () => {
       // Mock window.location.reload for this specific test
-      const originalReload = window.location.reload
-      window.location.reload = jest.fn()
+      const mockReload = jest.fn()
+      Object.defineProperty(window.location, 'reload', {
+        value: mockReload,
+        writable: true
+      })
       
       render(
         <RedundancyErrorBoundary>
@@ -182,43 +171,58 @@ describe('RedundancyErrorBoundary', () => {
       const reloadButton = screen.getByText('Reload Page')
       await userEvent.click(reloadButton)
       
-      // Restore original reload
-      window.location.reload = originalReload
+      expect(mockReload).toHaveBeenCalled()
     })
   })
 
   describe('Development Mode Features', () => {
-    const originalNodeEnv = process.env.NODE_ENV
+    test('displays detailed error message in development mode', () => {
+      const spy = jest.spyOn(process, 'env', 'get')
+      spy.mockReturnValue({ ...process.env, NODE_ENV: 'development' })
 
-    beforeEach(() => {
-      process.env.NODE_ENV = 'development'
-    })
+      render(
+        <RedundancyErrorBoundary>
+          <ThrowError />
+        </RedundancyErrorBoundary>
+      )
 
-    afterEach(() => {
-      process.env.NODE_ENV = originalNodeEnv
+      expect(screen.getByText('Something went wrong!')).toBeInTheDocument()
+      expect(screen.getByText(/Error: Test error message/)).toBeInTheDocument()
+
+      spy.mockRestore()
     })
 
     test('shows technical details in development mode', () => {
+      const spy = jest.spyOn(process, 'env', 'get')
+      spy.mockReturnValue({ ...process.env, NODE_ENV: 'development' })
+
       render(
         <RedundancyErrorBoundary>
           <ThrowError />
         </RedundancyErrorBoundary>
       )
-      
+
       expect(screen.getByText('Technical Details')).toBeInTheDocument()
+
+      spy.mockRestore()
     })
 
     test('expands technical details when clicked', async () => {
+      const spy = jest.spyOn(process, 'env', 'get')
+      spy.mockReturnValue({ ...process.env, NODE_ENV: 'development' })
+
       render(
         <RedundancyErrorBoundary>
           <ThrowError />
         </RedundancyErrorBoundary>
       )
-      
+
       const detailsToggle = screen.getByText('Technical Details')
       await userEvent.click(detailsToggle)
-      
+
       expect(screen.getByText(/Test error message/)).toBeInTheDocument()
+
+      spy.mockRestore()
     })
   })
 
@@ -262,19 +266,20 @@ describe('RedundancyErrorBoundary', () => {
 })
 
 describe('withErrorBoundary HOC', () => {
-  const TestComponent = ({ shouldThrow = false }: { shouldThrow?: boolean }) => {
+  const TestComponent: React.FC<{ shouldThrow?: boolean }> = ({ shouldThrow = false }) => {
     if (shouldThrow) {
-      throw new Error('HOC test error')
+      throw new Error('Test error');
     }
-    return <div>HOC wrapped component</div>
-  }
+    return <div>Normal Content</div>;
+  };
+  TestComponent.displayName = 'TestComponent';
 
   test('wraps component with error boundary', () => {
     const WrappedComponent = withErrorBoundary(TestComponent)
     
     render(<WrappedComponent />)
     
-    expect(screen.getByText('HOC wrapped component')).toBeInTheDocument()
+    expect(screen.getByText('Normal Content')).toBeInTheDocument()
   })
 
   test('catches errors in wrapped component', () => {

@@ -127,7 +127,7 @@ export function SubstationMarker({
   const svgRef = useRef<SVGSVGElement>(null)
   const [hoveredSubstation, setHoveredSubstation] = useState<string | null>(null)
   const [animationPhase, setAnimationPhase] = useState<'hidden' | 'appearing' | 'visible'>('hidden')
-  const animationTimeoutRef = useRef<NodeJS.Timeout>()
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Filter substations based on current state
   const visibleSubstations = substations.filter(substation => {
@@ -136,7 +136,7 @@ export function SubstationMarker({
     
     // Hide substations with errors if system is isolated
     if (hasErrors) {
-      return substation.status !== 'ERROR'
+      return substation.status !== 'STANDBY'
     }
 
     return true
@@ -146,7 +146,7 @@ export function SubstationMarker({
   useEffect(() => {
     if (!isVisible || !isDependenciesResolved) {
       setAnimationPhase('hidden')
-      return
+      return undefined
     }
 
     if (animationTimeoutRef.current) {
@@ -240,10 +240,6 @@ export function SubstationMarker({
         return '#28a745'
       case 'STANDBY':
         return '#ffc107'
-      case 'INACTIVE':
-        return '#6c757d'
-      case 'ERROR':
-        return '#dc3545'
       default:
         return substation.color || '#6c757d'
     }
@@ -256,10 +252,6 @@ export function SubstationMarker({
         return '●'
       case 'STANDBY':
         return '◐'
-      case 'INACTIVE':
-        return '○'
-      case 'ERROR':
-        return '⚠'
       default:
         return '●'
     }
@@ -587,4 +579,4 @@ export function withSubstationMarker<P extends object>(
 }
 
 // Export types
-export type { SubstationMarkerProps, SubstationData, CoordinateSystem, Position }
+export type { SubstationData, CoordinateSystem, Position }

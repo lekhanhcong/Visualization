@@ -1,7 +1,7 @@
-import { Variants } from 'framer-motion'
+
 
 // Container animation variants
-export const containerVariants: Variants = {
+export const containerVariants = {
   hidden: {
     opacity: 0,
     scale: 0.95,
@@ -23,10 +23,10 @@ export const containerVariants: Variants = {
       ease: [0.4, 0, 0.2, 1],
     },
   },
-}
+} as const
 
 // Staggered children animation variants
-export const staggerChildrenVariants: Variants = {
+export const staggerChildrenVariants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -39,10 +39,10 @@ export const staggerChildrenVariants: Variants = {
       ease: [0.4, 0, 0.2, 1],
     },
   },
-}
+} as const
 
 // Power line animation variants
-export const powerLineVariants: Variants = {
+export const powerLineVariants = {
   hidden: {
     pathLength: 0,
     opacity: 0,
@@ -72,10 +72,10 @@ export const powerLineVariants: Variants = {
       },
     },
   },
-}
+} as const
 
 // Pulse animation variants
-export const pulseVariants: Variants = {
+export const pulseVariants = {
   idle: {
     scale: 1,
     opacity: 1,
@@ -97,10 +97,10 @@ export const pulseVariants: Variants = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
 // Hotspot marker animation variants
-export const hotspotVariants: Variants = {
+export const hotspotVariants = {
   initial: {
     scale: 0,
     opacity: 0,
@@ -131,10 +131,10 @@ export const hotspotVariants: Variants = {
       stiffness: 400,
     },
   },
-}
+} as const
 
 // Modal animation variants
-export const modalVariants: Variants = {
+export const modalVariants = {
   hidden: {
     opacity: 0,
     scale: 0.8,
@@ -158,10 +158,10 @@ export const modalVariants: Variants = {
       ease: [0.4, 0, 0.2, 1],
     },
   },
-}
+} as const
 
 // Backdrop animation variants
-export const backdropVariants: Variants = {
+export const backdropVariants = {
   hidden: {
     opacity: 0,
   },
@@ -179,10 +179,10 @@ export const backdropVariants: Variants = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
 // Tooltip animation variants
-export const tooltipVariants: Variants = {
+export const tooltipVariants = {
   hidden: {
     opacity: 0,
     scale: 0.8,
@@ -206,10 +206,10 @@ export const tooltipVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Loading animation variants
-export const loadingVariants: Variants = {
+export const loadingVariants = {
   animate: {
     rotate: 360,
     transition: {
@@ -218,10 +218,10 @@ export const loadingVariants: Variants = {
       ease: 'linear',
     },
   },
-}
+} as const
 
 // Slide in animation variants
-export const slideInVariants: Variants = {
+export const slideInVariants = {
   hidden: {
     x: -300,
     opacity: 0,
@@ -242,10 +242,10 @@ export const slideInVariants: Variants = {
       ease: [0.4, 0, 0.2, 1],
     },
   },
-}
+} as const
 
 // Fade in animation variants
-export const fadeInVariants: Variants = {
+export const fadeInVariants = {
   hidden: {
     opacity: 0,
   },
@@ -263,10 +263,10 @@ export const fadeInVariants: Variants = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
 // Zoom in animation variants
-export const zoomInVariants: Variants = {
+export const zoomInVariants = {
   hidden: {
     opacity: 0,
     scale: 0.5,
@@ -287,10 +287,10 @@ export const zoomInVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Bounce animation variants
-export const bounceVariants: Variants = {
+export const bounceVariants = {
   initial: {
     scale: 0.3,
     opacity: 0,
@@ -305,10 +305,10 @@ export const bounceVariants: Variants = {
       bounce: 0.4,
     },
   },
-}
+} as const
 
 // Power transmission animation variants
-export const transmissionVariants: Variants = {
+export const transmissionVariants = {
   idle: {
     strokeDasharray: '5,5',
     strokeDashoffset: 0,
@@ -324,10 +324,10 @@ export const transmissionVariants: Variants = {
       },
     },
   },
-}
+} as const
 
 // Infrastructure status animation variants
-export const statusVariants: Variants = {
+export const statusVariants = {
   operational: {
     backgroundColor: '#10b981',
     scale: 1,
@@ -362,10 +362,10 @@ export const statusVariants: Variants = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
 // Page transition variants
-export const pageTransitionVariants: Variants = {
+export const pageTransitionVariants = {
   initial: {
     opacity: 0,
     y: 20,
@@ -386,4 +386,4 @@ export const pageTransitionVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const

@@ -4,6 +4,7 @@
  */
 
 import type { RedundancyState, SubstationData, LineData } from './types'
+import type { ErrorRecord, ErrorSeverity } from './errors/ErrorIsolation'
 
 // Event type definitions
 export interface RedundancyEventMap {
@@ -11,21 +12,33 @@ export interface RedundancyEventMap {
   'redundancy:state:changed': { state: RedundancyState }
   'redundancy:state:initialized': { timestamp: number }
   'redundancy:state:error': { error: Error; context: string }
+  'redundancy:error:boundary': { error: any; errorInfo: any; timestamp: number; errorId: string; featureId: string }
+  'redundancy:error:recovered': { timestamp: number; errorCount: number }
+  'redundancy:error:manual': { error: any; errorInfo: any; timestamp: number; errorId: string; featureId: string; context: string }
+  'redundancy:error:circuit-recovered': { contextKey: string; timestamp: number }
+    'redundancy:error:isolated': { contextKey: string; context: string; timestamp: number }
+  'redundancy:error:reported': { errorRecord: ErrorRecord; isolated: boolean; severity: ErrorSeverity; timestamp: number }
   
   // Substation events
   'redundancy:substation:selected': { substation: SubstationData }
   'redundancy:substation:hover': { substation: SubstationData | null }
   'redundancy:substation:status:changed': { id: string; status: 'active' | 'standby' }
+  'redundancy:substation:clicked': { substation: SubstationData; timestamp: number }
+  'redundancy:substation:hovered': { substation: SubstationData; timestamp: number }
   
   // Line events
   'redundancy:line:selected': { line: LineData }
   'redundancy:line:hover': { line: LineData | null }
   'redundancy:line:animated': { lineId: string; progress: number }
+  'redundancy:line:clicked': { line: LineData; timestamp: number }
+  'redundancy:line:hovered': { line: LineData; timestamp: number }
   
   // Panel events
   'redundancy:panel:opened': { timestamp: number }
   'redundancy:panel:closed': { timestamp: number }
   'redundancy:panel:position:changed': { x: number; y: number }
+  'redundancy:info-panel:toggled': { minimized: boolean; timestamp: number }
+  'redundancy:info-panel:closed': { timestamp: number }
   
   // Animation events
   'redundancy:animation:started': { type: string }

@@ -30,7 +30,7 @@ export abstract class BaseTrigger {
   protected lastTriggered = new Map<string, number>()
   protected config: Required<TriggerConfig>
 
-  constructor(config: TriggerConfig = {}) {
+  constructor(config: Partial<TriggerConfig> = {}) {
     this.config = {
       enabled: config.enabled ?? true,
       threshold: config.threshold ?? 0,
@@ -175,7 +175,7 @@ export class SubstationStatusTrigger extends BaseTrigger {
 export class SubstationLoadTrigger extends BaseTrigger {
   private lastLoad = new Map<string, number>()
 
-  constructor(config: TriggerConfig = {}) {
+  constructor(config: Partial<TriggerConfig> = {}) {
     super({
       threshold: 0.9, // 90% load threshold
       cooldownMs: 60000, // 1 minute cooldown
@@ -259,7 +259,7 @@ export class LineStatusTrigger extends BaseTrigger {
   private lastStatus = new Map<string, EntityStatus>()
   private lastLoadFactor = new Map<string, number>()
 
-  constructor(config: TriggerConfig = {}) {
+  constructor(config: Partial<TriggerConfig> = {}) {
     super({
       threshold: 0.9, // 90% load factor threshold
       cooldownMs: 30000, // 30 seconds cooldown
@@ -415,7 +415,7 @@ export class LineStatusTrigger extends BaseTrigger {
 export class SystemHealthTrigger extends BaseTrigger {
   private lastHealth: SystemHealthModel | null = null
 
-  constructor(config: TriggerConfig = {}) {
+  constructor(config: Partial<TriggerConfig> = {}) {
     super({
       threshold: 0.8, // 80% health threshold
       cooldownMs: 60000, // 1 minute cooldown
@@ -557,6 +557,10 @@ export class SystemHealthTrigger extends BaseTrigger {
 export class ThresholdTrigger extends BaseTrigger {
   private thresholds = new Map<string, number>()
   private lastValues = new Map<string, number>()
+
+  constructor(config: Partial<TriggerConfig> = {}) {
+    super(config)
+  }
 
   /**
    * Add threshold monitoring

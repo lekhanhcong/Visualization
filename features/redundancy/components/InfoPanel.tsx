@@ -103,7 +103,7 @@ export function InfoPanel({
   const [panelPosition, setPanelPosition] = useState({ x: 0, y: 0 })
 
   const panelRef = useRef<HTMLDivElement>(null)
-  const updateTimerRef = useRef<NodeJS.Timeout>()
+  const updateTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Calculate live stats based on current state
   const calculateLiveStats = useCallback((): RedundancyStats => {
@@ -125,7 +125,7 @@ export function InfoPanel({
 
   // Update stats periodically
   useEffect(() => {
-    if (!isDependenciesResolved || !isVisible) return
+    if (!isDependenciesResolved || !isVisible) return undefined
 
     const updateStats = () => {
       const newStats = calculateLiveStats()
@@ -206,7 +206,7 @@ export function InfoPanel({
 
   // Handle drag
   useEffect(() => {
-    if (!isDragging || !draggable) return
+    if (!isDragging || !draggable) return undefined
 
     const handleMouseMove = (event: MouseEvent) => {
       setPanelPosition({
@@ -406,7 +406,7 @@ export function InfoPanel({
                 )}
                 {state.selectedLine && (
                   <div className="rdx-info-panel__selected-item">
-                    <strong>Line:</strong> {state.selectedLine.name}
+                    <strong>Line:</strong> {state.selectedLine.from} → {state.selectedLine.to}
                   </div>
                 )}
               </div>
@@ -469,4 +469,4 @@ export function withInfoPanel<P extends object>(
 }
 
 // Export types
-export type { InfoPanelProps, RedundancyStats }
+export type { RedundancyStats }

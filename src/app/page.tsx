@@ -2,8 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { RedundancyVisualization } from '../components/RedundancyVisualization'
-import { RedundancyErrorBoundary, RedundancyFallback } from '../components/ErrorBoundary'
+// Removed direct import - using lazy loading instead
+// Import plugin registration to trigger auto-registration
+import '../../features/redundancy/register'
+import { LazyRedundancyFeature } from '../components/lazy/LazyRedundancyFeature'
+import { LazyPluginStatusMonitor } from '../components/lazy/LazyPluginStatusMonitor'
+import { DefaultResourcePreloader } from '../components/optimization/ResourcePreloader'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -26,6 +30,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      {/* Resource Preloader */}
+      <DefaultResourcePreloader />
+      
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,21 +149,17 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* 2N+1 Redundancy Feature */}
+      {/* 2N+1 Redundancy Feature - Lazy Loaded */}
       {isRedundancyEnabled && (
-        <RedundancyErrorBoundary 
-          fallback={<RedundancyFallback />}
-          onError={(error, errorInfo) => {
-            console.error('Redundancy visualization error:', error, errorInfo)
-            // Could integrate with error reporting service here
-          }}
-        >
-          <RedundancyVisualization 
-            isVisible={showRedundancy}
-            onClose={() => setShowRedundancy(false)}
-          />
-        </RedundancyErrorBoundary>
+        <LazyRedundancyFeature 
+          isVisible={showRedundancy}
+          onClose={() => setShowRedundancy(false)}
+          animationDuration={4000}
+        />
       )}
+
+      {/* Plugin Status Monitor (Development Only) - Lazy Loaded */}
+      <LazyPluginStatusMonitor />
     </div>
   )
 }

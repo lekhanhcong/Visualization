@@ -1,3 +1,11 @@
+/**
+ * @fileoverview ThemeToggle component for switching between light, dark, and system themes
+ * Provides multiple variants (button, dropdown, radio) with customizable sizing and positioning
+ * 
+ * @version 1.0.0
+ * @author Hue Datacenter Visualization Team
+ */
+
 'use client'
 
 import React from 'react'
@@ -6,14 +14,54 @@ import { Sun, Moon, Monitor } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
 import { Theme } from '@/types'
 
+/**
+ * Props interface for the ThemeToggle component
+ * 
+ * @interface ThemeToggleProps
+ */
 interface ThemeToggleProps {
+  /** Additional CSS classes to apply to the component */
   className?: string
+  
+  /** Size variant for the toggle button */
   size?: 'sm' | 'md' | 'lg'
+  
+  /** Visual variant of the theme toggle */
   variant?: 'button' | 'dropdown' | 'radio'
+  
+  /** Whether to show text labels alongside icons */
   showLabel?: boolean
+  
+  /** Fixed positioning for the toggle (only applies to button variant) */
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 }
 
+/**
+ * ThemeToggle - A versatile theme switching component with multiple display variants
+ * 
+ * Features:
+ * - Three theme modes: light, dark, system (follows OS preference)
+ * - Multiple variants: button (fixed position), dropdown (with selection menu), radio (inline options)
+ * - Customizable sizing: small (32px), medium (40px), large (48px)
+ * - Smooth animations using Framer Motion
+ * - Full keyboard accessibility support
+ * - Visual indicators for current theme state
+ * 
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <ThemeToggle />
+ * 
+ * // Dropdown variant with labels
+ * <ThemeToggle variant="dropdown" showLabel />
+ * 
+ * // Radio variant with custom positioning
+ * <ThemeToggle variant="radio" showLabel position="bottom-left" />
+ * ```
+ * 
+ * @param props - Component props
+ * @returns React component for theme switching
+ */
 export function ThemeToggle({
   className = '',
   size = 'md',

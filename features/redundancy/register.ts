@@ -10,13 +10,8 @@ import { redundancyEventBus } from './events'
 import { isRedundancyEnabled } from './utils/env'
 import type { FeatureDefinition } from '@/types/plugin'
 
-// Placeholder component until actual component is implemented
-const RedundancyComponent = () => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[RedundancyComponent] Placeholder component rendered')
-  }
-  return null
-}
+// Import the actual RedundancyFeature component
+import { RedundancyFeature } from './RedundancyFeature'
 
 // Complete feature definition with lifecycle
 const completeFeatureDefinition: FeatureDefinition = {

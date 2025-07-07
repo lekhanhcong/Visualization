@@ -5,6 +5,9 @@
 
 import { FeatureRegistry, FeatureDefinition, PluginError } from './types';
 
+// Export the feature definition from index
+export { redundancyFeatureDefinition } from './index'
+
 // Global feature registry
 class RedundancyFeatureRegistry implements FeatureRegistry {
   private features = new Map<string, FeatureDefinition>();

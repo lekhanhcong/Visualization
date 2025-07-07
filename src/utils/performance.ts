@@ -3,7 +3,7 @@
  * Real-time Web Vitals collection and reporting
  */
 
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
 
 export interface PerformanceMetric {
   name: string
@@ -38,11 +38,11 @@ class PerformanceMonitor {
 
   private initializeWebVitals() {
     // Core Web Vitals
-    getCLS(this.handleMetric.bind(this))
-    getFID(this.handleMetric.bind(this))
-    getFCP(this.handleMetric.bind(this))
-    getLCP(this.handleMetric.bind(this))
-    getTTFB(this.handleMetric.bind(this))
+    onCLS(this.handleMetric.bind(this))
+    onINP(this.handleMetric.bind(this)) // INP replaces FID in web-vitals v5
+    onFCP(this.handleMetric.bind(this))
+    onLCP(this.handleMetric.bind(this))
+    onTTFB(this.handleMetric.bind(this))
   }
 
   private initializeCustomMetrics() {
@@ -62,7 +62,7 @@ class PerformanceMonitor {
     this.measureFrameRate()
   }
 
-  private handleMetric(metric: any) {
+  private handleMetric(metric: { name: string; value: number; entries?: { startTime: number }[] }) {
     const rating = this.getMetricRating(metric.name, metric.value)
     
     this.metrics.push({
@@ -147,7 +147,7 @@ class PerformanceMonitor {
       if (!isFirstInput) return
       isFirstInput = false
       
-      const startTime = (event as any).timeStamp || performance.now()
+      const startTime = (event as Event & { timeStamp?: number }).timeStamp || performance.now()
       
       // Use setTimeout to measure processing delay
       setTimeout(() => {
@@ -208,7 +208,7 @@ class PerformanceMonitor {
     if (!('memory' in performance)) return
 
     const measureMemory = () => {
-      const memory = (performance as any).memory
+      const memory = (performance as Performance & { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory
       const usedMB = Math.round(memory.usedJSHeapSize / 1048576)
       
       this.handleMetric({
@@ -251,15 +251,15 @@ class PerformanceMonitor {
   }
 
   public getReport(): PerformanceReport {
-    const connection = (navigator as any).connection
-    const memory = (performance as any).memory
+    const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection
+    const memory = (performance as Performance & { memory?: { usedJSHeapSize: number } }).memory
     
     return {
       metrics: [...this.metrics],
       deviceInfo: {
         userAgent: navigator.userAgent,
         connection: connection?.effectiveType,
-        memory: memory ? Math.round(memory.jsHeapSizeLimit / 1048576) : undefined
+        memory: (memory && 'jsHeapSizeLimit' in memory) ? Math.round((memory as { jsHeapSizeLimit: number }).jsHeapSizeLimit / 1048576) : undefined
       },
       pageInfo: {
         url: window.location.href,

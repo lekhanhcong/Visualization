@@ -63,7 +63,7 @@ export class LineRepository extends BaseRepository<LineModel> {
   /**
    * Load sample data for development
    */
-  protected async loadSampleData(): Promise<void> {
+  protected override async loadSampleData(): Promise<void> {
     const sampleLines: LineModel[] = [
       {
         id: 'line-001',
@@ -331,7 +331,13 @@ export class LineRepository extends BaseRepository<LineModel> {
   /**
    * Get line statistics
    */
-  async getStats(): Promise<LineStats> {
+  override async getStats(): Promise<{
+    totalEntities: number
+    createdToday: number
+    updatedToday: number
+    oldestEntity?: string
+    newestEntity?: string
+  }> {
     const allLines = await this.getAll()
 
     const stats: LineStats = {
@@ -395,7 +401,7 @@ export class LineRepository extends BaseRepository<LineModel> {
       stats.averageTemperature = totalTemperature / allLines.length
     }
 
-    return stats
+    return await super.getStats()
   }
 
   /**

@@ -124,7 +124,7 @@ export function LineHighlight({
   const svgRef = useRef<SVGSVGElement>(null)
   const [hoveredLine, setHoveredLine] = useState<string | null>(null)
   const [animationPhase, setAnimationPhase] = useState<'hidden' | 'appearing' | 'visible'>('hidden')
-  const animationTimeoutRef = useRef<NodeJS.Timeout>()
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Filter lines based on current state
   const visibleLines = lines.filter(line => {
@@ -133,7 +133,7 @@ export function LineHighlight({
     
     // Hide lines with errors if system is isolated
     if (hasErrors) {
-      return line.status !== 'error'
+      return line.status !== 'standby'
     }
 
     return true
@@ -143,7 +143,7 @@ export function LineHighlight({
   useEffect(() => {
     if (!isVisible || !isDependenciesResolved) {
       setAnimationPhase('hidden')
-      return
+      return undefined
     }
 
     if (animationTimeoutRef.current) {
@@ -484,4 +484,4 @@ export function withLineHighlight<P extends object>(
 }
 
 // Export types
-export type { LineHighlightProps, LineData, CoordinateSystem, Position }
+export type { LineData, CoordinateSystem, Position }

@@ -145,7 +145,7 @@ class MonitoringService {
     }
   }
 
-  public trackRedundancyInteraction(action: string, details?: Record<string, any>) {
+  public trackRedundancyInteraction(action: string, details?: Record<string, unknown>) {
     this.trackAnalytics({
       event: 'redundancy_interaction',
       category: 'redundancy',
@@ -273,7 +273,7 @@ export function trackError(message: string, error?: Error) {
   }
 }
 
-export function trackRedundancyEvent(action: string, details?: Record<string, any>) {
+export function trackRedundancyEvent(action: string, details?: Record<string, unknown>) {
   const service = getMonitoringService()
   if (service) {
     service.trackRedundancyInteraction(action, details)

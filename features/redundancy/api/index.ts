@@ -136,7 +136,7 @@ export const apiUtils = {
    * Get route handler by path and method
    */
   getRouteHandler: (method: string, path: string) => {
-    const routeKey = `${method.toUpperCase()} ${path}`
+    const routeKey = `${method.toUpperCase()} ${path}` as keyof typeof apiRoutes
     return apiRoutes[routeKey]
   },
 

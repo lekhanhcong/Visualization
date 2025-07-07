@@ -148,7 +148,7 @@ export function PowerFlowAnimation({
   } = useRedundancy()
 
   const svgRef = useRef<SVGSVGElement>(null)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | null>(null)
   const [particles, setParticles] = useState<FlowParticle[]>([])
   const [animationActive, setAnimationActive] = useState(false)
   const lastTimeRef = useRef<number>(0)
@@ -244,7 +244,7 @@ export function PowerFlowAnimation({
   useEffect(() => {
     if (!isVisible || !isDependenciesResolved || particles.length === 0) {
       setAnimationActive(false)
-      return
+      return undefined
     }
 
     const timer = setTimeout(() => {
@@ -534,4 +534,4 @@ export function withPowerFlowAnimation<P extends object>(
 }
 
 // Export types
-export type { PowerFlowAnimationProps, LineData, CoordinateSystem, Position }
+export type { LineData, CoordinateSystem, Position }

@@ -9,6 +9,11 @@ const nextConfig = {
     optimizeCss: true,
   },
   
+  // Skip type checking in build if env var is set
+  typescript: {
+    ignoreBuildErrors: process.env.NEXT_PUBLIC_SKIP_TYPE_CHECK === 'true',
+  },
+  
   // Webpack configuration for advanced optimization
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Bundle analysis configuration

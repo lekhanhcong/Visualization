@@ -8,6 +8,21 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
+const overlayVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.3 } },
+} as const
+
+const modalVariants = {
+  initial: { scale: 0.8, y: 20 },
+  animate: { scale: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 30 } },
+} as const
+
+const iconVariants = {
+  initial: { scale: 0 },
+  animate: { scale: 1, transition: { delay: 0.2, type: 'spring' } },
+} as const
+
 interface Props {
   children: ReactNode
   fallback?: ReactNode
@@ -36,7 +51,7 @@ export class RedundancyErrorBoundary extends Component<Props, State> {
     }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Redundancy Visualization Error:', error, errorInfo)
     
     this.setState({
@@ -76,7 +91,7 @@ export class RedundancyErrorBoundary extends Component<Props, State> {
     window.location.reload()
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       // Use custom fallback if provided
       if (this.props.fallback) {
@@ -87,23 +102,23 @@ export class RedundancyErrorBoundary extends Component<Props, State> {
       return (
         <motion.div 
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          variants={overlayVariants}
+          initial="initial"
+          animate="animate"
         >
           <motion.div 
             className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl"
-            initial={{ scale: 0.8, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            variants={modalVariants}
+            initial="initial"
+            animate="animate"
           >
             <div className="text-center">
               {/* Error Icon */}
               <motion.div 
                 className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: 'spring' }}
+                variants={iconVariants}
+                initial="initial"
+                animate="animate"
               >
                 <span className="text-red-600 text-2xl">⚠️</span>
               </motion.div>
@@ -116,7 +131,7 @@ export class RedundancyErrorBoundary extends Component<Props, State> {
               {/* Error Description */}
               <p className="text-gray-600 mb-6">
                 The 2N+1 redundancy visualization encountered an unexpected error. 
-                This doesn't affect the main application.
+                This doesn&apos;t affect the main application.
               </p>
 
               {/* Error Details (Development Only) */}

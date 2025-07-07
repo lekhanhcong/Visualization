@@ -84,33 +84,33 @@ export function RedundancyHierarchy({
   return (
     <RedundancyProvider enabled={enabled}>
       {/* Base Layer: Overlay Container */}
-      <RedundancyOverlay {...overlay}>
-        {/* Visualization Layer: Bottom to Top (z-index order) */}
-        
-        {/* SubstationMarker - z-index: 110 */}
-        {features?.enableSubstationMarker && (
-          <SubstationMarker
-            {...visualization?.substationMarker}
-          />
-        )}
-        
-        {/* LineHighlight - z-index: 115 */}
-        {features?.enableLineHighlight && (
-          <LineHighlight
-            {...visualization?.lineHighlight}
-          />
-        )}
-        
-        {/* PowerFlowAnimation - z-index: 120 */}
-        {features?.enablePowerFlowAnimation && (
-          <PowerFlowAnimation
-            {...visualization?.powerFlowAnimation}
-          />
-        )}
-        
-        {/* User content */}
-        {children}
-      </RedundancyOverlay>
+      <RedundancyOverlay isVisible={true} onClose={() => {}} {...overlay} />
+      
+      {/* Visualization Layer: Bottom to Top (z-index order) */}
+      
+      {/* SubstationMarker - z-index: 110 */}
+      {features?.enableSubstationMarker && (
+        <SubstationMarker
+          {...visualization?.substationMarker}
+        />
+      )}
+      
+      {/* LineHighlight - z-index: 115 */}
+      {features?.enableLineHighlight && (
+        <LineHighlight
+          {...visualization?.lineHighlight}
+        />
+      )}
+      
+      {/* PowerFlowAnimation - z-index: 120 */}
+      {features?.enablePowerFlowAnimation && (
+        <PowerFlowAnimation
+          {...visualization?.powerFlowAnimation}
+        />
+      )}
+      
+      {/* User content */}
+      {children}
       
       {/* Application Layer: UI Controls */}
       
@@ -293,5 +293,4 @@ export function createRedundancyHierarchy(): RedundancyHierarchyBuilder {
   return new RedundancyHierarchyBuilder()
 }
 
-// Export types
-export type { RedundancyHierarchyConfig }
+// RedundancyHierarchyConfig is already exported above

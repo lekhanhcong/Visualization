@@ -8,10 +8,10 @@ export default function Hero() {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) return () => {}
 
     const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    if (!ctx) return () => {}
 
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight

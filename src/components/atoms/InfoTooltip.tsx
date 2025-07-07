@@ -1,17 +1,69 @@
+/**
+ * @fileoverview InfoTooltip component for displaying hotspot information in a styled tooltip
+ * Provides contextual information about infrastructure points with metadata display
+ * 
+ * @version 1.0.0
+ * @author Hue Datacenter Visualization Team
+ */
+
 'use client'
 
 import React from 'react'
 import { motion, MotionStyle } from 'framer-motion'
 import { ImageHotspot } from '@/types'
 
+/**
+ * Props interface for the InfoTooltip component
+ * 
+ * @interface InfoTooltipProps
+ */
 interface InfoTooltipProps {
+  /** Unique identifier for the tooltip, used for accessibility */
   id: string
+  
+  /** Hotspot data containing all the information to display */
   hotspot: ImageHotspot
+  
+  /** Positioning of the tooltip relative to its trigger */
   position?: 'top' | 'bottom' | 'left' | 'right'
+  
+  /** Additional CSS classes to apply to the tooltip container */
   className?: string
+  
+  /** Inline styles for the tooltip container */
   style?: React.CSSProperties
 }
 
+/**
+ * InfoTooltip - Displays detailed information about infrastructure hotspots
+ * 
+ * Features:
+ * - Smart positioning with arrow indicators
+ * - Type-specific display names and metadata
+ * - Status indicators with appropriate color coding
+ * - Voltage, capacity, and coordinate information
+ * - Smooth animations with Framer Motion
+ * - Full accessibility support with ARIA attributes
+ * 
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <InfoTooltip 
+ *   id="hotspot-tooltip-1" 
+ *   hotspot={datacenterHotspot} 
+ * />
+ * 
+ * // With custom positioning
+ * <InfoTooltip 
+ *   id="hotspot-tooltip-2" 
+ *   hotspot={substationHotspot}
+ *   position="bottom"
+ * />
+ * ```
+ * 
+ * @param props - Component props
+ * @returns React component for displaying hotspot information
+ */
 export function InfoTooltip({
   id,
   hotspot,

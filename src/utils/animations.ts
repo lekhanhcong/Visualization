@@ -1,9 +1,7 @@
 'use client'
 
-import { Variants } from 'framer-motion'
-
 // Container animation variants
-export const containerVariants: Variants = {
+export const containerVariants = {
   hidden: {
     opacity: 0,
     scale: 0.95,
@@ -26,10 +24,10 @@ export const containerVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Staggered children animations
-export const childVariants: Variants = {
+export const childVariants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -55,10 +53,10 @@ export const childVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Power line animation variants
-export const powerLineVariants: Variants = {
+export const powerLineVariants = {
   initial: {
     pathLength: 0,
     opacity: 0,
@@ -91,10 +89,10 @@ export const powerLineVariants: Variants = {
       duration: 0.2,
     },
   },
-}
+} as const
 
 // Pulse animation variants for substations
-export const pulseVariants: Variants = {
+export const pulseVariants = {
   initial: {
     scale: 1,
     opacity: 0.8,
@@ -116,10 +114,10 @@ export const pulseVariants: Variants = {
       ease: 'easeOut',
     },
   },
-}
+} as const
 
 // Modal animation variants
-export const modalVariants: Variants = {
+export const modalVariants = {
   hidden: {
     opacity: 0,
     scale: 0.8,
@@ -145,10 +143,10 @@ export const modalVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Backdrop animation variants
-export const backdropVariants: Variants = {
+export const backdropVariants = {
   hidden: {
     opacity: 0,
   },
@@ -164,10 +162,10 @@ export const backdropVariants: Variants = {
       duration: 0.2,
     },
   },
-}
+} as const
 
 // Hotspot marker animation variants
-export const markerVariants: Variants = {
+export const markerVariants = {
   initial: {
     scale: 0,
     rotate: -180,
@@ -200,10 +198,10 @@ export const markerVariants: Variants = {
       duration: 0.1,
     },
   },
-}
+} as const
 
 // Legend animation variants
-export const legendVariants: Variants = {
+export const legendVariants = {
   hidden: {
     opacity: 0,
     x: -50,
@@ -229,10 +227,10 @@ export const legendVariants: Variants = {
       duration: 0.2,
     },
   },
-}
+} as const
 
 // Theme transition variants
-export const themeVariants: Variants = {
+export const themeVariants = {
   light: {
     backgroundColor: '#ffffff',
     color: '#1f2937',
@@ -249,10 +247,10 @@ export const themeVariants: Variants = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
 // Loading animation variants
-export const loadingVariants: Variants = {
+export const loadingVariants = {
   initial: {
     opacity: 0,
     scale: 0.8,
@@ -272,10 +270,10 @@ export const loadingVariants: Variants = {
       duration: 0.3,
     },
   },
-}
+} as const
 
 // Page transition variants
-export const pageVariants: Variants = {
+export const pageVariants = {
   initial: {
     opacity: 0,
     x: -20,
@@ -296,10 +294,10 @@ export const pageVariants: Variants = {
       ease: 'easeIn',
     },
   },
-}
+} as const
 
 // Ripple effect variants
-export const rippleVariants: Variants = {
+export const rippleVariants = {
   initial: {
     scale: 0,
     opacity: 0.5,
@@ -312,10 +310,10 @@ export const rippleVariants: Variants = {
       ease: 'easeOut',
     },
   },
-}
+} as const
 
 // Error animation variants
-export const errorVariants: Variants = {
+export const errorVariants = {
   initial: {
     opacity: 0,
     y: 20,
@@ -337,10 +335,10 @@ export const errorVariants: Variants = {
       duration: 0.5,
     },
   },
-}
+} as const
 
 // Success animation variants
-export const successVariants: Variants = {
+export const successVariants = {
   initial: {
     scale: 0,
     opacity: 0,
@@ -353,7 +351,7 @@ export const successVariants: Variants = {
       ease: 'easeOut',
     },
   },
-}
+} as const
 
 // Utility function to create custom spring animations
 export const createSpringAnimation = (

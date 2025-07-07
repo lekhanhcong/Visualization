@@ -491,8 +491,8 @@ export abstract class BaseRepository<T extends BaseEntity> {
       const sorted = entities.sort((a, b) => 
         new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       )
-      oldestEntity = sorted[0].createdAt
-      newestEntity = sorted[sorted.length - 1].createdAt
+      oldestEntity = sorted[0].createdAt.toString()
+      newestEntity = sorted[sorted.length - 1].createdAt.toString()
     }
 
     return {

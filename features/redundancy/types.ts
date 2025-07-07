@@ -73,6 +73,7 @@ export interface RedundancyState {
   selectedLine: LineData | null
   isPanelOpen: boolean
   animationProgress: number
+  animationPhase: string
 }
 
 export interface SubstationData {
@@ -144,7 +145,6 @@ export interface RedundancyProviderProps {
 export interface RedundancyOverlayProps {
   isVisible: boolean
   onClose: () => void
-  animationPhase: RedundancyState['animationPhase']
 }
 
 export interface RedundancyButtonProps {
@@ -198,10 +198,15 @@ export interface FeatureDefinition {
   enabled: boolean
 }
 
-export interface PluginError extends Error {
+export class PluginError extends Error {
   featureId?: string
   phase?: string
   recoverable?: boolean
+  
+  constructor(message: string) {
+    super(message)
+    this.name = 'PluginError'
+  }
 }
 
 export interface RedundancyOverlayConfig {

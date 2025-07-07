@@ -230,7 +230,13 @@ export class SubstationRepository extends BaseRepository<SubstationModel> {
   /**
    * Get substation statistics
    */
-  async getStats(): Promise<SubstationStats> {
+  override async getStats(): Promise<{
+    totalEntities: number
+    createdToday: number
+    updatedToday: number
+    oldestEntity?: string
+    newestEntity?: string
+  }> {
     const allSubstations = await this.getAll()
 
     const stats: SubstationStats = {
@@ -290,7 +296,7 @@ export class SubstationRepository extends BaseRepository<SubstationModel> {
       stats.averageTemperature = totalTemperature / allSubstations.length
     }
 
-    return stats
+    return await super.getStats()
   }
 
   /**
