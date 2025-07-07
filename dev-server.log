@@ -1,0 +1,64 @@
+
+> hue-datacenter-visualization@2.02.0 dev
+> next dev
+
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.16:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 4.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 5.8s (1450 modules)
+ GET / 200 in 7915ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 2.4s (802 modules)
+ ✓ Compiled in 4s (1480 modules)
+ ○ Compiling /test-env ...
+ ✓ Compiled /test-env in 855ms (1473 modules)
+ GET /test-env 200 in 1280ms
+ GET / 200 in 347ms
+ GET / 200 in 283ms
+ GET /favicon.ico 200 in 472ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6s (1472 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 34.1s (1796 modules)
+ GET /_next/static/chunks/redundancy-feature.js 404 in 41591ms
+ GET / 200 in 18425ms
+ GET /_next/static/css/app/layout.css?v=1751876748936 404 in 386ms
+ GET /_next/static/chunks/main-app.js?v=1751876748936 404 in 539ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 537ms
+ GET /_next/static/chunks/app/layout.js 404 in 549ms
+ GET /_next/static/chunks/app/page.js 404 in 445ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 2.3s (891 modules)
+ GET /favicon.ico 200 in 2520ms
+ GET / 200 in 415ms
+ GET /_next/static/css/app/layout.css?v=1751876814114 404 in 93ms
+ GET /_next/static/chunks/main-app.js?v=1751876814114 404 in 144ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 141ms
+ GET /_next/static/chunks/app/layout.js 404 in 118ms
+ GET /_next/static/chunks/app/page.js 404 in 59ms
+ GET /favicon.ico 200 in 14ms
+ GET / 200 in 1650ms
+ GET /_next/static/css/app/layout.css?v=1751876976109 404 in 1141ms
+ GET /_next/static/chunks/main-app.js?v=1751876976109 404 in 1511ms
+ GET /_next/static/chunks/app/layout.js 404 in 1507ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1510ms
+ GET /_next/static/chunks/app/page.js 404 in 1517ms
+ GET / 200 in 544ms
+ GET / 200 in 492ms
+ GET / 200 in 221ms
+ GET / 200 in 150ms
+ GET / 200 in 361ms
+ GET / 200 in 551ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 577ms
+ GET /_next/static/chunks/main-app.js?v=1751877927490 404 in 579ms
+ GET /_next/static/css/app/layout.css?v=1751877927490 404 in 601ms
+ GET /_next/static/chunks/app/page.js 404 in 764ms
+ GET /_next/static/chunks/app/layout.js 404 in 765ms
+ ✓ Compiled in 2.8s (931 modules)
+ ✓ Compiled in 982ms (931 modules)
+ ✓ Compiled in 2.3s (1763 modules)
