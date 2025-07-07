@@ -1,0 +1,342 @@
+/**
+ * LineHighlight Component Styles
+ * CSS for transmission line highlighting and animations
+ */
+
+.rdx-line-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.rdx-line-highlight--interactive {
+  pointer-events: auto;
+}
+
+.rdx-line-highlight--appearing {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+.rdx-line-highlight--visible {
+  opacity: 1;
+}
+
+.rdx-line-highlight--error {
+  filter: contrast(0.8) brightness(0.9);
+}
+
+/* SVG Container */
+.rdx-line-highlight__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Line Groups */
+.rdx-line-highlight__line-group {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rdx-line-highlight__line-group:hover {
+  filter: brightness(1.2);
+}
+
+/* Line Labels */
+.rdx-line-highlight__label {
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.rdx-line-highlight__label rect {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.rdx-line-highlight__label text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+}
+
+/* Debug Overlay */
+.rdx-line-highlight__debug {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.rdx-line-highlight__debug div {
+  margin-bottom: 2px;
+}
+
+.rdx-line-highlight__debug div:last-child {
+  margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Flow animations for different speeds */
+@keyframes flow-1s {
+  0% {
+    stroke-dasharray: 10 10;
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flow-2s {
+  0% {
+    stroke-dasharray: 15 15;
+    stroke-dashoffset: 30;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flow-3s {
+  0% {
+    stroke-dasharray: 20 20;
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Line status styles */
+.rdx-line-highlight__line-group[data-status="active"] path {
+  stroke: #28a745;
+}
+
+.rdx-line-highlight__line-group[data-status="standby"] path {
+  stroke: #ffc107;
+  stroke-dasharray: 5 5;
+}
+
+.rdx-line-highlight__line-group[data-status="inactive"] path {
+  stroke: #6c757d;
+  opacity: 0.5;
+}
+
+.rdx-line-highlight__line-group[data-status="error"] path {
+  stroke: #dc3545;
+  animation: error-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes error-pulse {
+  from {
+    stroke-opacity: 0.5;
+  }
+  to {
+    stroke-opacity: 1;
+  }
+}
+
+/* Hover states */
+.rdx-line-highlight__line-group:hover path {
+  stroke-width: 5;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* Selected states */
+.rdx-line-highlight__line-group.selected path {
+  stroke-width: 6;
+  filter: drop-shadow(0 0 12px currentColor);
+  animation: selected-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes selected-pulse {
+  from {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  to {
+    filter: drop-shadow(0 0 16px currentColor);
+  }
+}
+
+/* Voltage level styling */
+.rdx-line-highlight__line-group[data-voltage="345kV"] path {
+  stroke-width: 4;
+}
+
+.rdx-line-highlight__line-group[data-voltage="138kV"] path {
+  stroke-width: 3;
+}
+
+.rdx-line-highlight__line-group[data-voltage="69kV"] path {
+  stroke-width: 2;
+}
+
+/* Interactive states */
+.rdx-line-highlight--interactive .rdx-line-highlight__line-group path {
+  cursor: pointer;
+}
+
+.rdx-line-highlight--interactive .rdx-line-highlight__line-group:hover path {
+  cursor: pointer;
+  transform-origin: center;
+  animation: hover-pulse 0.3s ease-out;
+}
+
+@keyframes hover-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rdx-line-highlight__label text {
+    font-size: 8px;
+  }
+  
+  .rdx-line-highlight__label rect {
+    width: 50px;
+    height: 16px;
+  }
+  
+  .rdx-line-highlight__debug {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+  
+  .rdx-line-highlight__line-group path {
+    stroke-width: 2;
+  }
+  
+  .rdx-line-highlight__line-group:hover path {
+    stroke-width: 3;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .rdx-line-highlight__line-group[data-status="active"] path {
+    stroke: HighlightText;
+    stroke-width: 3;
+  }
+  
+  .rdx-line-highlight__line-group[data-status="standby"] path {
+    stroke: ButtonText;
+    stroke-width: 3;
+    stroke-dasharray: 8 8;
+  }
+  
+  .rdx-line-highlight__line-group[data-status="error"] path {
+    stroke: red;
+    stroke-width: 4;
+  }
+  
+  .rdx-line-highlight__label rect {
+    fill: ButtonFace;
+    stroke: ButtonText;
+    stroke-width: 2;
+  }
+  
+  .rdx-line-highlight__label text {
+    fill: ButtonText;
+  }
+  
+  .rdx-line-highlight__debug {
+    background: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .rdx-line-highlight--appearing {
+    animation: none;
+  }
+  
+  .rdx-line-highlight__line-group {
+    transition: none;
+  }
+  
+  .rdx-line-highlight__line-group:hover {
+    filter: none;
+  }
+  
+  .rdx-line-highlight__label {
+    transition: none;
+  }
+  
+  @keyframes flow-1s,
+  @keyframes flow-2s,
+  @keyframes flow-3s {
+    0%, 100% {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .rdx-line-highlight__line-group[data-status="error"] path {
+    animation: none;
+  }
+  
+  .rdx-line-highlight__line-group.selected path {
+    animation: none;
+  }
+  
+  .rdx-line-highlight--interactive .rdx-line-highlight__line-group:hover path {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .rdx-line-highlight {
+    filter: grayscale(1);
+  }
+  
+  .rdx-line-highlight__debug {
+    display: none;
+  }
+  
+  .rdx-line-highlight__line-group path {
+    stroke: black !important;
+    stroke-width: 1 !important;
+  }
+  
+  .rdx-line-highlight__label rect {
+    fill: white;
+    stroke: black;
+  }
+  
+  .rdx-line-highlight__label text {
+    fill: black;
+  }
+}

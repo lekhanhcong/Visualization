@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Component Visual Snapshots LineHighlight should match snapshot with lines 1`] = `null`;
+
+exports[`Component Visual Snapshots should match snapshot in different states: LineHighlight-hidden 1`] = `null`;

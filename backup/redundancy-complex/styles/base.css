@@ -1,0 +1,253 @@
+/**
+ * Base CSS for 2N+1 Redundancy Feature
+ * All classes use rdx- prefix for complete isolation
+ */
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --rdx-color-active: #ef4444;
+  --rdx-color-standby: #fbbf24;
+  --rdx-color-connection: #8b5cf6;
+  --rdx-color-backdrop: rgba(0, 0, 0, 0.7);
+  --rdx-color-text: #ffffff;
+  --rdx-color-panel-bg: rgba(0, 0, 0, 0.9);
+  --rdx-color-border: rgba(255, 255, 255, 0.2);
+  
+  /* Glow Effects */
+  --rdx-glow-intensity: 0.8;
+  --rdx-glow-radius: 4px;
+  --rdx-glow-spread: 2px;
+  
+  /* Z-index Management */
+  --rdx-z-backdrop: 999;
+  --rdx-z-overlay: 1000;
+  --rdx-z-panel: 1001;
+  --rdx-z-debug: 9999;
+  
+  /* Animation Durations */
+  --rdx-duration-fade: 1000ms;
+  --rdx-duration-lines: 1000ms;
+  --rdx-duration-substations: 1000ms;
+  --rdx-duration-panel: 1000ms;
+  --rdx-duration-pulse: 2000ms;
+  
+  /* Animation Easing */
+  --rdx-easing-default: ease-in-out;
+  --rdx-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --rdx-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Spacing */
+  --rdx-spacing-xs: 4px;
+  --rdx-spacing-sm: 8px;
+  --rdx-spacing-md: 16px;
+  --rdx-spacing-lg: 24px;
+  --rdx-spacing-xl: 32px;
+  
+  /* Typography */
+  --rdx-font-size-xs: 12px;
+  --rdx-font-size-sm: 14px;
+  --rdx-font-size-md: 16px;
+  --rdx-font-size-lg: 18px;
+  --rdx-font-size-xl: 24px;
+  
+  /* Border Radius */
+  --rdx-radius-sm: 4px;
+  --rdx-radius-md: 8px;
+  --rdx-radius-lg: 12px;
+}
+
+/* Base Container */
+.rdx-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Overlay System */
+.rdx-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--rdx-z-overlay);
+  pointer-events: none;
+}
+
+.rdx-overlay.rdx-visible {
+  pointer-events: auto;
+}
+
+.rdx-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--rdx-color-backdrop);
+  z-index: var(--rdx-z-backdrop);
+  opacity: 0;
+  transition: opacity var(--rdx-duration-fade) var(--rdx-easing-default);
+}
+
+.rdx-backdrop.rdx-visible {
+  opacity: 1;
+}
+
+/* Button Styles */
+.rdx-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rdx-spacing-sm) var(--rdx-spacing-md);
+  border: 2px solid var(--rdx-color-active);
+  border-radius: var(--rdx-radius-sm);
+  background-color: transparent;
+  color: var(--rdx-color-active);
+  font-size: var(--rdx-font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s var(--rdx-easing-default);
+}
+
+.rdx-button:hover {
+  background-color: var(--rdx-color-active);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.rdx-button:active {
+  transform: translateY(0);
+}
+
+.rdx-button:focus {
+  outline: 2px solid var(--rdx-color-active);
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
+.rdx-hidden {
+  display: none !important;
+}
+
+.rdx-visible {
+  display: block;
+}
+
+.rdx-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Animation Base Classes */
+.rdx-fade-in {
+  opacity: 0;
+  animation: rdx-fade-in var(--rdx-duration-fade) var(--rdx-easing-default) forwards;
+}
+
+.rdx-fade-out {
+  opacity: 1;
+  animation: rdx-fade-out var(--rdx-duration-fade) var(--rdx-easing-default) forwards;
+}
+
+.rdx-slide-in-right {
+  transform: translateX(100%);
+  animation: rdx-slide-in-right var(--rdx-duration-panel) var(--rdx-easing-smooth) forwards;
+}
+
+.rdx-pulse {
+  animation: rdx-pulse var(--rdx-duration-pulse) var(--rdx-easing-default) infinite;
+}
+
+/* Keyframe Animations */
+@keyframes rdx-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rdx-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rdx-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rdx-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rdx-glow-breathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 var(--rdx-glow-radius) currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 calc(var(--rdx-glow-radius) * 1.5) currentColor);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rdx-button {
+    padding: var(--rdx-spacing-md) var(--rdx-spacing-lg);
+    font-size: var(--rdx-font-size-md);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --rdx-color-active: #ff0000;
+    --rdx-color-standby: #ffff00;
+    --rdx-color-text: #ffffff;
+    --rdx-color-panel-bg: #000000;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .rdx-fade-in,
+  .rdx-fade-out,
+  .rdx-slide-in-right,
+  .rdx-pulse {
+    animation: none;
+  }
+  
+  .rdx-button {
+    transition: none;
+  }
+  
+  .rdx-backdrop {
+    transition: none;
+  }
+}
