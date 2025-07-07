@@ -312,7 +312,7 @@ test.describe('2N+1 Redundancy Visualization E2E', () => {
     test('should work with different viewport sizes', async ({ page }) => {
       // Test desktop size
       await page.setViewportSize({ width: 1920, height: 1080 });
-      let redundancyButton = page.locator('button:has-text("Show 2N+1 Redundancy")');
+      const redundancyButton = page.locator('button:has-text("Show 2N+1 Redundancy")');
       await expect(redundancyButton).toBeVisible();
       
       // Test tablet size

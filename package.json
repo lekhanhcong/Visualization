@@ -1,6 +1,6 @@
 {
   "name": "hue-datacenter-visualization",
-  "version": "1.0.0",
+  "version": "2.02.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -57,6 +57,10 @@
     "test:doctor": "playwright doctor",
     "test:show-report": "playwright show-report",
     "test:show-coverage": "open coverage/html/index.html",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration", 
+    "test:security": "npm audit && snyk test",
+    "test:build": "npm run build && npm run test:smoke",
     "dev:redundancy": "NEXT_PUBLIC_ENABLE_REDUNDANCY=true npm run dev",
     "dev:test": "NODE_ENV=test npm run dev",
     "type-check:redundancy": "cd features/redundancy && tsc --noEmit",

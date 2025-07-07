@@ -1,0 +1,216 @@
+name: Auto Release for Major Changes
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      is-major-change: ${{ steps.check-changes.outputs.is-major-change }}
+      version-increment: ${{ steps.check-changes.outputs.version-increment }}
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Check for major changes
+      id: check-changes
+      run: |
+        # Get the last commit message
+        COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+        
+        # Check for major change indicators
+        if [[ "$COMMIT_MSG" == *"feat("* && "$COMMIT_MSG" == *"BREAKING CHANGE"* ]] || \
+           [[ "$COMMIT_MSG" == *"feat!"* ]] || \
+           [[ "$COMMIT_MSG" == *"refactor!"* ]] || \
+           [[ "$COMMIT_MSG" == *"perf!"* ]]; then
+          echo "is-major-change=true" >> $GITHUB_OUTPUT
+          echo "version-increment=major" >> $GITHUB_OUTPUT
+        elif [[ "$COMMIT_MSG" == *"feat("* ]]; then
+          echo "is-major-change=true" >> $GITHUB_OUTPUT
+          echo "version-increment=minor" >> $GITHUB_OUTPUT
+        elif [[ "$COMMIT_MSG" == *"fix("* ]]; then
+          echo "is-major-change=false" >> $GITHUB_OUTPUT
+          echo "version-increment=patch" >> $GITHUB_OUTPUT
+        else
+          echo "is-major-change=false" >> $GITHUB_OUTPUT
+          echo "version-increment=none" >> $GITHUB_OUTPUT
+        fi
+        
+        echo "Commit message: $COMMIT_MSG"
+        echo "Is major change: $(echo $COMMIT_MSG | grep -E '(feat\(|feat!|refactor!|perf!|BREAKING CHANGE)' || echo 'false')"
+
+  auto-release:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: needs.detect-changes.outputs.is-major-change == 'true'
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: |
+        npm run lint
+        npm run type-check
+        npm run test:unit
+        npm run test:smoke
+    
+    - name: Get current version
+      id: get-version
+      run: |
+        CURRENT_VERSION=$(node -p "require('./package.json').version")
+        echo "current-version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+        
+        # Calculate next version
+        IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+        
+        if [ "${{ needs.detect-changes.outputs.version-increment }}" == "major" ]; then
+          NEW_VERSION="$((major + 1)).0.0"
+        elif [ "${{ needs.detect-changes.outputs.version-increment }}" == "minor" ]; then
+          NEW_VERSION="$major.$((minor + 1)).0"
+        else
+          NEW_VERSION="$major.$minor.$((patch + 1))"
+        fi
+        
+        echo "new-version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "Current version: $CURRENT_VERSION"
+        echo "New version: $NEW_VERSION"
+    
+    - name: Update version in package.json
+      run: |
+        NEW_VERSION="${{ steps.get-version.outputs.new-version }}"
+        npm version $NEW_VERSION --no-git-tag-version
+        
+        # Update @plan.md with new version
+        if [ -f "@plan.md" ]; then
+          sed -i "s/version: [0-9]\+\.[0-9]\+\.[0-9]\+/version: $NEW_VERSION/" @plan.md
+        fi
+    
+    - name: Generate release notes
+      id: release-notes
+      run: |
+        # Get last tag
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        
+        if [ -z "$LAST_TAG" ]; then
+          CHANGES=$(git log --pretty=format:"- %s" --since="1 month ago")
+        else
+          CHANGES=$(git log --pretty=format:"- %s" $LAST_TAG..HEAD)
+        fi
+        
+        # Categorize changes
+        FEATURES=$(echo "$CHANGES" | grep -E '^- feat' || echo "")
+        FIXES=$(echo "$CHANGES" | grep -E '^- fix' || echo "")
+        BREAKING=$(echo "$CHANGES" | grep -E 'BREAKING CHANGE' || echo "")
+        
+        # Build release notes
+        cat > release_notes.md << 'EOF'
+        ## Auto-generated Release v${{ steps.get-version.outputs.new-version }}
+        
+        This release was automatically created based on detected feature commits.
+        
+        EOF
+        
+        if [ ! -z "$BREAKING" ]; then
+          echo "### ⚠️ BREAKING CHANGES" >> release_notes.md
+          echo "$BREAKING" >> release_notes.md
+          echo "" >> release_notes.md
+        fi
+        
+        if [ ! -z "$FEATURES" ]; then
+          echo "### ✨ New Features" >> release_notes.md
+          echo "$FEATURES" >> release_notes.md
+          echo "" >> release_notes.md
+        fi
+        
+        if [ ! -z "$FIXES" ]; then
+          echo "### 🐛 Bug Fixes" >> release_notes.md
+          echo "$FIXES" >> release_notes.md
+          echo "" >> release_notes.md
+        fi
+        
+        cat >> release_notes.md << 'EOF'
+        
+        ### 🔧 Technical Details
+        - Version increment: ${{ needs.detect-changes.outputs.version-increment }}
+        - Previous version: ${{ steps.get-version.outputs.current-version }}
+        - New version: ${{ steps.get-version.outputs.new-version }}
+        
+        ### 🤖 Automation
+        Generated with [Claude Code](https://claude.ai/code)
+        
+        Co-Authored-By: Claude <noreply@anthropic.com>
+        EOF
+        
+        echo "Release notes created:"
+        cat release_notes.md
+    
+    - name: Build for release
+      run: |
+        npm run build
+        
+        # Create release archive
+        tar -czf release-v${{ steps.get-version.outputs.new-version }}.tar.gz \
+          .next/ public/ package.json README.md @plan.md
+    
+    - name: Commit version updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        git add package.json @plan.md
+        git commit -m "chore: bump version to ${{ steps.get-version.outputs.new-version }} [skip ci]
+
+        🤖 Generated with [Claude Code](https://claude.ai/code)
+
+        Co-Authored-By: Claude <noreply@anthropic.com>"
+        
+        git push origin main
+    
+    - name: Create and push tag
+      run: |
+        git tag -a "v${{ steps.get-version.outputs.new-version }}" -m "Release v${{ steps.get-version.outputs.new-version }}"
+        git push origin "v${{ steps.get-version.outputs.new-version }}"
+    
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.get-version.outputs.new-version }}
+        release_name: Release v${{ steps.get-version.outputs.new-version }}
+        body_path: release_notes.md
+        draft: false
+        prerelease: false
+    
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./release-v${{ steps.get-version.outputs.new-version }}.tar.gz
+        asset_name: release-v${{ steps.get-version.outputs.new-version }}.tar.gz
+        asset_content_type: application/gzip
+    
+    - name: Notify completion
+      run: |
+        echo "🎉 Auto-release completed successfully!"
+        echo "Released version: v${{ steps.get-version.outputs.new-version }}"
+        echo "Release URL: ${{ steps.create_release.outputs.html_url }}"

@@ -214,7 +214,7 @@ test.describe('Cross-Browser Redundancy Visualization', () => {
   })
 
   test('should handle JavaScript errors gracefully', async ({ page, browserName }) => {
-    let jsErrors: Error[] = []
+    const jsErrors: Error[] = []
     
     // Listen for JavaScript errors
     page.on('pageerror', (error) => {
