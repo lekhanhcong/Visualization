@@ -1,64 +1,107 @@
 
-> hue-datacenter-visualization@2.02.0 dev
-> next dev
+> hue-datacenter-visualization@2.03.0 dev
+> next dev -p 3001
 
    ▲ Next.js 15.3.5
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.1.16:3000
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.92:3001
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 4.9s
+ ✓ Ready in 5.3s
  ○ Compiling / ...
- ✓ Compiled / in 5.8s (1450 modules)
- GET / 200 in 7915ms
+ ✓ Compiled / in 6.8s (784 modules)
+ GET / 200 in 7565ms
+ ✓ Compiled in 850ms (331 modules)
+ GET / 200 in 444ms
  ○ Compiling /favicon.ico ...
- ✓ Compiled /favicon.ico in 2.4s (802 modules)
- ✓ Compiled in 4s (1480 modules)
- ○ Compiling /test-env ...
- ✓ Compiled /test-env in 855ms (1473 modules)
- GET /test-env 200 in 1280ms
- GET / 200 in 347ms
- GET / 200 in 283ms
- GET /favicon.ico 200 in 472ms
+ ✓ Compiled /favicon.ico in 13.7s (814 modules)
+ GET /favicon.ico 200 in 14386ms
+ ✓ Compiled in 2.9s (345 modules)
+ GET / 200 in 2847ms
+ GET / 200 in 503ms
+ GET / 200 in 1630ms
+ GET /favicon.ico 200 in 40ms
+ ✓ Compiled in 1328ms (345 modules)
+ GET / 200 in 446ms
+ GET /favicon.ico 200 in 30ms
+ ✓ Compiled in 2.6s (345 modules)
+ ✓ Compiled in 2.5s (345 modules)
+ GET / 200 in 2284ms
+ GET / 200 in 2638ms
+ ✓ Compiled in 2.8s (345 modules)
+ GET / 200 in 139ms
+ GET / 200 in 632ms
+ GET /favicon.ico 200 in 13ms
+ ✓ Compiled in 2.7s (345 modules)
+ ✓ Compiled in 1061ms (345 modules)
+ ✓ Compiled in 2.1s (345 modules)
+ ✓ Compiled in 1396ms (345 modules)
  ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 6s (1472 modules)
+ ✓ Compiled /_not-found in 1644ms (802 modules)
+ GET / 404 in 2186ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 347ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 355ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 234ms
+ GET /_next/static/chunks/main-app.js?v=1751905458562 404 in 250ms
+ GET /_next/static/css/app/layout.css?v=1751905458562 404 in 362ms
  ○ Compiling /_error ...
- ✓ Compiled /_error in 34.1s (1796 modules)
- GET /_next/static/chunks/redundancy-feature.js 404 in 41591ms
- GET / 200 in 18425ms
- GET /_next/static/css/app/layout.css?v=1751876748936 404 in 386ms
- GET /_next/static/chunks/main-app.js?v=1751876748936 404 in 539ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 537ms
- GET /_next/static/chunks/app/layout.js 404 in 549ms
- GET /_next/static/chunks/app/page.js 404 in 445ms
+ ✓ Compiled /_error in 25s (1128 modules)
+ GET / 404 in 26303ms
+ ✓ Compiled in 1704ms (600 modules)
+ GET / 200 in 842ms
+ GET /_next/static/css/app/layout.css?v=1751908236193 404 in 307ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 718ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 720ms
+ GET /_next/static/chunks/main-app.js?v=1751908236193 404 in 785ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 517ms
+ GET /_next/static/chunks/app/page.js 404 in 187ms
+ ✓ Compiled in 1544ms (600 modules)
+ GET /_next/static/css/app/layout.css?v=1751908273352 404 in 277ms
+ GET / 200 in 550ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 525ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 527ms
+ GET /_next/static/chunks/main-app.js?v=1751908273352 404 in 635ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 377ms
+ GET /_next/static/chunks/app/page.js 404 in 189ms
+ ✓ Compiled in 902ms (599 modules)
+ GET /_next/static/css/app/layout.css?v=1751908309050 404 in 732ms
+ GET / 200 in 953ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 1031ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 1027ms
+ GET /_next/static/chunks/main-app.js?v=1751908309050 404 in 1068ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 365ms
+ GET /_next/static/chunks/app/page.js 404 in 141ms
+ ✓ Compiled in 2.3s (599 modules)
+ GET /_next/static/css/app/layout.css?v=1751908351838 404 in 238ms
+ GET / 200 in 547ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 850ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 848ms
+ GET /_next/static/chunks/main-app.js?v=1751908351838 404 in 887ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 660ms
+ GET /_next/static/chunks/app/page.js 404 in 145ms
+ GET / 200 in 71ms
+ GET / 200 in 101ms
+ GET /_next/static/css/app/layout.css?v=1751908440975 404 in 221ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 449ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 449ms
+ GET /_next/static/chunks/main-app.js?v=1751908440975 404 in 316ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 312ms
+ GET /_next/static/chunks/app/page.js 404 in 118ms
  ○ Compiling /favicon.ico ...
- ✓ Compiled /favicon.ico in 2.3s (891 modules)
- GET /favicon.ico 200 in 2520ms
- GET / 200 in 415ms
- GET /_next/static/css/app/layout.css?v=1751876814114 404 in 93ms
- GET /_next/static/chunks/main-app.js?v=1751876814114 404 in 144ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 141ms
- GET /_next/static/chunks/app/layout.js 404 in 118ms
- GET /_next/static/chunks/app/page.js 404 in 59ms
- GET /favicon.ico 200 in 14ms
- GET / 200 in 1650ms
- GET /_next/static/css/app/layout.css?v=1751876976109 404 in 1141ms
- GET /_next/static/chunks/main-app.js?v=1751876976109 404 in 1511ms
- GET /_next/static/chunks/app/layout.js 404 in 1507ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 1510ms
- GET /_next/static/chunks/app/page.js 404 in 1517ms
- GET / 200 in 544ms
- GET / 200 in 492ms
- GET / 200 in 221ms
- GET / 200 in 150ms
- GET / 200 in 361ms
- GET / 200 in 551ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 577ms
- GET /_next/static/chunks/main-app.js?v=1751877927490 404 in 579ms
- GET /_next/static/css/app/layout.css?v=1751877927490 404 in 601ms
- GET /_next/static/chunks/app/page.js 404 in 764ms
- GET /_next/static/chunks/app/layout.js 404 in 765ms
- ✓ Compiled in 2.8s (931 modules)
- ✓ Compiled in 982ms (931 modules)
- ✓ Compiled in 2.3s (1763 modules)
+ ✓ Compiled /favicon.ico in 981ms (516 modules)
+ GET /favicon.ico 200 in 1186ms
+ GET / 200 in 339ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2s (1128 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/lekhanhcong/05_AI_Code/01_Web_Demo_Tool/hue-datacenter-visualization/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/lekhanhcong/05_AI_Code/01_Web_Demo_Tool/hue-datacenter-visualization/.next/server/pages/_document.js'
+}
+ GET / 500 in 9698ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1781ms (558 modules)
+ GET /favicon.ico 200 in 2129ms
+[?25h

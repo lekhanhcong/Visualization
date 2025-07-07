@@ -1,0 +1,63 @@
+{
+  "testSuite": "Hue Datacenter Visualization v2.03",
+  "timestamp": "2025-07-07T09:16:46.340Z",
+  "baseUrl": "http://localhost:3000",
+  "tests": [
+    {
+      "name": "1. Initial Page Load",
+      "status": "PASSED",
+      "duration": "3283ms",
+      "timestamp": "2025-07-07T09:16:53.204Z"
+    },
+    {
+      "name": "2. Redundancy Button Visibility",
+      "status": "PASSED",
+      "duration": "69ms",
+      "timestamp": "2025-07-07T09:16:53.273Z"
+    },
+    {
+      "name": "3. Redundancy Modal Open",
+      "status": "PASSED",
+      "duration": "3612ms",
+      "timestamp": "2025-07-07T09:16:56.885Z"
+    },
+    {
+      "name": "4. Verify Modal Elements",
+      "status": "PASSED",
+      "duration": "5457ms",
+      "timestamp": "2025-07-07T09:17:02.342Z"
+    },
+    {
+      "name": "5. Animation Check",
+      "status": "PASSED",
+      "duration": "6884ms",
+      "timestamp": "2025-07-07T09:17:09.226Z"
+    },
+    {
+      "name": "6. Modal Close",
+      "status": "PASSED",
+      "duration": "2499ms",
+      "timestamp": "2025-07-07T09:17:11.725Z"
+    },
+    {
+      "name": "7. Console Error Check",
+      "status": "PASSED",
+      "duration": "1ms",
+      "timestamp": "2025-07-07T09:17:11.729Z"
+    },
+    {
+      "name": "8. Responsive Check",
+      "status": "PASSED",
+      "duration": "5496ms",
+      "timestamp": "2025-07-07T09:17:17.225Z"
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "errors": [],
+    "successRate": "100%",
+    "totalErrors": 0
+  }
+}

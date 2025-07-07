@@ -55,11 +55,11 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
               text: '500KV ONSITE GRID',
               position: { x: '50%', y: '85%' },
               style: {
-                fontSize: '24px',
+                fontSize: '18px',
                 fontWeight: 'bold',
-                color: '#FF0000',
+                color: '#00BFFF',
                 textAlign: 'center',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+                textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,191,255,0.5)'
               }
             }
           }
@@ -89,7 +89,7 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
   }
 
   const currentImage = isShowing2N1 ? imageConfig.images['2n1'] : imageConfig.images.default;
-  const buttonText = isShowing2N1 ? 'Back to Main' : 'Show 2N+1 Redundancy';
+  const buttonText = isShowing2N1 ? 'Main' : 'Show 2N+1 Redundancy';
   const textOverlay = imageConfig.textOverlays['2n1'];
 
   return (
@@ -119,11 +119,14 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
             }}
           >
             <div
-              className="px-4 py-2 rounded-lg bg-black bg-opacity-60 backdrop-blur-sm border border-red-500"
+              className="px-3 py-1 rounded-lg bg-black bg-opacity-70 backdrop-blur-sm border border-cyan-400"
               style={{
-                ...textOverlay.style,
-                fontSize: 'clamp(16px, 2.5vw, 28px)', // Responsive font size
-                animation: 'fadeInScale 0.5s ease-out'
+                fontSize: 'clamp(14px, 1.8vw, 20px)', // Smaller responsive font size
+                fontWeight: 'bold',
+                color: '#00BFFF', // Cyan/ocean blue color
+                textAlign: 'center',
+                textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,191,255,0.5)',
+                animation: 'oceanGlow 2s ease-in-out infinite alternate'
               }}
             >
               {textOverlay.text}
@@ -148,7 +151,6 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
         aria-label={buttonText}
         data-testid="simple-redundancy-toggle"
       >
-        <span className="text-lg" role="img" aria-label="lightning">⚡</span>
         <span className="whitespace-nowrap">
           {isLoading ? 'Loading...' : buttonText}
         </span>
@@ -164,6 +166,24 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
           100% {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
+          }
+        }
+        
+        @keyframes oceanGlow {
+          0% {
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,191,255,0.5), 0 0 20px rgba(0,191,255,0.3);
+            border-color: #00BFFF;
+            transform: scale(1);
+          }
+          50% {
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,191,255,0.8), 0 0 30px rgba(0,191,255,0.5), 0 0 40px rgba(0,191,255,0.3);
+            border-color: #87CEEB;
+            transform: scale(1.02);
+          }
+          100% {
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,191,255,0.6), 0 0 35px rgba(0,191,255,0.4);
+            border-color: #40E0D0;
+            transform: scale(1);
           }
         }
       `}</style>

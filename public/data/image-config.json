@@ -9,18 +9,18 @@
   },
   "images": {
     "default": "/images/Power.png",
-    "2n1": "/images/Power_2N1.PNG"
+    "2n1": "/images/Power_2N1.png"
   },
   "textOverlays": {
     "2n1": {
       "text": "500KV ONSITE GRID",
       "position": { "x": "50%", "y": "85%" },
       "style": {
-        "fontSize": "24px",
+        "fontSize": "18px",
         "fontWeight": "bold",
-        "color": "#FF0000",
+        "color": "#00BFFF",
         "textAlign": "center",
-        "textShadow": "2px 2px 4px rgba(0,0,0,0.8)"
+        "textShadow": "2px 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,191,255,0.5)"
       }
     }
   }

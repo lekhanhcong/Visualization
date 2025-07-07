@@ -1,0 +1,131 @@
+{
+  "timestamp": "2025-07-07T18:35:53.923Z",
+  "testResults": {
+    "passed": 5,
+    "failed": 1,
+    "errors": [
+      "❌ Test execution error: locator.isVisible: Error: strict mode violation: locator('text=Hue Hi Tech Park') resolved to 3 elements:\n    1) <h1 class=\"text-lg font-bold text-slate-900\">Hue Hi Tech Park</h1> aka getByRole('heading', { name: 'Hue Hi Tech Park' })\n    2) <div class=\"text-slate-600\">© 2024 Hue Hi Tech Park - Simple 2N+1 Redundancy …</div> aka getByText('© 2024 Hue Hi Tech Park -')\n    3) <title>Hue Hi Tech Park - 300MW AI Data Center Visualiza…</title> aka getByText('Hue Hi Tech Park - 300MW AI')\n\nCall log:\n\u001b[2m    - checking visibility of locator('text=Hue Hi Tech Park')\u001b[22m\n"
+    ],
+    "details": [
+      "✅ Initial state: Default view loaded correctly",
+      "✅ 2N+1 state: Button text updated correctly",
+      "✅ 2N+1 state: Text overlay \"500KV ONSITE GRID\" visible",
+      "✅ Return state: Button text reverted correctly",
+      "✅ Stability test: 3 cycles completed successfully"
+    ]
+  },
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "timestamp": "2025-07-07T18:35:37.035Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 TTI: {value: 11, rating: good, unit: ms}",
+      "timestamp": "2025-07-07T18:35:37.824Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 Memory: {value: 46, rating: needs-improvement, unit: MB}",
+      "timestamp": "2025-07-07T18:35:37.824Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FCP: {value: 408, rating: good, unit: ms}",
+      "timestamp": "2025-07-07T18:35:37.824Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 TTFB: {value: 131, rating: good, unit: ms}",
+      "timestamp": "2025-07-07T18:35:37.824Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 9, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:38.913Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 59, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:39.727Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FID-Custom: {value: 39, rating: needs-improvement, unit: ms}",
+      "timestamp": "2025-07-07T18:35:39.738Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 LCP: {value: 3292, rating: needs-improvement, unit: ms}",
+      "timestamp": "2025-07-07T18:35:39.738Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 57, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:40.721Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:41.737Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:42.739Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:43.737Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:44.766Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:45.771Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:46.771Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:47.791Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:48.809Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:49.804Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:50.805Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:51.823Z"
+    },
+    {
+      "type": "log",
+      "text": "🔍 FPS: {value: 60, rating: needs-improvement, unit: fps}",
+      "timestamp": "2025-07-07T18:35:52.821Z"
+    }
+  ],
+  "verdict": "FAIL",
+  "readyForProduction": false
+}

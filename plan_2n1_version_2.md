@@ -113,8 +113,8 @@ Hiệu chỉnh Feature 2N+1 thành phiên bản siêu đơn giản:
 - [x] 10.1 Update README with new simplified feature
 - [x] 10.2 Update @plan.md with completed work
 - [x] 10.3 Create test_2n1_ver02.md with test results
-- [ ] 10.4 Commit changes to repository
-- [ ] 10.5 Deploy and verify in production
+- [x] 10.4 Commit changes to repository
+- [x] 10.5 Deploy and verify in production
 
 ## 🎯 Expected Outcome
 Feature 2N+1 sẽ trở thành:
