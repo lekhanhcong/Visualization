@@ -1,17 +1,25 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "regions": ["sin1"],
+  "version": 2,
+  "name": "hue-datacenter-visualization",
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
   "env": {
-    "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true",
-    "NEXT_PUBLIC_ENABLE_REDUNDANCY": "true"
+    "NEXT_PUBLIC_ENABLE_REDUNDANCY": "true",
+    "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true"
   },
   "build": {
     "env": {
-      "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true",
-      "NEXT_PUBLIC_ENABLE_REDUNDANCY": "true"
+      "NEXT_PUBLIC_ENABLE_REDUNDANCY": "true",
+      "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true"
+    }
+  },
+  "functions": {
+    "src/app/**": {
+      "runtime": "@vercel/next@latest"
     }
   }
 }
