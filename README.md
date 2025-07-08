@@ -46,3 +46,4 @@ When using Claude Code or AI assistants with this project, please ensure they fo
 - Must follow the workflow sequence
 
 See `.claude_instructions` for detailed rules.
+# Trigger deployment
