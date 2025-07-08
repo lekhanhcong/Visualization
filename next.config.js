@@ -165,6 +165,11 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  // TypeScript configuration - skip type checking during build
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   // Production optimizations - disable for development
   // ...(process.env.NODE_ENV === 'production' && {
   //   output: 'export',

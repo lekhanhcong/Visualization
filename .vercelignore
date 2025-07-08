@@ -1,0 +1,31 @@
+# Testing files
+tests/
+test-*.js
+*.test.js
+*.test.ts
+*.test.tsx
+playwright.config.ts
+playwright.comprehensive.config.ts
+playwright.coverage.config.ts
+
+# Development files
+.env.local
+.env.development
+
+# Documentation
+*.md
+!README.md
+
+# Backup files
+backup/
+Version_02/
+
+# Logs and temp files
+*.log
+.DS_Store
+.cursorrules
+.claude_instructions
+
+# Development scripts
+final-stability-test.js
+test-app-stability.mjs

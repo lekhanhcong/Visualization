@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["sin1"],
+  "env": {
+    "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_SKIP_TYPE_CHECK": "true"
+    }
+  }
+}

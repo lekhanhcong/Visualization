@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbopack",
-    "build": "NEXT_PUBLIC_SKIP_TYPE_CHECK=true next build",
+    "build": "next build",
     "build:with-types": "next build",
     "start": "next start",
+    "vercel-build": "npm run build",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "prepare": "husky || true",
