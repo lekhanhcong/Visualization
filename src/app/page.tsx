@@ -36,7 +36,7 @@ export default function Home() {
                   Hue Hi Tech Park
                 </h1>
                 <p className="text-xs text-slate-600">
-                  300MW AI Data Center Visualization - Simple 2N+1
+                  300MW AI Data Center Visualization
                 </p>
               </div>
             </div>
