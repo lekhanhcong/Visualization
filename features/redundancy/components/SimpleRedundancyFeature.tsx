@@ -48,7 +48,7 @@ export const SimpleRedundancyFeature: React.FC<SimpleRedundancyFeatureProps> = (
         setImageConfig({
           images: {
             default: '/images/Power.png',
-            '2n1': '/images/Power_2N1.png'
+            '2n1': '/images/Power_2N1.PNG'
           },
           textOverlays: {
             '2n1': {
