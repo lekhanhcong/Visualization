@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react'
 import { NotificationModel, NotificationStatus } from '../notification-service'
 import { Priority } from '../../models/interfaces'
-import { withRedundancyFeature } from '../../providers/RedundancyProvider'
 
 /**
  * Toast props
@@ -24,17 +23,15 @@ interface NotificationToastProps {
 /**
  * Toast notification component
  */
-export const NotificationToast = withRedundancyFeature<NotificationToastProps>(
-  'NotificationToast',
-  ({ 
-    notification, 
-    onClose, 
-    onRead, 
-    autoClose = true, 
-    duration = 5000,
-    position = 'top-right',
-    showActions = true
-  }) => {
+export const NotificationToast: React.FC<NotificationToastProps> = ({ 
+  notification, 
+  onClose, 
+  onRead, 
+  autoClose = true, 
+  duration = 5000,
+  position = 'top-right',
+  showActions = true
+}) => {
     const [isVisible, setIsVisible] = useState(true)
     const [isRemoving, setIsRemoving] = useState(false)
     const [progress, setProgress] = useState(100)
@@ -225,8 +222,7 @@ export const NotificationToast = withRedundancyFeature<NotificationToastProps>(
         })
       ])
     ])
-  }
-)
+}
 
 /**
  * Toast container component
@@ -241,17 +237,15 @@ interface NotificationToastContainerProps {
   duration?: number
 }
 
-export const NotificationToastContainer = withRedundancyFeature<NotificationToastContainerProps>(
-  'NotificationToastContainer',
-  ({ 
-    notifications, 
-    onClose, 
-    onRead, 
-    maxToasts = 5,
-    position = 'top-right',
-    autoClose = true,
-    duration = 5000
-  }) => {
+export const NotificationToastContainer: React.FC<NotificationToastContainerProps> = ({ 
+  notifications, 
+  onClose, 
+  onRead, 
+  maxToasts = 5,
+  position = 'top-right',
+  autoClose = true,
+  duration = 5000
+}) => {
     // Filter and limit notifications to show as toasts
     const toastNotifications = notifications
       .filter(n => 
@@ -296,5 +290,4 @@ export const NotificationToastContainer = withRedundancyFeature<NotificationToas
         })
       )
     )
-  }
-)
+}

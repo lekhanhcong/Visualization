@@ -14,7 +14,6 @@ import {
   getNotificationService
 } from './notification-service'
 import { Priority } from '../models/interfaces'
-import { withRedundancyFeature } from '../providers/RedundancyProvider'
 
 /**
  * Notification context state
@@ -174,9 +173,7 @@ interface NotificationProviderProps {
 /**
  * Notification provider component
  */
-export const NotificationProvider = withRedundancyFeature<NotificationProviderProps>(
-  'NotificationProvider',
-  ({ children, userId, maxNotifications = 100, autoRefreshInterval = 30000 }) => {
+export const NotificationProvider: React.FC<NotificationProviderProps> = ({ children, userId, maxNotifications = 100, autoRefreshInterval = 30000 }) => {
     const [state, dispatch] = useReducer(notificationReducer, initialState)
     const serviceRef = useRef<NotificationService>(getNotificationService())
     const intervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -346,8 +343,7 @@ export const NotificationProvider = withRedundancyFeature<NotificationProviderPr
       { value: contextValue },
       children
     )
-  }
-)
+}
 
 /**
  * Hook to use notification context
