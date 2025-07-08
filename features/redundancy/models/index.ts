@@ -269,23 +269,23 @@ export const modelUtils = {
   /**
    * Check if a line is overloaded
    */
-  isLineOverloaded: (line: LineModel, threshold = 0.9): boolean => {
+  isLineOverloaded: (line: import('./interfaces').LineModel, threshold = 0.9): boolean => {
     return line.loadFactor > threshold
   },
 
   /**
    * Calculate total capacity of substations
    */
-  calculateTotalCapacity: (substations: SubstationModel[]): number => {
+  calculateTotalCapacity: (substations: import('./interfaces').SubstationModel[]): number => {
     return substations.reduce((total, substation) => {
-      return total + (substation.status === EntityStatus.ACTIVE ? substation.powerRating : 0)
+      return total + (substation.status === 'ACTIVE' ? substation.powerRating : 0)
     }, 0)
   },
 
   /**
    * Calculate total current load
    */
-  calculateTotalLoad: (substations: SubstationModel[]): number => {
+  calculateTotalLoad: (substations: import('./interfaces').SubstationModel[]): number => {
     return substations.reduce((total, substation) => {
       return total + substation.currentLoad
     }, 0)
@@ -294,28 +294,28 @@ export const modelUtils = {
   /**
    * Get substations by redundancy group
    */
-  getSubstationsByGroup: (substations: SubstationModel[], group: string): SubstationModel[] => {
+  getSubstationsByGroup: (substations: import('./interfaces').SubstationModel[], group: string): import('./interfaces').SubstationModel[] => {
     return substations.filter(substation => substation.redundancyGroup === group)
   },
 
   /**
    * Get active alerts by severity
    */
-  getAlertsBySeverity: (alerts: AlertModel[], severity: Priority): AlertModel[] => {
+  getAlertsBySeverity: (alerts: import('./interfaces').AlertModel[], severity: import('./interfaces').Priority): import('./interfaces').AlertModel[] => {
     return alerts.filter(alert => alert.severity === severity && alert.status === 'ACTIVE')
   },
 
   /**
    * Check if redundancy pair is healthy
    */
-  isRedundancyPairHealthy: (pair: RedundancyPairModel): boolean => {
+  isRedundancyPairHealthy: (pair: import('./interfaces').RedundancyPairModel): boolean => {
     return pair.status === 'NORMAL'
   },
 
   /**
    * Calculate system health score
    */
-  calculateHealthScore: (health: SystemHealthModel): number => {
+  calculateHealthScore: (health: import('./interfaces').SystemHealthModel): number => {
     const subsystemScores = Object.values(health.subsystemHealth)
     const avgSubsystemHealth = subsystemScores.reduce((sum, score) => sum + score, 0) / subsystemScores.length
     
@@ -371,15 +371,15 @@ export const modelUtils = {
   /**
    * Get status color for UI display
    */
-  getStatusColor: (status: EntityStatus): string => {
+  getStatusColor: (status: import('./interfaces').EntityStatus): string => {
     const colors = {
-      [EntityStatus.ACTIVE]: '#22c55e', // green
-      [EntityStatus.STANDBY]: '#3b82f6', // blue
-      [EntityStatus.MAINTENANCE]: '#f59e0b', // amber
-      [EntityStatus.FAULT]: '#ef4444', // red
-      [EntityStatus.OFFLINE]: '#6b7280', // gray
-      [EntityStatus.INACTIVE]: '#9ca3af', // light gray
-      [EntityStatus.EMERGENCY]: '#dc2626' // dark red
+      'ACTIVE': '#22c55e', // green
+      'STANDBY': '#3b82f6', // blue
+      'MAINTENANCE': '#f59e0b', // amber
+      'FAULT': '#ef4444', // red
+      'OFFLINE': '#6b7280', // gray
+      'INACTIVE': '#9ca3af', // light gray
+      'EMERGENCY': '#dc2626' // dark red
     }
     return colors[status] || '#6b7280'
   },
@@ -387,12 +387,12 @@ export const modelUtils = {
   /**
    * Get priority color for UI display
    */
-  getPriorityColor: (priority: Priority): string => {
+  getPriorityColor: (priority: import('./interfaces').Priority): string => {
     const colors = {
-      [Priority.LOW]: '#22c55e', // green
-      [Priority.MEDIUM]: '#f59e0b', // amber
-      [Priority.HIGH]: '#f97316', // orange
-      [Priority.CRITICAL]: '#ef4444' // red
+      'LOW': '#22c55e', // green
+      'MEDIUM': '#f59e0b', // amber
+      'HIGH': '#f97316', // orange
+      'CRITICAL': '#ef4444' // red
     }
     return colors[priority] || '#6b7280'
   }
@@ -402,23 +402,23 @@ export const modelUtils = {
  * Type guards for runtime type checking
  */
 export const typeGuards = {
-  isSubstation: (obj: any): obj is SubstationModel => {
+  isSubstation: (obj: any): obj is import('./interfaces').SubstationModel => {
     return obj && typeof obj.id === 'string' && typeof obj.powerRating === 'number'
   },
 
-  isLine: (obj: any): obj is LineModel => {
+  isLine: (obj: any): obj is import('./interfaces').LineModel => {
     return obj && typeof obj.id === 'string' && typeof obj.capacity === 'number'
   },
 
-  isRedundancyPair: (obj: any): obj is RedundancyPairModel => {
+  isRedundancyPair: (obj: any): obj is import('./interfaces').RedundancyPairModel => {
     return obj && typeof obj.id === 'string' && typeof obj.primarySubstation === 'string'
   },
 
-  isSystemHealth: (obj: any): obj is SystemHealthModel => {
+  isSystemHealth: (obj: any): obj is import('./interfaces').SystemHealthModel => {
     return obj && typeof obj.overall === 'string' && typeof obj.redundancyLevel === 'number'
   },
 
-  isAlert: (obj: any): obj is AlertModel => {
+  isAlert: (obj: any): obj is import('./interfaces').AlertModel => {
     return obj && typeof obj.id === 'string' && typeof obj.severity === 'string'
   }
 }
