@@ -1,6 +1,6 @@
 {
   "name": "@redundancy/visual-testing",
-  "version": "1.0.0",
+  "version": "2.05.0",
   "description": "Visual regression testing for redundancy feature",
   "main": "visual-comparison.js",
   "scripts": {

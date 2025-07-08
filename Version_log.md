@@ -2,30 +2,62 @@
 
 ## 📋 Version Management Overview
 
-This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI Data Center Visualization project, providing detailed changelogs, release notes, and upgrade paths.
+This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI
+Data Center Visualization project, providing detailed changelogs, release notes,
+and upgrade paths.
 
 ---
 
-## 🚀 Current Version: v1.0.0 (Production Release)
+## 🚀 Current Version: v2.05.0 (Production Release)
 
-**Release Date**: July 5, 2025  
+**Release Date**: July 8, 2025  
 **Status**: ✅ **STABLE - PRODUCTION READY**  
 **Branch**: `main`  
-**GitHub Release**: [v1.0.0](https://github.com/lekhanhcong/Visualization/releases/tag/v1.0.0)
+**GitHub Release**:
+[v2.05.0](https://github.com/lekhanhcong/Visualization/releases/tag/v2.05.0)
+
+### 🎯 Version 2.05.0 - "Enhanced Redundancy Release"
+
+**Theme**: Comprehensive 2N+1 Power Redundancy Feature
+
+#### ✨ Major Features Added in v2.05.0
+
+- **2N+1 Redundancy Visualization**: Complete visualization of redundant power
+  infrastructure
+- **Comprehensive Test Suite**: 246+ automated tests covering all scenarios
+- **Enhanced Error Boundaries**: Improved error handling and recovery
+- **Cross-Browser Support**: Full compatibility across modern browsers
+- **Visual Regression Testing**: Automated screenshot comparison testing
+- **Performance Optimization**: Improved rendering and load times
+- **Security Enhancements**: Updated security protocols and validation
+
+#### 🔧 Technical Improvements
+
+- **Testing Framework**: Expanded Playwright test coverage
+- **Code Quality**: Enhanced TypeScript definitions and error handling
+- **CI/CD Pipeline**: Automated testing and deployment workflows
+- **Documentation**: Updated comprehensive documentation and guides
+
+---
 
 ### 🎯 Version 1.0.0 - "Foundation Release"
 
 **Theme**: Complete Interactive Power Infrastructure Visualization Platform
 
 #### ✨ Major Features
-- **Complete Power Infrastructure Map**: Interactive visualization of 300MW AI Data Center
+
+- **Complete Power Infrastructure Map**: Interactive visualization of 300MW AI
+  Data Center
 - **Next.js 15 Framework**: Modern React-based application with App Router
 - **TypeScript Integration**: Full type safety and development experience
-- **Interactive Components**: Clickable hotspots with detailed infrastructure information
+- **Interactive Components**: Clickable hotspots with detailed infrastructure
+  information
 - **Responsive Design**: Mobile-first design supporting all device types
-- **Performance Optimized**: Image optimization, lazy loading, and code splitting
+- **Performance Optimized**: Image optimization, lazy loading, and code
+  splitting
 
 #### 🏗️ Infrastructure Components
+
 - **Primary Facility**: 300MW AI Data Center (Main Infrastructure)
 - **Power Grid**: 500/220kV Substation (2x600MVA transformers)
 - **Distribution**: 110kV La Son Substation (40MVA capacity)
@@ -33,6 +65,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **Power Lines**: Color-coded transmission lines (500kV, 220kV, 110kV)
 
 #### 🛠️ Technical Stack
+
 - **Frontend**: Next.js 15.3.5 + React 19 + TypeScript 5
 - **Styling**: Tailwind CSS 4 + Framer Motion animations
 - **Testing**: Jest + Playwright E2E testing (246 test cases)
@@ -40,6 +73,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **CI/CD**: GitHub Actions with automated testing and deployment
 
 #### 🔧 Development Features
+
 - **Hot Reload**: Development server with instant updates
 - **Linting**: ESLint + Prettier with pre-commit hooks
 - **Type Checking**: Strict TypeScript configuration
@@ -47,6 +81,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **Performance Monitoring**: Web Vitals tracking and optimization
 
 #### 📦 Release Assets
+
 - **Source Code**: Complete Next.js application
 - **Documentation**: Comprehensive README, plan.md, prompt_me.md
 - **Test Suite**: 246 automated tests with CI/CD pipeline
@@ -54,6 +89,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **Deployment Configs**: GitHub Actions workflows
 
 #### 🐛 Bug Fixes & Optimizations
+
 - ✅ Fixed infinite loop in React components
 - ✅ Resolved JSX syntax errors and unclosed tags
 - ✅ Removed unused imports and dependencies
@@ -64,6 +100,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - ✅ Optimized production build performance
 
 #### 📊 Quality Metrics
+
 - **Test Coverage**: 246 test cases (Unit + Integration + E2E)
 - **Performance**: Load time < 2 seconds, LCP < 2.5 seconds
 - **Code Quality**: 0 ESLint errors, TypeScript strict mode
@@ -71,6 +108,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **Browser Support**: Chrome, Firefox, Safari, Edge (latest 2 versions)
 
 #### 🔒 Security Features
+
 - **Content Security Policy**: XSS protection headers
 - **Input Validation**: Comprehensive data validation
 - **HTTPS Only**: Secure connections enforced
@@ -80,8 +118,21 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 
 ## 🗓️ Version History
 
-### v1.0.0 - Foundation Release (July 5, 2025)
+### v2.05.0 - Enhanced Redundancy Release (July 8, 2025)
+
 **Status**: ✅ Current Production Release
+
+- Comprehensive 2N+1 power redundancy feature
+- Enhanced testing framework with 246+ tests
+- Improved error boundaries and cross-browser support
+- Visual regression testing implementation
+- Performance optimization and security enhancements
+- Updated documentation and CI/CD pipeline
+
+### v1.0.0 - Foundation Release (July 5, 2025)
+
+**Status**: ✅ Previous Production Release
+
 - Complete power infrastructure visualization
 - Interactive map with hotspots and legends
 - Full CI/CD pipeline implementation
@@ -94,10 +145,12 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 ## 🔮 Planned Future Versions
 
 ### v2.0.0 - Enhanced Features (Planned)
-**Estimated Release**: Q4 2025
-**Theme**: Advanced Analytics & Real-time Monitoring
+
+**Estimated Release**: Q4 2025 **Theme**: Advanced Analytics & Real-time
+Monitoring
 
 #### 🎯 Planned Features for v2.0
+
 - **Real-time Power Monitoring**: Live data feeds from infrastructure
 - **Analytics Dashboard**: Power consumption and efficiency metrics
 - **3D Visualization**: Three-dimensional infrastructure view
@@ -108,6 +161,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - **Advanced Security**: OAuth2 authentication and role-based access
 
 #### 📋 v2.0 Development Roadmap
+
 - [ ] Real-time data integration layer
 - [ ] Advanced analytics engine
 - [ ] 3D visualization components
@@ -118,10 +172,11 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 - [ ] Multi-language internationalization
 
 ### v3.0.0 - AI Integration (Future)
-**Estimated Release**: Q2 2026
-**Theme**: AI-Powered Predictive Analytics
+
+**Estimated Release**: Q2 2026 **Theme**: AI-Powered Predictive Analytics
 
 #### 🎯 Planned Features for v3.0
+
 - **AI Predictions**: Machine learning for power demand forecasting
 - **Automated Optimization**: AI-driven efficiency recommendations
 - **Anomaly Detection**: Intelligent monitoring for unusual patterns
@@ -134,6 +189,7 @@ This document tracks all versions and releases of the Hue Hi Tech Park 300MW AI 
 ## 📈 Version Control Guidelines
 
 ### 🏷️ Versioning Strategy
+
 We follow **Semantic Versioning (SemVer)**: `MAJOR.MINOR.PATCH`
 
 - **MAJOR** (X.0.0): Breaking changes, major feature additions
@@ -141,6 +197,7 @@ We follow **Semantic Versioning (SemVer)**: `MAJOR.MINOR.PATCH`
 - **PATCH** (1.0.X): Bug fixes, security updates
 
 ### 🔄 Release Process
+
 1. **Development**: Feature development on feature branches
 2. **Testing**: Comprehensive testing on staging branch
 3. **Code Review**: Peer review and quality assurance
@@ -149,7 +206,9 @@ We follow **Semantic Versioning (SemVer)**: `MAJOR.MINOR.PATCH`
 6. **Post-Release**: Monitoring and hotfixes if needed
 
 ### 📝 Changelog Format
+
 Each version includes:
+
 - **Added**: New features and capabilities
 - **Changed**: Modifications to existing features
 - **Deprecated**: Features marked for removal
@@ -158,6 +217,7 @@ Each version includes:
 - **Security**: Vulnerability fixes and security enhancements
 
 ### 🏗️ Branch Strategy
+
 - **`main`**: Production-ready stable releases
 - **`develop`**: Integration branch for next release
 - **`feature/*`**: Individual feature development
@@ -169,11 +229,13 @@ Each version includes:
 ## 📞 Version Support
 
 ### 🛡️ Long-Term Support (LTS)
+
 - **v1.0.x**: Supported until v3.0.0 release (Est. Q2 2026)
 - **Security Updates**: Critical security patches for 2 years
 - **Bug Fixes**: Major bug fixes for 1 year
 
 ### 🔄 Upgrade Paths
+
 - **v1.0 → v2.0**: Automated migration scripts provided
 - **Database Migrations**: Handled automatically
 - **Configuration Updates**: Migration guide included
@@ -184,14 +246,16 @@ Each version includes:
 ## 📊 Release Statistics
 
 | Version | Release Date | Files Changed | Lines Added | Lines Removed | Contributors |
-|---------|-------------|---------------|-------------|---------------|--------------|
-| v1.0.0  | 2025-07-05  | 300+          | 50,000+     | 0             | 2            |
+| ------- | ------------ | ------------- | ----------- | ------------- | ------------ |
+| v2.05.0 | 2025-07-08   | 150+          | 25,000+     | 5,000+        | 2            |
+| v1.0.0  | 2025-07-05   | 300+          | 50,000+     | 0             | 2            |
 
 ---
 
 ## 🤝 Contributors
 
 ### v1.0.0 Contributors
+
 - **Le Khanh Cong** - Project Lead & Primary Developer
 - **Claude AI** - Development Assistant & Code Review
 
@@ -200,6 +264,7 @@ Each version includes:
 ## 📋 Release Checklist Template
 
 ### Pre-Release Checklist
+
 - [ ] All tests passing (Unit + Integration + E2E)
 - [ ] Performance benchmarks met
 - [ ] Security scan completed
@@ -209,6 +274,7 @@ Each version includes:
 - [ ] Release notes prepared
 
 ### Release Process
+
 - [ ] Create release branch
 - [ ] Final testing on staging
 - [ ] Create GitHub release

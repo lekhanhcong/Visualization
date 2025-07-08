@@ -1,6 +1,6 @@
 {
   "name": "redundancy-e2e-tests",
-  "version": "1.0.0",
+  "version": "2.05.0",
   "description": "E2E tests for redundancy feature using Playwright",
   "scripts": {
     "test": "playwright test",

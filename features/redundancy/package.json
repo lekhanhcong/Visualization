@@ -1,6 +1,6 @@
 {
   "name": "@hue-datacenter/redundancy-feature",
-  "version": "1.0.0",
+  "version": "2.05.0",
   "description": "2N+1 Redundancy visualization feature for Hue Hi Tech Park Data Center",
   "main": "index.ts",
   "private": true,
