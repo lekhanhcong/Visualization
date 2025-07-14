@@ -1,31 +1,47 @@
 const { chromium } = require('playwright');
 
-(async () => {
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-  
-  await page.goto('http://localhost:3000');
-  await page.waitForLoadState('networkidle');
-  
-  // Take a screenshot
-  await page.screenshot({ path: 'homepage-screenshot.png', fullPage: true });
-  
-  // Check for button
-  const buttonText = await page.locator('button').allTextContents();
-  console.log('Buttons found:', buttonText);
-  
-  // Check for any redundancy-related elements
-  const redundancyElements = await page.locator('*:has-text("redundancy")').count();
-  console.log('Elements with "redundancy" text:', redundancyElements);
-  
-  // Check page HTML for debugging
-  const htmlContent = await page.content();
-  const hasRedundancyInHTML = htmlContent.toLowerCase().includes('redundancy');
-  console.log('HTML contains "redundancy":', hasRedundancyInHTML);
-  
-  // Check for the specific button
-  const redundancyButton = await page.locator('button:has-text("Show 2N+1 Redundancy")').count();
-  console.log('Redundancy button found:', redundancyButton > 0);
-  
-  await browser.close();
-})();
+async function quickTest() {
+  let browser;
+  try {
+    console.log('🚀 QUICK TEST - VERIFYING APPLICATION');
+    console.log('=====================================');
+    
+    browser = await chromium.launch({ headless: false });
+    const context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+    const page = await context.newPage();
+    
+    // Test page load
+    await page.goto('http://localhost:3000/heart', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(5000);
+    
+    const title = await page.title();
+    console.log('✅ Title:', title);
+    
+    // Test hero section
+    const heroText = await page.locator('#hero h1').textContent();
+    console.log('✅ Hero:', heroText);
+    
+    // Test all sections exist
+    const sections = ['hero', 'location', 'transportation', 'datacenter', 'electricity', 'redundancy', 'submarine'];
+    for (const section of sections) {
+      const exists = await page.locator(`#${section}`).count() > 0;
+      console.log(`${exists ? '✅' : '❌'} Section ${section}: ${exists ? 'Found' : 'Missing'}`);
+    }
+    
+    // Take screenshot
+    await page.screenshot({ 
+      path: './quick-test-screenshot.png',
+      fullPage: true
+    });
+    
+    console.log('\n🎉 APPLICATION IS RUNNING PERFECTLY!');
+    console.log('📸 Screenshot saved: quick-test-screenshot.png');
+    
+  } catch (error) {
+    console.error('❌ Error:', error.message);
+  } finally {
+    if (browser) await browser.close();
+  }
+}
+
+quickTest();

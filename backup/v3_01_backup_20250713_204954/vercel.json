@@ -1,0 +1,5 @@
+{
+  "env": {
+    "NEXT_PUBLIC_ENABLE_REDUNDANCY": "true"
+  }
+}

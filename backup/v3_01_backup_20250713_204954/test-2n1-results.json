@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-07-07T16:17:32.738Z",
+  "tests": [
+    {
+      "name": "Initial Page Load",
+      "status": "passed",
+      "duration": 2965,
+      "error": null,
+      "details": {
+        "title": "Hue Hi Tech Park - 300MW AI Data Center Visualization",
+        "buttonText": "⚡Show 2N+1 Redundancy",
+        "backgroundVisible": true,
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "Show 2N+1 Redundancy",
+      "status": "passed",
+      "duration": 1827,
+      "error": null,
+      "details": {
+        "redundancyImageVisible": true,
+        "overlayVisible": true,
+        "overlayStyle": {
+          "color": "rgb(255, 0, 0)",
+          "fontSize": "28px",
+          "position": {
+            "left": "",
+            "top": ""
+          }
+        },
+        "buttonText": "⚡Back to Main"
+      }
+    },
+    {
+      "name": "Return to Main View",
+      "status": "passed",
+      "duration": 1583,
+      "error": null,
+      "details": {
+        "mainImageVisible": true,
+        "overlayRemoved": true,
+        "buttonText": "⚡Show 2N+1 Redundancy"
+      }
+    },
+    {
+      "name": "Multiple Toggle Cycles",
+      "status": "passed",
+      "duration": 9248,
+      "error": null,
+      "details": {
+        "cyclesCompleted": 5,
+        "finalState": "main"
+      }
+    },
+    {
+      "name": "Console Error Detection",
+      "status": "passed",
+      "duration": 4510,
+      "error": null,
+      "details": {
+        "errorCount": 0,
+        "errors": []
+      }
+    },
+    {
+      "name": "Performance and Transitions",
+      "status": "passed",
+      "duration": 1732,
+      "error": null,
+      "details": {
+        "transitionTo2N1": 643,
+        "transitionToMain": 586,
+        "smooth": true
+      }
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}

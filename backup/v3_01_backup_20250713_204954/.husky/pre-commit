@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged for code quality checks
+npx lint-staged
+
+# Run unit tests for affected files
+npm run test -- --bail --findRelatedTests $(git diff --cached --name-only | grep -E '\.(js|jsx|ts|tsx)$' | tr '\n' ' ')
+
+# Check if redundancy tests pass
+npm run test:redundancy -- --passWithNoTests

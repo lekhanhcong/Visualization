@@ -144,13 +144,27 @@
 }
 
 :root {
+  /* HEART Website Primary Colors */
+  --primary-blue: #0099DA;
+  --white: #FFFFFF;
+  --dark-gray: #1A1A1A;
+  --medium-gray: #666666;
+  --light-gray: #F8F8F8;
+  
+  /* HEART Website Secondary Colors */
+  --green-accent: #00563F;
+  --border-divider: #E5E5E5;
+  
   /* Infrastructure colors */
-  --color-500kv: #ef4444; /* red-500 */
-  --color-220kv: #3b82f6; /* blue-500 */
-  --color-110kv: #ec4899; /* pink-500 */
+  --color-500kv: #E74C3C; /* Red for 500kV */
+  --color-220kv: #3498DB; /* Blue for 220kV */
+  --color-110kv: #27AE60; /* Green for 110kV */
   --color-datacenter: #10b981; /* emerald-500 */
   --color-project-boundary: #fbbf24; /* amber-400 */
   --color-accent: #8b5cf6; /* violet-500 */
+  
+  /* Footer color */
+  --footer-bg: #4A7C59;
 
   /* Spacing scale */
   --space-1: 0.25rem;
@@ -159,6 +173,7 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --space-20: 5rem;
 
   /* Animation timing */
   --duration-fast: 150ms;
@@ -187,9 +202,55 @@
     border-color: hsl(var(--border));
     outline-color: hsl(var(--ring) / 0.5);
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+  
+  /* HEART Typography System */
+  .heart-h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    color: var(--dark-gray);
+  }
+  
+  .heart-h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--dark-gray);
+  }
+  
+  .heart-h3 {
+    font-size: clamp(24px, 3.5vw, 32px);
+    font-weight: 600;
+    color: var(--dark-gray);
+  }
+  
+  .heart-h4 {
+    font-size: clamp(20px, 3vw, 24px);
+    font-weight: 600;
+    color: var(--dark-gray);
+  }
+  
+  .heart-body {
+    font-size: 16px;
+    color: var(--medium-gray);
+  }
+  
+  .heart-nav {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--medium-gray);
+  }
+  
+  .heart-small {
+    font-size: 14px;
+    color: var(--medium-gray);
   }
 }
 
@@ -250,4 +311,39 @@
 
 .substation-pulse {
   animation: pulse-substation 2s ease-in-out infinite;
+}
+
+/* HEART Website Specific Styles */
+.heart-section {
+  scroll-snap-align: start;
+  scroll-margin-top: 90px; /* Navigation height */
+}
+
+/* Animation utilities */
+.heart-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out;
+}
+
+.heart-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image crossfade effect */
+.heart-crossfade {
+  transition: opacity 500ms ease-in-out;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
 }

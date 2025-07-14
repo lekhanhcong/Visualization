@@ -1,0 +1,341 @@
+/* Animation Classes for Power Infrastructure Visualization */
+
+/* Power.png Animation Classes */
+.power-image-enter {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.power-image-exit {
+  opacity: 0;
+  transform: scale(0.95) translateZ(0);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.power-image-stable {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  will-change: auto;
+}
+
+/* Power_2N1.png Animation Classes */
+.power-2n1-enter {
+  opacity: 0;
+  transform: scale(1.05) translateZ(0);
+  transition: opacity 1.5s ease-in, transform 1.5s ease-in;
+}
+
+.power-2n1-active {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.power-2n1-stable {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  will-change: auto;
+}
+
+/* Advanced Animation Controls */
+.animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* GPU Acceleration Classes */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+.gpu-optimized-text {
+  transform: translateZ(0);
+  will-change: transform, opacity, filter;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Animation Timing Classes */
+.timing-ease-in-out-cubic {
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.timing-ease-out-quart {
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.timing-ease-in-quart {
+  animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+.timing-elastic-out {
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Crossfade Animation */
+@keyframes crossfade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    filter: blur(0px) brightness(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(0.98) translateZ(0);
+    filter: blur(0.5px) brightness(0.95);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.96) translateZ(0);
+    filter: blur(1px) brightness(0.9);
+  }
+  75% {
+    opacity: 0.2;
+    transform: scale(0.94) translateZ(0);
+    filter: blur(1.5px) brightness(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92) translateZ(0);
+    filter: blur(2px) brightness(0.8);
+  }
+}
+
+@keyframes crossfade-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.08) translateZ(0);
+    filter: blur(2px) brightness(1.2);
+  }
+  25% {
+    opacity: 0.2;
+    transform: scale(1.06) translateZ(0);
+    filter: blur(1.5px) brightness(1.15);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.04) translateZ(0);
+    filter: blur(1px) brightness(1.1);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1.02) translateZ(0);
+    filter: blur(0.5px) brightness(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    filter: blur(0px) brightness(1);
+  }
+}
+
+/* Animation State Classes */
+.animation-idle {
+  animation-play-state: paused;
+  will-change: auto;
+}
+
+.animation-playing {
+  animation-play-state: running;
+  will-change: transform, opacity, filter;
+}
+
+.animation-paused {
+  animation-play-state: paused;
+  will-change: transform, opacity, filter;
+}
+
+.animation-completed {
+  animation-play-state: paused;
+  will-change: auto;
+  animation-fill-mode: forwards;
+}
+
+/* Performance Optimization Classes */
+.render-optimized {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px 800px;
+}
+
+.composition-optimized {
+  isolation: isolate;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Memory Efficient Classes */
+.low-memory-mode {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+.high-performance-mode {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+}
+
+/* Animation Error States */
+.animation-error {
+  opacity: 0.5;
+  filter: grayscale(100%) blur(1px);
+  cursor: not-allowed;
+  animation: error-pulse 2s ease-in-out infinite;
+}
+
+@keyframes error-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.01);
+  }
+}
+
+.animation-loading {
+  opacity: 0.8;
+  animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* Accessibility Classes */
+@media (prefers-reduced-motion: reduce) {
+  .power-image-enter,
+  .power-image-exit,
+  .power-2n1-enter,
+  .power-2n1-active,
+  .crossfade-out,
+  .crossfade-in {
+    animation: none !important;
+    transition: opacity 0.2s ease-in-out !important;
+  }
+  
+  .reduce-motion {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .power-image-enter,
+  .power-image-exit,
+  .power-2n1-enter,
+  .power-2n1-active {
+    filter: contrast(1.5) brightness(1.2);
+  }
+}
+
+/* Debug Classes */
+.debug-animation {
+  outline: 2px dashed red;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.debug-animation::before {
+  content: 'DEBUG: Animation Active';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: red;
+  color: white;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-family: monospace;
+  z-index: 9999;
+}
+
+.debug-performance {
+  outline: 2px dashed orange;
+}
+
+.debug-performance::after {
+  content: 'PERF: ' attr(data-fps) ' fps';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: orange;
+  color: black;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-family: monospace;
+  z-index: 9999;
+}
+
+/* Responsive Animation Classes */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    animation-duration: 2s !important;
+    will-change: transform !important;
+  }
+  
+  .mobile-reduced-quality {
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-minimal {
+    animation: none !important;
+    transition: opacity 0.3s ease-in-out !important;
+  }
+}
+
+/* Print Media */
+@media print {
+  .animation-container,
+  .power-image-enter,
+  .power-image-exit,
+  .power-2n1-enter,
+  .power-2n1-active {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-optimized {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-optimized {
+    animation-duration: 1.5s !important;
+    transform: translateZ(0);
+    -webkit-tap-highlight-color: transparent;
+  }
+}
