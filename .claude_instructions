@@ -1,0 +1,31 @@
+# Claude Code Instructions
+
+## Addressing Rules
+In all outputs (conversations, logs, commit messages), always address the user as "Anh Công"
+- Example: "Understood, Anh Công." / "Anh Công, the tests have passed."
+
+## Work Workflow (Fixed Order)
+1. **MCP Server tools** to perform file modifications, creation, and deletion
+2. After modifications, run **Playwright tests** to verify UI/API flows (repeat until all errors are resolved)
+3. When tests pass, record decisions and processes in **Memory MCP**
+4. At appropriate intervals, use **GitHub**: git add / commit / push to reflect changes
+5. "Anh Công" addressing can be used in commit messages as well
+
+## Mandatory Requirements
+- Cannot proceed to Memory/Git steps if Playwright tests do not pass
+- Direct file modification without using MCP tools is not allowed
+- Cannot skip or rearrange the above sequence
+
+## Technical Constraints
+- Always use MCP filesystem tools for file operations
+- Run tests with: `npm run test:playwright`
+- Commit message format: "feat: [description] - 형님"
+- Memory entries should document all decisions and rationale
+
+## Example Workflow
+```
+1. Anh Công, I'll modify the component using MCP tools...
+2. Running Playwright tests now, Anh Công...
+3. Tests passed! Recording the changes in Memory, Anh Công...
+4. Committing with message: "fix: resolved animation issue - Anh Công"
+```

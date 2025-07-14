@@ -1,0 +1,76 @@
+
+
+
+#####
+Version 01
+Đây là chức năng của version 01 
+## 2. CHỨC NĂNG CỐT LÕI (SIMPLIFIED)
+
+### 2.1 Main Features
+**Image-Based Interactive Map:**
+- Sử dụng **chính xác hình ảnh bản đồ đã cho** làm background
+- **Overlay interactive hotspots** lên các điểm trên hình có sẵn
+- **Clickable areas** trên các trạm biến áp và data center
+- **Hover effects** hiển thị thông tin tooltip
+- **Zoom và pan** functionality trên hình ảnh gốc
+
+**Information Overlays:**
+- **Modal popups** khi click vào các điểm đã đánh dấu
+- **Legend panel** tương ứng với legend có sẵn trong hình
+- **Project highlights** với thông tin về dự án
+
+**Visual Enhancements:**
+- **Animated overlays** trên đường điện hiện có
+- **Pulse effects** trên các điểm quan trọng
+- **Dark/Light theme** toggle
+- **Responsive design** cho laptop presentation
+
+### 2.2 Data Management (20% scope)
+**Static Data Approach:**
+- **JSON files** trong thư mục `/public/data/` cho infrastructure data
+- **Static assets** trong `/public/images/` cho hình ảnh và icons
+- **Local storage** (optional) cho user preferences như theme
+- **No server required** - pure client-side application
+
+
+Version 02
+Đây là chức năng của version 02 cần thêm vào  
+## 2. CHỨC NĂNG CỐT LÕI (SIMPLIFIED)
+
+### 2.1 Main Features
+**Image-Based Interactive Map:**
+- Sử dụng **chính xác hình ảnh bản đồ đã cho** làm background
+- **Overlay interactive hotspots** lên các điểm trên hình có sẵn
+- **Clickable areas** trên các trạm biến áp và data center
+- **Hover effects** hiển thị thông tin tooltip
+- **Zoom và pan** functionality trên hình ảnh gốc
+
+**Information Overlays:**
+- **Modal popups** khi click vào các điểm đã đánh dấu
+- **Legend panel** tương ứng với legend có sẵn trong hình
+- **Project highlights** với thông tin về dự án
+
+**Visual Enhancements:**
+- **Animated overlays** trên đường điện hiện có
+- **Pulse effects** trên các điểm quan trọng
+- **Dark/Light theme** toggle
+- **Responsive design** cho laptop presentation
+
+3D Power Grid Visualization
+│   ├── Click transmission lines → zoom + specifications
+│   ├── Hover substations → capacity details
+│   └── Animated power flow → real-time load data
+
+500kV transmission lines với animation
+
+
+
+
+
+
+### 2.2 Data Management (20% scope)
+**Static Data Approach:**
+- **JSON files** trong thư mục `/public/data/` cho infrastructure data
+- **Static assets** trong `/public/images/` cho hình ảnh và icons
+- **Local storage** (optional) cho user preferences như theme
+- **No server required** - pure client-side application
