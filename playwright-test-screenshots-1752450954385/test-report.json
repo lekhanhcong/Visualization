@@ -1,0 +1,71 @@
+{
+  "testDate": "2025-07-13T23:57:20.824Z",
+  "url": "http://localhost:3000/heart",
+  "testResults": [
+    {
+      "test": "Initial Load",
+      "status": "PASSED"
+    },
+    {
+      "test": "Hero Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Location Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Transportation Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Data Center Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Power Flow Animation",
+      "status": "PASSED"
+    },
+    {
+      "test": "2N+1 Redundancy",
+      "status": "PASSED"
+    },
+    {
+      "test": "Submarine Cable",
+      "status": "PASSED"
+    },
+    {
+      "test": "Navigation",
+      "status": "FAILED",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav button:has-text(\"DATACENTER\")').first()\u001b[22m\n"
+    },
+    {
+      "test": "Full Page Design",
+      "status": "PASSED"
+    },
+    {
+      "test": "Mobile Responsive",
+      "status": "PASSED"
+    },
+    {
+      "test": "Performance",
+      "status": "PASSED",
+      "metrics": {
+        "domContentLoaded": 0,
+        "loadComplete": 0,
+        "firstPaint": 484,
+        "firstContentfulPaint": 484
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "screenshots": "/Users/lekhanhcong/05_AI_Code/v3_01_Web_Demo_Tool_Test_animation/hue-datacenter-visualization/playwright-test-screenshots-1752450954385",
+  "summary": {
+    "totalTests": 12,
+    "passed": 11,
+    "failed": 1,
+    "errorCount": 0,
+    "warningCount": 0
+  }
+}

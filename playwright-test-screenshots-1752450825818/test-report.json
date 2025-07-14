@@ -1,0 +1,72 @@
+{
+  "testDate": "2025-07-13T23:55:24.021Z",
+  "url": "http://localhost:3000/heart",
+  "testResults": [
+    {
+      "test": "Initial Load",
+      "status": "PASSED"
+    },
+    {
+      "test": "Hero Section",
+      "status": "FAILED",
+      "error": "locator.textContent: Error: strict mode violation: locator('h1') resolved to 2 elements:\n    1) <h1 class=\"text-lg font-bold text-gray-900\">HEART</h1> aka getByRole('navigation').getByRole('heading', { name: 'HEART' })\n    2) <h1 class=\"text-4xl md:text-6xl font-bold mb-8 text-gray-900\">HUE HI-TECH PARK</h1> aka getByRole('heading', { name: 'HUE HI-TECH PARK' })\n\nCall log:\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n"
+    },
+    {
+      "test": "Location Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Transportation Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Data Center Section",
+      "status": "PASSED"
+    },
+    {
+      "test": "Power Flow Animation",
+      "status": "PASSED"
+    },
+    {
+      "test": "2N+1 Redundancy",
+      "status": "PASSED"
+    },
+    {
+      "test": "Submarine Cable",
+      "status": "PASSED"
+    },
+    {
+      "test": "Navigation",
+      "status": "FAILED",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav button:has-text(\"HERO\")')\u001b[22m\n"
+    },
+    {
+      "test": "Full Page Design",
+      "status": "PASSED"
+    },
+    {
+      "test": "Mobile Responsive",
+      "status": "PASSED"
+    },
+    {
+      "test": "Performance",
+      "status": "PASSED",
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 0,
+        "firstPaint": 352,
+        "firstContentfulPaint": 352
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "screenshots": "/Users/lekhanhcong/05_AI_Code/v3_01_Web_Demo_Tool_Test_animation/hue-datacenter-visualization/playwright-test-screenshots-1752450825818",
+  "summary": {
+    "totalTests": 12,
+    "passed": 10,
+    "failed": 2,
+    "errorCount": 0,
+    "warningCount": 0
+  }
+}

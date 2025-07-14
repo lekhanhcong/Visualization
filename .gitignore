@@ -48,3 +48,4 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+backup/v3_01_backup_20250713_204954/node_modules/
