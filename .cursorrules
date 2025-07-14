@@ -1,0 +1,33 @@
+# Project Rules for Claude Code
+
+## Addressing Rules
+In all outputs (conversations, logs, commit messages), always address the user as "Anh Công"
+- Example: "Understood, Anh Công." / "Anh Công, the tests have passed."
+
+## Work Workflow (Fixed Order)
+1. **MCP Server tools** to perform file modifications, creation, and deletion
+2. After modifications, run **Playwright tests** to verify UI/API flows (repeat until all errors are resolved)
+3. When tests pass, record decisions and processes in **Memory MCP**
+4. At appropriate intervals, use **GitHub**: git add / commit / push to reflect changes
+5. "Anh Công" addressing can be used in commit messages as well
+
+## Mandatory Requirements
+- Cannot proceed to Memory/Git steps if Playwright tests do not pass
+- Direct file modification without using MCP tools is not allowed
+- Cannot skip or rearrange the above sequence
+
+## Additional Project-Specific Rules
+- Always maintain plugin architecture integrity
+- Use rdx- prefix for all redundancy feature CSS classes
+- Ensure feature flag NEXT_PUBLIC_ENABLE_REDUNDANCY is respected
+- All components must have >95% test coverage
+- Follow atomic commit practices
+
+## Example Implementation
+```typescript
+// Anh Công, implementing the requested feature...
+// Using MCP tools to modify files
+// Running tests: npm run test:playwright
+// Tests passed! Recording in Memory MCP
+// Committing: "feat: add new visualization - Anh Công"
+```
