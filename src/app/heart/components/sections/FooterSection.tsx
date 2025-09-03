@@ -3,7 +3,7 @@
 export function FooterSection() {
   return (
     <footer 
-      className="py-12"
+      className=""
       style={{ background: '#4A7C59' }}
     >
       <div className="max-w-7xl mx-auto px-5">

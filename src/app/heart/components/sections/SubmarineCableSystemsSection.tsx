@@ -30,8 +30,8 @@ export function SubmarineCableSystemsSection() {
       className="flex items-center justify-center"
       style={{ 
         background: '#FFFFFF',
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
+        paddingTop: '0',
+        paddingBottom: '0',
         minHeight: '70vh'
       }}
     >

@@ -29,8 +29,8 @@ export function ElectricityInfrastructureSection() {
       className="flex items-center justify-center relative overflow-hidden"
       style={{ 
         background: '#FFFFFF',
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
+        paddingTop: '0',
+        paddingBottom: '0',
         minHeight: '70vh'
       }}
     >
@@ -56,7 +56,7 @@ export function ElectricityInfrastructureSection() {
             className="text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
             style={{ color: 'var(--medium-gray)' }}
           >
-            Hue Hi-Tech Park's 300MW data center has 04 existing 500kV lines crossing site boundary, with integrated 500/220/110kV substations and 2N+1 redundancy
+            Hue Hi-Tech Park&apos;s 300MW data center has 04 existing 500kV lines crossing site boundary, with integrated 500/220/110kV substations and 2N+1 redundancy
           </motion.p>
 
         </div>

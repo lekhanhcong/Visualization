@@ -15,8 +15,8 @@ export function HeroSection() {
       className="w-full flex items-center justify-center"
       style={{ 
         background: '#FFFFFF',
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
+        paddingTop: '0',
+        paddingBottom: '0',
         minHeight: '50vh'
       }}
     >
@@ -31,7 +31,7 @@ export function HeroSection() {
             HUE HI-TECH PARK
           </h1>
           <h2 className="text-2xl md:text-4xl font-semibold mb-6 text-gray-800">
-            Vietnam's First 300MW AI-Optimized Hyperscale Data Center
+            Vietnam&apos;s First 300MW AI-Optimized Hyperscale Data Center
           </h2>
         </div>
       </div>

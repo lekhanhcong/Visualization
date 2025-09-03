@@ -28,8 +28,8 @@ export function LocationSection() {
       className="flex items-center justify-center"
       style={{ 
         background: '#FFFFFF',
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
+        paddingTop: '0',
+        paddingBottom: '0',
         minHeight: '70vh'
       }}
     >
@@ -55,7 +55,7 @@ export function LocationSection() {
             `}
             style={{ color: 'var(--medium-gray)' }}
           >
-            Strategically positioned in Hue Hi-Tech State-owned Park, 500kV onsite grid with 4 existing lines + Connect to Da Nang's international submarine cables.
+            Strategically positioned in Hue Hi-Tech State-owned Park, 500kV onsite grid with 4 existing lines + Connect to Da Nang&apos;s international submarine cables.
           </p>
         </div>
 

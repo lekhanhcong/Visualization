@@ -45,6 +45,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload critical images for faster First Contentful Paint */}
+        <link rel="preload" href="/images/location_01.png" as="image" />
+        <link rel="preload" href="/images/Connectivity_01.png" as="image" />
+        <link rel="preload" href="/images/Power_01.png" as="image" />
+        <link rel="preload" href="/images/Datacenter.png" as="image" />
+        {/* DNS prefetch for better performance */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
         style={{ fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Navigation } from './Navigation'
 import { HeroSection } from './sections/HeroSection'
 import { LocationSection } from './sections/LocationSection'
@@ -12,27 +12,29 @@ import { SubmarineCableSystemsSection } from './sections/SubmarineCableSystemsSe
 import { FooterSection } from './sections/FooterSection'
 
 export function HeartWebsite() {
-  const [mounted, setMounted] = useState(false)
-
   useEffect(() => {
-    setMounted(true)
+    // Preload critical images for better First Contentful Paint
+    const criticalImages = [
+      '/images/location_01.png',
+      '/images/Connectivity_01.png', 
+      '/images/Power_01.png',
+      '/images/Datacenter.png'
+    ]
+    
+    criticalImages.forEach(src => {
+      const img = new Image()
+      img.src = src
+    })
   }, [])
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{background: 'var(--white)'}}>
-        <div className="animate-pulse text-xl" style={{color: 'var(--dark-gray)'}}>Loading HEART Website...</div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen" style={{background: 'var(--white)'}}>
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
       <Navigation />
       
-      {/* Main Content - Single Page with Scroll */}
+      {/* Main Content - Optimized with minimal spacing */}
       <main className="scroll-smooth">
+        {/* All sections load immediately - optimized for performance */}
         <HeroSection />
         <LocationSection />
         <TransportationSection />
@@ -40,10 +42,10 @@ export function HeartWebsite() {
         <ElectricityInfrastructureSection />
         <RedundancySection />
         <SubmarineCableSystemsSection />
+        
+        {/* Footer - no gap with last section */}
+        <FooterSection />
       </main>
-      
-      {/* Footer */}
-      <FooterSection />
     </div>
   )
 }
